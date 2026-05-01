@@ -59,6 +59,11 @@ namespace DnD5eBattleApp
         public void RollHP(bool maxFirstDie = false)
         {
             hitPointMax = 0;
+            if (maxFirstDie)
+            {
+                hitPointMax += hitDie + StatMod(Stats.Constitution);
+                hitDiceNumber -= 1;
+            }
             for (int i = 0; i < hitDiceNumber; i++)
             {
                 hitPointMax += EngManager.random.Next(1, hitDie + 1) + StatMod(Stats.Constitution);
