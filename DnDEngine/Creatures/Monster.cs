@@ -20,6 +20,7 @@ namespace DnD5eBattleApp
             // TODO: Handle Textures
             Texture = DnDManager.monsterTextures[SRDLibrary.Monsters.Goblin.ToString()];
             // TODO: Handle Armor? Is it even needed
+            // TODO: Handle weapons and equipment
             RecalibrateStats();
             ResetHP();
 

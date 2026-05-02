@@ -117,14 +117,15 @@ namespace DnD5eBattleApp
             template.textures = ButtonTextures.FromList(contextMenuTextures.blankTileTextures);
             template.font = contextMenuTextures.baseFont;
 
-            template.tags = new List<List<string>>() {
-                new List<string>() { "SpawnMonster", SRDLibrary.Monsters.Commoner.ToString() },
-                new List<string>() { "SpawnMonster", SRDLibrary.Monsters.Goblin.ToString() },
-                new List<string>() { "SpawnMonster", SRDLibrary.Monsters.Cultist.ToString() },
-                new List<string>() { "SpawnMonster", SRDLibrary.Monsters.CultFanatic.ToString() }
-            };
-            template.texts = new List<string>() { "Commoner", "Goblin", "Cultist", "Cult Fanatic" };
 
+            // Get one for each Monster ingested
+            template.texts = new List<string>();
+            template.tags = new List<List<string>>();
+            for (int i = 0; i < DnDManager.monsters.Keys.Count; i++)
+            {
+                template.texts.Add(DnDManager.monsters.Keys.ElementAt<string>(i));
+                template.tags.Add(new List<string>() { "SpawnMonster", DnDManager.monsters.Keys.ElementAt<string>(i) });
+            }
 
             return template;
         }
