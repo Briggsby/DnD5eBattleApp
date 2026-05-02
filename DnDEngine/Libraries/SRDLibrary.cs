@@ -103,7 +103,7 @@ namespace DnD5eBattleApp
             {
                 AbilityCheck rollAb = roll as AbilityCheck;
                 SavingThrow rollSav = roll as SavingThrow;
-                if ((roll is AbilityCheck && rollAb.stat == Stats.Strength) || (roll is SavingThrow && rollSav.stat == Stats.Strength))
+                if ((roll is AbilityCheck && rollAb.stat == Stat.Strength) || (roll is SavingThrow && rollSav.stat == Stat.Strength))
                 {
                     roll.advantage = true;
                 }
@@ -423,7 +423,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 4 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Bludgeoning.ToString() };
-                abilityStat = Stats.Strength;
+                abilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Light };
@@ -453,7 +453,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
-                abilityStat = Stats.Strength;
+                abilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse, WeaponProperty.Light };
@@ -480,7 +480,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
-                abilityStat = Stats.Dexterity;
+                abilityStat = Stat.Dexterity;
                 minRange = 80;
                 maxRange = 320;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Range };
@@ -512,7 +512,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 4 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
-                abilityStat = Stats.Strength;
+                abilityStat = Stat.Strength;
                 minRange = 20;
                 maxRange = 60;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse, WeaponProperty.Light, WeaponProperty.Thrown };
@@ -538,7 +538,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
-                abilityStat = Stats.Strength;
+                abilityStat = Stat.Strength;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse, WeaponProperty.Light};
                 acBonus = 0;
             }
@@ -567,7 +567,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 12 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
-                abilityStat = Stats.Strength;
+                abilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.TwoHanded };
@@ -598,7 +598,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
-                abilityStat = Stats.Strength;
+                abilityStat = Stat.Strength;
                 minRange = 20;
                 maxRange = 60;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Light, WeaponProperty.Thrown };
@@ -630,7 +630,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
-                abilityStat = Stats.Strength;
+                abilityStat = Stat.Strength;
                 minRange = 30;
                 maxRange = 120;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Thrown };
@@ -791,7 +791,7 @@ namespace DnD5eBattleApp
 
             public override int GetAC(Creature creature)
             {
-                return baseAC + creature.StatMod(Stats.Dexterity) + creature.StatMod(Stats.Constitution);
+                return baseAC + creature.StatMod(Stat.Dexterity) + creature.StatMod(Stat.Constitution);
             }
         }
 
@@ -1326,7 +1326,7 @@ namespace DnD5eBattleApp
             public Elf() : base()
             {
                 name = "Elf";
-                statIncreases = new Dictionary<Stats, int> { { Stats.Dexterity, 2 } };
+                statIncreases = new Dictionary<Stat, int> { { Stat.Dexterity, 2 } };
                 size = Size.Medium;
                 speed = 30;
                 darkvision = 60;
@@ -1343,7 +1343,7 @@ namespace DnD5eBattleApp
             {
                 name = "High Elf";
                 parentSpecies = Specieses.Elf.ToString();
-                statIncreases = new Dictionary<Stats, int> { { Stats.Intelligence, 1 } };
+                statIncreases = new Dictionary<Stat, int> { { Stat.Intelligence, 1 } };
                 feats = new List<string>() { };
                 languages = new List<string>() { DnDManager.Languages.Choose.ToString() };
             }
@@ -1358,7 +1358,7 @@ namespace DnD5eBattleApp
             public Dwarf() : base()
             {
                 name = "Dwarf";
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Constitution, 2 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Constitution, 2 } };
                 size = Size.Medium;
                 speed = 25;
                 darkvision = 60;
@@ -1373,7 +1373,7 @@ namespace DnD5eBattleApp
             public HillDwarf() : base()
             {
                 name = "Hill Dwarf";
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Wisdom, 1 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Wisdom, 1 } };
                 feats = new List<string>() { RacialFeats.DwarvenToughness.ToString() };
             }
         }
@@ -1387,7 +1387,7 @@ namespace DnD5eBattleApp
             public Halfling() : base()
             {
                 name = "Halfling";
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Dexterity, 2 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Dexterity, 2 } };
                 size = Size.Small;
                 speed = 25;
                 feats = new List<string>() { RacialFeats.HalflingLucky.ToString(), RacialFeats.HalflingBrave.ToString(), RacialFeats.HalflingNimbleness.ToString() };
@@ -1400,7 +1400,7 @@ namespace DnD5eBattleApp
             public LightfootHalfling() : base()
             {
                 name = "Lightfoot Halfling";
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Charisma, 1 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Charisma, 1 } };
                 feats = new List<string>() { RacialFeats.NaturallyStealthy.ToString() };
             }
         }
@@ -1412,7 +1412,7 @@ namespace DnD5eBattleApp
             public Human() : base()
             {
                 name = "Human";
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Strength, 1 }, { Stats.Dexterity, 1 }, { Stats.Constitution, 1 }, { Stats.Intelligence, 1 }, { Stats.Wisdom, 1 }, { Stats.Charisma, 1 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Strength, 1 }, { Stat.Dexterity, 1 }, { Stat.Constitution, 1 }, { Stat.Intelligence, 1 }, { Stat.Wisdom, 1 }, { Stat.Charisma, 1 } };
                 size = Size.Medium;
                 speed = 30;
                 languages = new List<string>() { DnDManager.Languages.Common.ToString(), DnDManager.Languages.Choose.ToString() };
@@ -1424,7 +1424,7 @@ namespace DnD5eBattleApp
             public Dragonborn() : base()
             {
                 name = "Dragonborn";
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Strength, 2 }, { Stats.Charisma, 1 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Strength, 2 }, { Stat.Charisma, 1 } };
                 size = Size.Medium;
                 speed = 30;
                 feats = new List<string>() { RacialFeats.DraconicAncestry.ToString() };
@@ -1438,7 +1438,7 @@ namespace DnD5eBattleApp
         {
             public Gnome() : base()
             {
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Intelligence, 2 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Intelligence, 2 } };
                 size = Size.Small;
                 speed = 25;
                 darkvision = 60;
@@ -1452,7 +1452,7 @@ namespace DnD5eBattleApp
         {
             public RockGnome() : base()
             {
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Constitution, 1 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Constitution, 1 } };
             }
         }
         #endregion
@@ -1461,7 +1461,7 @@ namespace DnD5eBattleApp
         {
             public HalfElf() : base()
             {
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Charisma, 2 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Charisma, 2 } };
                 darkvision = 60;
                 feats = new List<string>() { RacialFeats.FeyAncestry.ToString(), RacialFeats.HalfElfStatVersatility.ToString(), RacialFeats.HalfElfSkillVersatility.ToString() };
                 languages = new List<string>() { Languages.Common.ToString(), Languages.Elvish.ToString(), Languages.Choose.ToString() };
@@ -1472,9 +1472,9 @@ namespace DnD5eBattleApp
         {
             public HalfOrc() : base()
             {
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Strength, 2 }, { Stats.Constitution, 1 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Strength, 2 }, { Stat.Constitution, 1 } };
                 darkvision = 60;
-                proficiencies = new List<Skills>() { Skills.Intimidation };
+                proficiencies = new List<Skill>() { Skill.Intimidation };
                 feats = new List<string>() { RacialFeats.RelentlessEndurance.ToString(), RacialFeats.SavageAttacks.ToString() };
                 languages = new List<string>() { Languages.Orc.ToString(), Languages.Common.ToString() };
             }
@@ -1484,7 +1484,7 @@ namespace DnD5eBattleApp
         {
             public Tiefling() : base()
             {
-                statIncreases = new Dictionary<Stats, int>() { { Stats.Intelligence, 1 }, { Stats.Charisma, 2 } };
+                statIncreases = new Dictionary<Stat, int>() { { Stat.Intelligence, 1 }, { Stat.Charisma, 2 } };
                 darkvision = 60;
                 languages = new List<string>() { Languages.Common.ToString(), Languages.Infernal.ToString() };
                 feats = new List<string>() { RacialFeats.InfernalLegacy.ToString(), RacialFeats.HellishResistance.ToString() };
@@ -1532,15 +1532,15 @@ namespace DnD5eBattleApp
                 armorCategoryProficiencies = new List<ArmorCategories>() { ArmorCategories.LightArmor, ArmorCategories.MediumArmor, ArmorCategories.HeavyArmor, ArmorCategories.Shields };
                 weaponCategoryProficiencies = new List<WeaponCategory>() { WeaponCategory.SimpleWeapon, WeaponCategory.MartialWeapon, WeaponCategory.Shields };
                 weaponProficiencies = new List<WeaponType>();
-                savingThrows = new List<Stats>() { Stats.Strength, Stats.Constitution };
-                skillProficiencyOptions = new List<Skills>() { Skills.Acrobatics, Skills.AnimalHandling, Skills.Athletics, Skills.History, Skills.Insight, Skills.Intimidation, Skills.Perception, Skills.Survival };
+                savingThrows = new List<Stat>() { Stat.Strength, Stat.Constitution };
+                skillProficiencyOptions = new List<Skill>() { Skill.Acrobatics, Skill.AnimalHandling, Skill.Athletics, Skill.History, Skill.Insight, Skill.Intimidation, Skill.Perception, Skill.Survival };
                 skillProficiencyNumberOfChoices = 2;
                 equipmentOptions = new List<List<List<string>>>();
                 subClassLevel = 3;
                 subClasses = new List<string>() { SubClasses.Champion.ToString() };
                 feats = new Dictionary<int, List<string>>();
 
-                statRelevanceInOrder = new List<Stats>() { Stats.Strength, Stats.Constitution, Stats.Dexterity, Stats.Wisdom, Stats.Charisma, Stats.Intelligence };
+                statRelevanceInOrder = new List<Stat>() { Stat.Strength, Stat.Constitution, Stat.Dexterity, Stat.Wisdom, Stat.Charisma, Stat.Intelligence };
 
                 items = new List<string>() { Armors.PlateArmor.ToString(), Armors.HalfPlate.ToString() };
                 equipmentOptions = new List<List<List<string>>>()
@@ -1582,8 +1582,8 @@ namespace DnD5eBattleApp
                 armorCategoryProficiencies = new List<ArmorCategories>() { ArmorCategories.LightArmor, ArmorCategories.MediumArmor, ArmorCategories.Shields };
                 weaponCategoryProficiencies = new List<WeaponCategory>() { WeaponCategory.SimpleWeapon, WeaponCategory.MartialWeapon, WeaponCategory.Shields };
                 weaponProficiencies = new List<WeaponType>();
-                savingThrows = new List<Stats>() { Stats.Strength, Stats.Constitution };
-                skillProficiencyOptions = new List<Skills>() { Skills.AnimalHandling, Skills.Athletics, Skills.Nature, Skills.Intimidation, Skills.Perception, Skills.Survival };
+                savingThrows = new List<Stat>() { Stat.Strength, Stat.Constitution };
+                skillProficiencyOptions = new List<Skill>() { Skill.AnimalHandling, Skill.Athletics, Skill.Nature, Skill.Intimidation, Skill.Perception, Skill.Survival };
                 skillProficiencyNumberOfChoices = 2;
                 subClassLevel = 3;
                 subClasses = new List<string>() { SubClasses.Berserker.ToString() };
@@ -1609,7 +1609,7 @@ namespace DnD5eBattleApp
 
                 };
 
-                statRelevanceInOrder = new List<Stats>() { Stats.Strength, Stats.Constitution, Stats.Dexterity, Stats.Wisdom, Stats.Charisma, Stats.Intelligence };
+                statRelevanceInOrder = new List<Stat>() { Stat.Strength, Stat.Constitution, Stat.Dexterity, Stat.Wisdom, Stat.Charisma, Stat.Intelligence };
 
                 items = new List<string>() { Packs.ExplorersPack.ToString(), Weapons.Javelin.ToString(), Weapons.Javelin.ToString(), Weapons.Javelin.ToString(), Weapons.Javelin.ToString() };
                 equipmentOptions = new List<List<List<string>>>()
@@ -1653,9 +1653,9 @@ namespace DnD5eBattleApp
                 armorCategoryProficiencies = new List<ArmorCategories>() { ArmorCategories.LightArmor };
                 weaponCategoryProficiencies = new List<WeaponCategory>();
                 weaponProficiencies = new List<WeaponType>();
-                savingThrows = new List<Stats>() { Stats.Dexterity, Stats.Charisma };
+                savingThrows = new List<Stat>() { Stat.Dexterity, Stat.Charisma };
                 skillProficiencyNumberOfChoices = 3;
-                skillProficiencyOptions = new List<Skills>() { Skills.Athletics, Skills.AnimalHandling, Skills.Arcana, Skills.Athletics, Skills.Deception, Skills.History, Skills.Insight, Skills.Intimidation, Skills.Investigation, Skills.Medicine, Skills.Nature, Skills.Perception, Skills.Performance, Skills.Persuasion, Skills.Religion, Skills.SleightOfHand, Skills.Stealth, Skills.Survival };
+                skillProficiencyOptions = new List<Skill>() { Skill.Athletics, Skill.AnimalHandling, Skill.Arcana, Skill.Athletics, Skill.Deception, Skill.History, Skill.Insight, Skill.Intimidation, Skill.Investigation, Skill.Medicine, Skill.Nature, Skill.Perception, Skill.Performance, Skill.Persuasion, Skill.Religion, Skill.SleightOfHand, Skill.Stealth, Skill.Survival };
                 items = new List<string>() { Armors.Leather.ToString(), Weapons.Dagger.ToString(), Tools.MusicalInstrument.ToString() };
                 feats = new Dictionary<int, List<string>>()
                 {
@@ -1688,7 +1688,7 @@ namespace DnD5eBattleApp
                         new List<String>() {Packs.EntertainersPack.ToString() }
                     }
                 };
-                statRelevanceInOrder = new List<Stats>() { Stats.Charisma, Stats.Dexterity, Stats.Intelligence, Stats.Wisdom, Stats.Constitution, Stats.Strength };
+                statRelevanceInOrder = new List<Stat>() { Stat.Charisma, Stat.Dexterity, Stat.Intelligence, Stat.Wisdom, Stat.Constitution, Stat.Strength };
             }
         }
 
@@ -2154,18 +2154,18 @@ namespace DnD5eBattleApp
                 {DragonTypes.Silver.ToString(), DamageTypes.Cold },
                 {DragonTypes.White.ToString(), DamageTypes.Cold }
             };
-            public Dictionary<string, Stats> saveType = new Dictionary<string, Stats>()
+            public Dictionary<string, Stat> saveType = new Dictionary<string, Stat>()
             {
-                {DragonTypes.Black.ToString(), Stats.Dexterity },
-                {DragonTypes.Blue.ToString(),  Stats.Dexterity },
-                {DragonTypes.Brass.ToString(), Stats.Dexterity },
-                {DragonTypes.Bronze.ToString(),Stats.Dexterity },
-                {DragonTypes.Copper.ToString(),Stats.Dexterity },
-                {DragonTypes.Gold.ToString(),  Stats.Dexterity },
-                {DragonTypes.Green.ToString(), Stats.Constitution },
-                {DragonTypes.Red.ToString(),   Stats.Dexterity },
-                {DragonTypes.Silver.ToString(),Stats.Constitution },
-                {DragonTypes.White.ToString(), Stats.Constitution }
+                {DragonTypes.Black.ToString(), Stat.Dexterity },
+                {DragonTypes.Blue.ToString(),  Stat.Dexterity },
+                {DragonTypes.Brass.ToString(), Stat.Dexterity },
+                {DragonTypes.Bronze.ToString(),Stat.Dexterity },
+                {DragonTypes.Copper.ToString(),Stat.Dexterity },
+                {DragonTypes.Gold.ToString(),  Stat.Dexterity },
+                {DragonTypes.Green.ToString(), Stat.Constitution },
+                {DragonTypes.Red.ToString(),   Stat.Dexterity },
+                {DragonTypes.Silver.ToString(),Stat.Constitution },
+                {DragonTypes.White.ToString(), Stat.Constitution }
 
             };
 
@@ -2274,7 +2274,7 @@ namespace DnD5eBattleApp
                 if (roll.roller == creature && roll is SavingThrow)
                 {
                     SavingThrow rollSave = roll as SavingThrow;
-                    if (rollSave.source is Spell && (rollSave.stat == Stats.Intelligence || rollSave.stat == Stats.Wisdom || rollSave.stat == Stats.Charisma))
+                    if (rollSave.source is Spell && (rollSave.stat == Stat.Intelligence || rollSave.stat == Stat.Wisdom || rollSave.stat == Stat.Charisma))
                     {
                         roll.advantage = true;
                     }
@@ -2303,7 +2303,7 @@ namespace DnD5eBattleApp
             {
                 name = "Half-Elf Stat Increases";
                 description = "Two ability scores of your choice, other than Charisma, increase by 1";
-                featChoices = new List<string>() { Stats.Strength.ToString(), Stats.Dexterity.ToString(), Stats.Constitution.ToString(), Stats.Intelligence.ToString(), Stats.Wisdom.ToString() };
+                featChoices = new List<string>() { Stat.Strength.ToString(), Stat.Dexterity.ToString(), Stat.Constitution.ToString(), Stat.Intelligence.ToString(), Stat.Wisdom.ToString() };
                 choiceMade = false;
             }
 
@@ -2318,7 +2318,7 @@ namespace DnD5eBattleApp
                 {
                     statChoicesLeft--;
                 }
-                creature.baseStats.ChangeStat((Stats)Enum.Parse(typeof(Stats), choice), 1);
+                creature.baseStats.ChangeStat((Stat)Enum.Parse(typeof(Stat), choice), 1);
                 featChoices.Remove(choice);
 
             }
@@ -2345,9 +2345,9 @@ namespace DnD5eBattleApp
             public override bool HasChoices()
             {
                 featChoices = new List<string>();
-                foreach (string skill in Enum.GetNames(typeof(Skills)))
+                foreach (string skill in Enum.GetNames(typeof(Skill)))
                 {
-                    if (skill != Skills.Choose.ToString() && !creature.skillProficiencies.Contains((Skills)Enum.Parse(typeof(Skills), skill)))
+                    if (skill != Skill.Choose.ToString() && !creature.skillProficiencies.Contains((Skill)Enum.Parse(typeof(Skill), skill)))
                     {
                         featChoices.Add(skill);
                     }
@@ -2366,7 +2366,7 @@ namespace DnD5eBattleApp
                 {
                     skillChoicesLeft--;
                 }
-                creature.baseStats.skillProficiencies.Add((Skills)Enum.Parse(typeof(Skills), choice));
+                creature.baseStats.skillProficiencies.Add((Skill)Enum.Parse(typeof(Skill), choice));
             }
         }
 
@@ -2539,7 +2539,7 @@ namespace DnD5eBattleApp
             {
                 name = "Ability Score Improvement";
                 choiceMade = false;
-                featChoices = new List<string>() { Stats.Strength.ToString(), Stats.Dexterity.ToString(), Stats.Constitution.ToString(), Stats.Intelligence.ToString(), Stats.Wisdom.ToString(), Stats.Charisma.ToString() };
+                featChoices = new List<string>() { Stat.Strength.ToString(), Stat.Dexterity.ToString(), Stat.Constitution.ToString(), Stat.Intelligence.ToString(), Stat.Wisdom.ToString(), Stat.Charisma.ToString() };
             }
 
             public override bool HasChoices()
@@ -2549,14 +2549,14 @@ namespace DnD5eBattleApp
                 {
                     if (!creature.CheckFeat(BarbarianFeats.PrimalChampion.ToString()))
                     {
-                        if (creature.stats[(Stats)Enum.Parse(typeof(Stats), s)] >= 20)
+                        if (creature.stats[(Stat)Enum.Parse(typeof(Stat), s)] >= 20)
                         {
                             featChoices.Remove(s);
                         }
                     }
                     else
                     {
-                        if (creature.stats[(Stats)Enum.Parse(typeof(Stats), s)] >= 24)
+                        if (creature.stats[(Stat)Enum.Parse(typeof(Stat), s)] >= 24)
                         {
                             featChoices.Remove(s);
                         }
@@ -2569,7 +2569,7 @@ namespace DnD5eBattleApp
             public override void FeatChoice(string choice)
             {
                 base.FeatChoice(choice);
-                creature.baseStats.ChangeStat((Stats)Enum.Parse(typeof(Stats), choice), 1);
+                creature.baseStats.ChangeStat((Stat)Enum.Parse(typeof(Stat), choice), 1);
                 choices--;
                 if (choices < 1)
                 {
@@ -2889,7 +2889,7 @@ namespace DnD5eBattleApp
                     AttackRoll rollAtt = roll as AttackRoll;
                     if (usedThisTurn)
                     {
-                        if (!rollAtt.attack.isSpell && rollAtt.attack.IsMelee && rollAtt.attack.statUsed == Stats.Strength)
+                        if (!rollAtt.attack.isSpell && rollAtt.attack.IsMelee && rollAtt.attack.statUsed == Stat.Strength)
                         {
                             roll.advantage = true;
                         }
@@ -2915,7 +2915,7 @@ namespace DnD5eBattleApp
                 base.OptionsDisplayYes(dO, e);
                 AttackRoll currentRoll = (dO as DisplayOptionsDnD).roll as AttackRoll;
                 usedThisTurn = true;
-                if (!currentRoll.attack.isSpell && currentRoll.attack.IsMelee && currentRoll.attack.statUsed == Stats.Strength)
+                if (!currentRoll.attack.isSpell && currentRoll.attack.IsMelee && currentRoll.attack.statUsed == Stat.Strength)
                 {
                     currentRoll.advantage = true;
                 }
@@ -2954,7 +2954,7 @@ namespace DnD5eBattleApp
 
             public override void FeatPreRollCheck(Roll roll, RollEventArgs e)
             {
-                if (roll.roller == creature && roll is SavingThrow && (roll as SavingThrow).stat == Stats.Dexterity)
+                if (roll.roller == creature && roll is SavingThrow && (roll as SavingThrow).stat == Stat.Dexterity)
                 {
                     if (!(creature.CheckFeat(typeof(Blinded)) || creature.CheckFeat(typeof(Deafened)) || creature.CheckFeat(typeof(Incapacitated))))
                     {
@@ -3109,7 +3109,7 @@ namespace DnD5eBattleApp
                 if (creature.hitPoints <= 0)
                 {
                     Debug.WriteLine("Relentless Rage Feat Used");
-                    saveRoll = new SavingThrow(Stats.Constitution, creature, this);
+                    saveRoll = new SavingThrow(Stat.Constitution, creature, this);
                     saveRoll.finishRoll += new RollDelegate(RollMade);
                 }
             }
@@ -3171,11 +3171,11 @@ namespace DnD5eBattleApp
             {
                 if (roll.roller == creature && roll is AbilityCheck)
                 {
-                    if ((roll as AbilityCheck).stat == Stats.Strength)
+                    if ((roll as AbilityCheck).stat == Stat.Strength)
                     {
-                        if (roll.score < creature.stats[Stats.Strength])
+                        if (roll.score < creature.stats[Stat.Strength])
                         {
-                            roll.score = creature.stats[Stats.Strength];
+                            roll.score = creature.stats[Stat.Strength];
                         }
                     }
                 }
@@ -3201,8 +3201,8 @@ namespace DnD5eBattleApp
             public override void AddFeat()
             {
                 base.AddFeat();
-                creature.baseStats.stats[Stats.Strength] = Math.Min(creature.baseStats.stats[Stats.Strength] + 4, 24);
-                creature.baseStats.stats[Stats.Constitution] = Math.Min(creature.baseStats.stats[Stats.Constitution] + 4, 24);
+                creature.baseStats.stats[Stat.Strength] = Math.Min(creature.baseStats.stats[Stat.Strength] + 4, 24);
+                creature.baseStats.stats[Stat.Constitution] = Math.Min(creature.baseStats.stats[Stat.Constitution] + 4, 24);
             }
         }
 
@@ -3462,7 +3462,7 @@ namespace DnD5eBattleApp
                 foreach (string s in DnDManager.spellLists[Classes.Bard.ToString()][0])
                 {
                     Spell spell = DnDManager.spells[s].CreateSpell();
-                    spell.abilityModifier = Stats.Charisma;
+                    spell.abilityModifier = Stat.Charisma;
                     cantripChoices.Add(spell);
                 }
             }
@@ -3510,7 +3510,7 @@ namespace DnD5eBattleApp
                     foreach (string s in DnDManager.spellLists[Classes.Bard.ToString()][level])
                     {
                         Spell spell = (DnDManager.spells[s].CreateSpell());
-                        spell.abilityModifier = Stats.Charisma;
+                        spell.abilityModifier = Stat.Charisma;
                         spellChoices.Add(spell);
                     }
                 }
@@ -3601,7 +3601,7 @@ namespace DnD5eBattleApp
 
             public override int GetMaxUses()
             {
-                return creature.StatMod(Stats.Charisma);
+                return creature.StatMod(Stat.Charisma);
             }
         }
 
@@ -3748,7 +3748,7 @@ namespace DnD5eBattleApp
 
         public class ExpertiseBard : Feat
         {
-            public List<Skills> expertises;
+            public List<Skill> expertises;
             int choicesLeft = 2;
             bool above10ChoicesDone = false;
 
@@ -3756,7 +3756,7 @@ namespace DnD5eBattleApp
             {
                 name = "Expertise";
                 statChange = true;
-                expertises = new List<Skills>();
+                expertises = new List<Skill>();
             }
 
             public override bool HasChoices()
@@ -3780,7 +3780,7 @@ namespace DnD5eBattleApp
                     return null;
                 }
                 List<string> choices = new List<string>();
-                foreach (Skills skill in creature.skillProficiencies)
+                foreach (Skill skill in creature.skillProficiencies)
                 {
                     if (expertises.Contains(skill))
                     {
@@ -3792,7 +3792,7 @@ namespace DnD5eBattleApp
 
             public override void FeatChoice(string choice)
             {
-                expertises.Add((Skills)Enum.Parse(typeof(Skills), choice));
+                expertises.Add((Skill)Enum.Parse(typeof(Skill), choice));
                 choicesLeft--;
                 base.FeatChoice(choice);
             }
@@ -3800,7 +3800,7 @@ namespace DnD5eBattleApp
             public override void StatChange(Creature cr)
             {
                 base.StatChange(cr);
-                foreach (Skills skill in expertises)
+                foreach (Skill skill in expertises)
                 {
                     if (!creature.skillProficiencies.Contains(skill))
                     {
@@ -3919,7 +3919,7 @@ namespace DnD5eBattleApp
                 foreach (string s in DnDManager.spells.Keys)
                 {
                     Spell spell = (DnDManager.spells[s].CreateSpell());
-                    spell.abilityModifier = Stats.Charisma;
+                    spell.abilityModifier = Stat.Charisma;
                     spellChoices.Add(spell);
                 }
                 spellChoicesByLevel = SpellBook.SortSpellsByLevelStatic(spellChoices);
@@ -4125,7 +4125,7 @@ namespace DnD5eBattleApp
                 foreach (string s in DnDManager.spellLists[Classes.Cleric.ToString()][0])
                 {
                     Spell spell = DnDManager.spells[s].CreateSpell();
-                    spell.abilityModifier = Stats.Wisdom;
+                    spell.abilityModifier = Stat.Wisdom;
                     list.Add(spell);
                 }
 
@@ -4179,7 +4179,7 @@ namespace DnD5eBattleApp
                     foreach (string s in DnDManager.spellLists[Classes.Cleric.ToString()][i])
                     {
                         Spell spell = DnDManager.spells[s].CreateSpell();
-                        spell.abilityModifier = Stats.Wisdom;
+                        spell.abilityModifier = Stat.Wisdom;
                         list.Add(spell);
                     }
                 }
@@ -4415,7 +4415,7 @@ namespace DnD5eBattleApp
 
                 foreach (Spell spell in list)
                 {
-                    spell.abilityModifier = Stats.Wisdom;
+                    spell.abilityModifier = Stat.Wisdom;
                 }
 
                 return list;
@@ -4448,7 +4448,7 @@ namespace DnD5eBattleApp
                 foreach (string s in DnDManager.spellLists[Classes.Druid.ToString()][0])
                 {
                     Spell spell = DnDManager.spells[s].CreateSpell();
-                    spell.abilityModifier = Stats.Wisdom;
+                    spell.abilityModifier = Stat.Wisdom;
                     list.Add(spell);
                 }
 
@@ -4514,7 +4514,7 @@ namespace DnD5eBattleApp
                     foreach (string s in DnDManager.spellLists[Classes.Druid.ToString()][i])
                     {
                         Spell spell = DnDManager.spells[s].CreateSpell();
-                        spell.abilityModifier = Stats.Wisdom;
+                        spell.abilityModifier = Stat.Wisdom;
                         list.Add(spell);
                     }
                 }
@@ -4853,8 +4853,8 @@ namespace DnD5eBattleApp
                     AttackRoll rollAtt = roll as AttackRoll;
                     if (rollAtt.attack.defender == creature && (rollAtt.attack.attacker.creatureType == DnDManager.CreatureType.Beast.ToString() || rollAtt.attack.attacker.creatureType == DnDManager.CreatureType.Plant.ToString()))
                     {
-                        SavingThrow save = new SavingThrow(Stats.Wisdom, rollAtt.attack.attacker, this);
-                        save.DC = 8 + creature.StatMod(Stats.Wisdom) + creature.proficiencyBonus;
+                        SavingThrow save = new SavingThrow(Stat.Wisdom, rollAtt.attack.attacker, this);
+                        save.DC = 8 + creature.StatMod(Stat.Wisdom) + creature.proficiencyBonus;
                         save.finishRoll += SaveFinished;
                         ongoingChecks.Add(save, rollAtt);
                         save.DoRoll();
@@ -5323,7 +5323,7 @@ namespace DnD5eBattleApp
                     AbilityCheck rollAb = roll as AbilityCheck;
                     if (!rollAb.proficiencyUsed)
                     { 
-                        if (rollAb.stat == Stats.Strength || rollAb.stat == Stats.Dexterity|| rollAb.stat == Stats.Constitution)
+                        if (rollAb.stat == Stat.Strength || rollAb.stat == Stat.Dexterity|| rollAb.stat == Stat.Constitution)
                         {
 
                         }
@@ -5402,7 +5402,7 @@ namespace DnD5eBattleApp
                 base.StartTurn(cr, e);
                 if (creature.hitPoints > 0 && creature.hitPoints <= creature.hitPointMax/2)
                 {
-                    creature.Heal(5 + creature.StatMod(Stats.Constitution));
+                    creature.Heal(5 + creature.StatMod(Stat.Constitution));
                 }
             }
         }
@@ -5459,7 +5459,7 @@ namespace DnD5eBattleApp
 
             public override int GetAC(Creature creature)
             {
-                return baseAC + creature.StatMod(Stats.Dexterity) + creature.StatMod(Stats.Wisdom);
+                return baseAC + creature.StatMod(Stat.Dexterity) + creature.StatMod(Stat.Wisdom);
             }
         }
 
@@ -5533,10 +5533,10 @@ namespace DnD5eBattleApp
                 else if (roll.roller == creature && roll is AttackRoll)
                 {
                     AttackRoll attRoll = roll as AttackRoll;
-                    if (attRoll.attack.statUsed == Stats.Strength && creature.StatMod(Stats.Dexterity) > creature.StatMod(Stats.Strength))
+                    if (attRoll.attack.statUsed == Stat.Strength && creature.StatMod(Stat.Dexterity) > creature.StatMod(Stat.Strength))
                     {
-                        attRoll.attack.statUsed = Stats.Dexterity;
-                        attRoll.Bonus += creature.StatMod(Stats.Dexterity) - creature.StatMod(Stats.Strength);
+                        attRoll.attack.statUsed = Stat.Dexterity;
+                        attRoll.Bonus += creature.StatMod(Stat.Dexterity) - creature.StatMod(Stat.Strength);
                     }
                 }
                 base.FeatPreRollCheck(roll, e);
@@ -5861,7 +5861,7 @@ namespace DnD5eBattleApp
                 {
                     base.OptionsDisplayYes(dO, e);
                     creature.reactionTaken = true;
-                    DisplayOptionsDnD(dO).roll.Bonus -= EngManager.random.Next(1, 11) + creature.StatMod(Stats.Dexterity) + creature.ClassLevel(Classes.Monk.ToString());
+                    DisplayOptionsDnD(dO).roll.Bonus -= EngManager.random.Next(1, 11) + creature.StatMod(Stat.Dexterity) + creature.ClassLevel(Classes.Monk.ToString());
                     if ((DisplayOptionsDnD(dO).roll as DamageRoll).TotalScore <= 0)
                     {
                         MakeOptionsDisplay(DisplayOptionsDnD(dO).roll);
@@ -6809,11 +6809,11 @@ namespace DnD5eBattleApp
                     creatureSubType = CreatureSubType.Goblinoid.ToString();
                     hitDie = 6;
                     hitDiceNumber = 2;
-                    stats[Stats.Strength] = 8;
-                    stats[Stats.Dexterity] = 14;
-                    stats[Stats.Wisdom] = 8;
-                    stats[Stats.Charisma] = 8;
-                    skillProficiencies.Add(Skills.Stealth);
+                    stats[Stat.Strength] = 8;
+                    stats[Stat.Dexterity] = 14;
+                    stats[Stat.Wisdom] = 8;
+                    stats[Stat.Charisma] = 8;
+                    skillProficiencies.Add(Skill.Stealth);
                     darkvision = 60;
                     languages.Add(DnDManager.Languages.Goblin.ToString());
                     naturalWeapons = new List<Weapon>() { new Shortbow() };
@@ -6859,11 +6859,11 @@ namespace DnD5eBattleApp
                     hitDiceNumber = 2;
                     creatureSubType = CreatureSubType.Human.ToString();
                     alignment = Alignment.LawfulEvil;
-                    stats[Stats.Strength] = 11;
-                    stats[Stats.Dexterity] = 12;
-                    stats[Stats.Wisdom] = 11;
-                    skillProficiencies.Add(Skills.Deception);
-                    skillProficiencies.Add(Skills.Religion);
+                    stats[Stat.Strength] = 11;
+                    stats[Stat.Dexterity] = 12;
+                    stats[Stat.Wisdom] = 11;
+                    skillProficiencies.Add(Skill.Deception);
+                    skillProficiencies.Add(Skill.Religion);
                     if (rollHP)
                     {
                         RollHP();
@@ -6895,7 +6895,7 @@ namespace DnD5eBattleApp
                         new Thaumaturgy(), new CommandSpell(),
                         new InflictWounds(), new ShieldOfFaith(),
                         new HoldPerson(), new SpiritualWeapon(),
-                    }, this, Stats.Wisdom);
+                    }, this, Stat.Wisdom);
                 if (DnDManager.monsterTextures.ContainsKey(Monsters.Cultist.ToString()))
                 {
                     Texture = DnDManager.monsterTextures[Monsters.Cultist.ToString()];
@@ -6915,14 +6915,14 @@ namespace DnD5eBattleApp
                     hitDiceNumber = 6;
                     creatureSubType = CreatureSubType.Human.ToString();
                     alignment = Alignment.LawfulEvil;
-                    stats[Stats.Strength] = 11;
-                    stats[Stats.Dexterity] = 14;
-                    stats[Stats.Constitution] = 12;
-                    stats[Stats.Wisdom] = 13;
-                    stats[Stats.Charisma] = 14;
-                    skillProficiencies.Add(Skills.Deception);
-                    skillProficiencies.Add(Skills.Persuasion);
-                    skillProficiencies.Add(Skills.Religion);
+                    stats[Stat.Strength] = 11;
+                    stats[Stat.Dexterity] = 14;
+                    stats[Stat.Constitution] = 12;
+                    stats[Stat.Wisdom] = 13;
+                    stats[Stat.Charisma] = 14;
+                    skillProficiencies.Add(Skill.Deception);
+                    skillProficiencies.Add(Skill.Persuasion);
+                    skillProficiencies.Add(Skill.Religion);
                     attacks = 2;
                     level = 4;
                     if (rollHP)
@@ -6987,15 +6987,15 @@ namespace DnD5eBattleApp
                     speed = 10;
                     swimSpeed = 40;
                     attacks = 3;
-                    stats[Stats.Strength] = 21;
-                    stats[Stats.Dexterity] = 9;
-                    stats[Stats.Constitution] = 15;
-                    stats[Stats.Intelligence] = 18;
-                    stats[Stats.Wisdom] = 15;
-                    stats[Stats.Charisma] = 18;
+                    stats[Stat.Strength] = 21;
+                    stats[Stat.Dexterity] = 9;
+                    stats[Stat.Constitution] = 15;
+                    stats[Stat.Intelligence] = 18;
+                    stats[Stat.Wisdom] = 15;
+                    stats[Stat.Charisma] = 18;
                     proficiencyBonus = 4;
-                    savingThrows = new List<Stats>() { Stats.Constitution, Stats.Intelligence, Stats.Wisdom };
-                    skillProficiencies = new List<Skills>() { Skills.History, Skills.Perception };
+                    savingThrows = new List<Stat>() { Stat.Constitution, Stat.Intelligence, Stat.Wisdom };
+                    skillProficiencies = new List<Skill>() { Skill.History, Skill.Perception };
                     darkvision = 120;
                     languages = new List<string>() { Languages.DeepSpeech.ToString() };
                     
@@ -7135,7 +7135,7 @@ namespace DnD5eBattleApp
                 savingThrow = true;
                 maxRange = 60;
                 minRange = 60;
-                saveStat = Stats.Dexterity;
+                saveStat = Stat.Dexterity;
                 damageTypes = new List<string>() { DamageTypes.Radiant.ToString() };
                 damageDice = new List<int>() { 8 };
                 noneOnSave = true;
@@ -7467,8 +7467,8 @@ namespace DnD5eBattleApp
                 hideInSpellbook = true;
                 noSpellSlot = true;
                 savingThrow = true;
-                saveStat = Stats.Wisdom;
-                abilityModifier = Stats.Wisdom;
+                saveStat = Stat.Wisdom;
+                abilityModifier = Stat.Wisdom;
                 conditions = new List<string>() { Conditions.Frightened.ToString() };
                 targetType = TargetType.SphereOnSelf;
                 simpleSpellTargetRollEffect = true;
@@ -7568,10 +7568,10 @@ namespace DnD5eBattleApp
                 simpleSpellTargetRollDamage = true;
                 savingThrow = true;
                 targetType = TargetType.Line;
-                saveStat = Stats.Dexterity;
+                saveStat = Stat.Dexterity;
                 width = 5;
                 maxRange = 30;
-                abilityModifier = Stats.Constitution;
+                abilityModifier = Stat.Constitution;
                 damageTypes = new List<string>() { DamageTypes.Acid.ToString() };
                 damageDice = new List<int>() { 6 };
                 noneOnSave = false;
@@ -7621,10 +7621,10 @@ namespace DnD5eBattleApp
                 simpleSpellTargetRollEffect = true;
                 savingThrow = true;
                 targetType = TargetType.SingleTarget;
-                saveStat = Stats.Wisdom;
+                saveStat = Stat.Wisdom;
                 width = 5;
                 maxRange = 30;
-                abilityModifier = Stats.Charisma;
+                abilityModifier = Stat.Charisma;
                 noneOnSave = true;
                 hideInSpellbook = true;
                 linkedFeat = null;

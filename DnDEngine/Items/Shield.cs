@@ -13,7 +13,7 @@ namespace DnD5eBattleApp
             damageDice = new List<int>() { 0 };
             damageDiceNumber = new List<int>() { 0 };
             damageTypes = new List<string>() { };
-            abilityStat = Stats.Strength;
+            abilityStat = Stat.Strength;
             minRange = 0;
             maxRange = 0;
             weaponProperties = new List<WeaponProperty>() { };

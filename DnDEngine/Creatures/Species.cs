@@ -11,7 +11,7 @@ namespace DnD5eBattleApp
     public class Species
     {
         public string name;
-        public Dictionary<Stats, int> statIncreases;
+        public Dictionary<Stat, int> statIncreases;
         public Size size;
         public int speed;
         public int darkvision;
@@ -22,7 +22,7 @@ namespace DnD5eBattleApp
         public Species()
         {
             name = "NoSpecies";
-            statIncreases = new Dictionary<Stats, int>();
+            statIncreases = new Dictionary<Stat, int>();
             size = Size.Medium;
             speed = 30;
             darkvision = 0;
@@ -31,19 +31,19 @@ namespace DnD5eBattleApp
             subSpecies = new List<string>();
         }
 
-        public List<Skills> proficiencies = new List<Skills>();
+        public List<Skill> proficiencies = new List<Skill>();
 
         public virtual void AssignToCharacter(Creature creature)
         {
             //Debug.WriteLine(string.Format("Assigning {0} species", name));
-            foreach(Stats stat in statIncreases.Keys)
+            foreach(Stat stat in statIncreases.Keys)
             {
                 creature.baseStats.stats[stat] += statIncreases[stat];
             }
             creature.baseStats.size = size;
             creature.baseStats.speed = speed;
             creature.baseStats.darkvision = darkvision;
-            foreach(Skills skill in proficiencies)
+            foreach(Skill skill in proficiencies)
             {
                 if (!creature.baseStats.skillProficiencies.Contains(skill))
                 {

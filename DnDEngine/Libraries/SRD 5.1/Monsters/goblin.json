@@ -23,6 +23,6 @@
         "Intelligence": 10,
         "Wisdom": 8,
         "Charisma": 8
-    }
-
+    },
+    "ProficiencyBonus": 2
 }

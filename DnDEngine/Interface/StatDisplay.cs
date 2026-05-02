@@ -106,17 +106,17 @@ namespace DnD5eBattleApp
                 case (StatsDisplay.AmountMoved):
                     return creature.amountMoved.ToString();
                 case (StatsDisplay.StatStr):
-                    return string.Format("STR: {0} (+{1})", creature.stats[Stats.Strength], creature.StatMod(Stats.Strength));
+                    return string.Format("STR: {0} (+{1})", creature.stats[Stat.Strength], creature.StatMod(Stat.Strength));
                 case (StatsDisplay.StatDex):
-                    return string.Format("DEX: {0} (+{1})", creature.stats[Stats.Dexterity], creature.StatMod(Stats.Dexterity));
+                    return string.Format("DEX: {0} (+{1})", creature.stats[Stat.Dexterity], creature.StatMod(Stat.Dexterity));
                 case (StatsDisplay.StatCon):
-                    return string.Format("CON: {0} (+{1})", creature.stats[Stats.Constitution], creature.StatMod(Stats.Constitution));
+                    return string.Format("CON: {0} (+{1})", creature.stats[Stat.Constitution], creature.StatMod(Stat.Constitution));
                 case (StatsDisplay.StatInt):
-                    return string.Format("INT: {0} (+{1})", creature.stats[Stats.Intelligence], creature.StatMod(Stats.Intelligence));
+                    return string.Format("INT: {0} (+{1})", creature.stats[Stat.Intelligence], creature.StatMod(Stat.Intelligence));
                 case (StatsDisplay.StatWis):
-                    return string.Format("WIS: {0} (+{1})", creature.stats[Stats.Wisdom], creature.StatMod(Stats.Wisdom));
+                    return string.Format("WIS: {0} (+{1})", creature.stats[Stat.Wisdom], creature.StatMod(Stat.Wisdom));
                 case (StatsDisplay.StatCha):
-                    return string.Format("CHA: {0} (+{1})", creature.stats[Stats.Charisma], creature.StatMod(Stats.Charisma));
+                    return string.Format("CHA: {0} (+{1})", creature.stats[Stat.Charisma], creature.StatMod(Stat.Charisma));
 
             }
 

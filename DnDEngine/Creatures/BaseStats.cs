@@ -29,22 +29,22 @@ namespace DnD5eBattleApp
         public List<Weapon> naturalWeapons = new List<Weapon>() { new Weapon() };
 
         public int proficiencyBonus = 2;
-        public List<Stats> savingThrows = new List<Stats>();
-        public Dictionary<Stats, int> stats = new Dictionary<Stats, int>() {
-            {Stats.Strength, 10 },
-            {Stats.Dexterity, 10 },
-            {Stats.Constitution, 10 },
-            {Stats.Intelligence, 10 },
-            {Stats.Wisdom, 10 },
-            {Stats.Charisma, 10 }
+        public List<Stat> savingThrows = new List<Stat>();
+        public Dictionary<Stat, int> stats = new Dictionary<Stat, int>() {
+            {Stat.Strength, 10 },
+            {Stat.Dexterity, 10 },
+            {Stat.Constitution, 10 },
+            {Stat.Intelligence, 10 },
+            {Stat.Wisdom, 10 },
+            {Stat.Charisma, 10 }
         };
-        public List<Skills> skillProficiencies = new List<Skills>();
+        public List<Skill> skillProficiencies = new List<Skill>();
         public List<string> toolProficiencies = new List<string>();
         public List<WeaponType> weaponTypeProficiencies = new List<WeaponType>();
         public List<WeaponCategory> weaponCategoryProficiencies = new List<WeaponCategory>() { WeaponCategory.NaturalWeapon, WeaponCategory.SimpleWeapon };
         public List<ArmorCategories> armorCategoryProficiencies = new List<ArmorCategories>();
 
-        public List<Skills> expertises = new List<Skills>();
+        public List<Skill> expertises = new List<Skill>();
 
         public List<string> vulnerabilities = new List<string>();
         public List<string> resistances = new List<string>();
@@ -61,12 +61,12 @@ namespace DnD5eBattleApp
             hitPointMax = 0;
             if (maxFirstDie)
             {
-                hitPointMax += hitDie + StatMod(Stats.Constitution);
+                hitPointMax += hitDie + StatMod(Stat.Constitution);
                 hitDiceNumber -= 1;
             }
             for (int i = 0; i < hitDiceNumber; i++)
             {
-                hitPointMax += EngManager.random.Next(1, hitDie + 1) + StatMod(Stats.Constitution);
+                hitPointMax += EngManager.random.Next(1, hitDie + 1) + StatMod(Stat.Constitution);
             }
         }
 
@@ -92,12 +92,12 @@ namespace DnD5eBattleApp
             speed = spec.Speed;
             darkvision = spec.Darkvision;
             languages = new List<string>(spec.Languages);
-            stats[Stats.Strength] = spec.Stats.Strength;
-            stats[Stats.Dexterity] = spec.Stats.Dexterity;
-            stats[Stats.Constitution] = spec.Stats.Constitution;
-            stats[Stats.Intelligence] = spec.Stats.Intelligence;
-            stats[Stats.Wisdom] = spec.Stats.Wisdom;
-            stats[Stats.Charisma] = spec.Stats.Charisma;
+            stats[Stat.Strength] = spec.Stats.Strength;
+            stats[Stat.Dexterity] = spec.Stats.Dexterity;
+            stats[Stat.Constitution] = spec.Stats.Constitution;
+            stats[Stat.Intelligence] = spec.Stats.Intelligence;
+            stats[Stat.Wisdom] = spec.Stats.Wisdom;
+            stats[Stat.Charisma] = spec.Stats.Charisma;
 
          if (rollHP)
             {
@@ -141,10 +141,10 @@ namespace DnD5eBattleApp
 
         #region Stats
 
-        public void ChangeStat(Stats stat, int change)
+        public void ChangeStat(Stat stat, int change)
         {
             stats[stat] += change;
-            if (stat == Stats.Constitution)
+            if (stat == Stat.Constitution)
             {
                 hitPointMax += change * level;
                 creature.hitPoints += change * level;
@@ -155,29 +155,29 @@ namespace DnD5eBattleApp
 
         #region References
 
-        public Dictionary<Skills, Stats> skillStats = new Dictionary<Skills, Stats>()
+        public Dictionary<Skill, Stat> skillStats = new Dictionary<Skill, Stat>()
         {
-            {Skills.Athletics,      Stats.Strength },
-            {Skills.Acrobatics,     Stats.Dexterity },
-            {Skills.SleightOfHand,  Stats.Dexterity },
-            {Skills.Stealth,        Stats.Dexterity },
-            {Skills.Arcana,         Stats.Intelligence },
-            {Skills.History,        Stats.Intelligence },
-            {Skills.Investigation,  Stats.Intelligence },
-            {Skills.Nature,         Stats.Intelligence },
-            {Skills.Religion,       Stats.Intelligence },
-            {Skills.AnimalHandling, Stats.Wisdom },
-            {Skills.Insight,        Stats.Wisdom },
-            {Skills.Medicine,       Stats.Wisdom },
-            {Skills.Perception,     Stats.Wisdom },
-            {Skills.Survival,       Stats.Wisdom },
-            {Skills.Deception,      Stats.Charisma },
-            {Skills.Intimidation,   Stats.Charisma },
-            {Skills.Performance,    Stats.Charisma },
-            {Skills.Persuasion,     Stats.Charisma }
+            {Skill.Athletics,      Stat.Strength },
+            {Skill.Acrobatics,     Stat.Dexterity },
+            {Skill.SleightOfHand,  Stat.Dexterity },
+            {Skill.Stealth,        Stat.Dexterity },
+            {Skill.Arcana,         Stat.Intelligence },
+            {Skill.History,        Stat.Intelligence },
+            {Skill.Investigation,  Stat.Intelligence },
+            {Skill.Nature,         Stat.Intelligence },
+            {Skill.Religion,       Stat.Intelligence },
+            {Skill.AnimalHandling, Stat.Wisdom },
+            {Skill.Insight,        Stat.Wisdom },
+            {Skill.Medicine,       Stat.Wisdom },
+            {Skill.Perception,     Stat.Wisdom },
+            {Skill.Survival,       Stat.Wisdom },
+            {Skill.Deception,      Stat.Charisma },
+            {Skill.Intimidation,   Stat.Charisma },
+            {Skill.Performance,    Stat.Charisma },
+            {Skill.Persuasion,     Stat.Charisma }
         };
 
-        public int StatMod(Stats stat)
+        public int StatMod(Stat stat)
         {
             return (int)((stats[stat] / 2) - 5);
         }

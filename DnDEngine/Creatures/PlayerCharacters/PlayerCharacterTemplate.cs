@@ -11,8 +11,8 @@ namespace DnD5eBattleApp
         public SubSpecies subSpecies;
         public Background background;
 
-        public List<Skills> proficiencies;
-        public List<Stats> stats;
+        public List<Skill> proficiencies;
+        public List<Stat> stats;
 
         public Inventory inventory;
     }

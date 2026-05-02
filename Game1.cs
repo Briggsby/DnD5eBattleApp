@@ -41,6 +41,9 @@ public class Game1 : Game
         EngManager.spriteBatch = _spriteBatch;
 
         // TODO: use this.Content to load your game content here
+
+        // TODO: This should be done as a test or separate script, and take folder as a parameter
+        SchemaExporter.ExtractSchemas("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/Schemas");
     
         //LoadDebugMenuContent();
         LoadBoardTextures();
@@ -52,8 +55,7 @@ public class Game1 : Game
         Creature.baseCommonTexture = Content.Load<Texture2D>("base");
         dndManager = new DnDManager(new SRDLibrary(), GetMonsterTextures(), contextMenuTextureSet, boardTextureSet);
 
-        // TODO: This should be done as a test or separate script, and take folder as a parameter
-        SchemaExporter.ExtractSchemas("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/Schemas");  
+
 
         _graphics.PreferredBackBufferWidth = 1280;
         _graphics.PreferredBackBufferHeight = 720;

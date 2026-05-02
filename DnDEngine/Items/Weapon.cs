@@ -19,7 +19,7 @@ namespace DnD5eBattleApp
         public List<int> versatileDamageDice = new List<int>();
         public List<int> damageDiceNumber;
         public List<string> damageTypes;
-        public Stats abilityStat;
+        public Stat abilityStat;
         public int minRange;
         public int maxRange;
         public List<WeaponProperty> weaponProperties;
@@ -41,7 +41,7 @@ namespace DnD5eBattleApp
             damageDice = new List<int>() { 1 };
             damageDiceNumber = new List<int>() { 1 };
             damageTypes = new List<string>() { DamageTypes.Bludgeoning.ToString() };
-            abilityStat = Stats.Strength;
+            abilityStat = Stat.Strength;
             minRange = 5;
             maxRange = 5;
             weaponProperties = new List<WeaponProperty>() { WeaponProperty.Light };

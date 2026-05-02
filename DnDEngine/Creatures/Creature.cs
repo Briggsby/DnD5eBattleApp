@@ -34,11 +34,11 @@ namespace DnD5eBattleApp
             get
             {
                 List<string> proficiencies = new List<string>();
-                foreach (Skills skill in  skillProficiencies)
+                foreach (Skill skill in  skillProficiencies)
                 {
                     proficiencies.Add(skill.ToString());
                 }
-                foreach (Stats stat in savingThrows)
+                foreach (Stat stat in savingThrows)
                 {
                     proficiencies.Add(stat.ToString());
                 }
@@ -131,21 +131,21 @@ namespace DnD5eBattleApp
 
 
         public int                    proficiencyBonus            = 2;
-        public List<Stats>            savingThrows                = new List<Stats>();
-        public Dictionary<Stats, int> stats                       = new Dictionary<Stats, int>() {
-            {Stats.Strength, 10 },
-            {Stats.Dexterity, 10 },
-            {Stats.Constitution, 10 },
-            {Stats.Intelligence, 10 },
-            {Stats.Wisdom, 10 },
-            {Stats.Charisma, 10 }
+        public List<Stat>            savingThrows                = new List<Stat>();
+        public Dictionary<Stat, int> stats                       = new Dictionary<Stat, int>() {
+            {Stat.Strength, 10 },
+            {Stat.Dexterity, 10 },
+            {Stat.Constitution, 10 },
+            {Stat.Intelligence, 10 },
+            {Stat.Wisdom, 10 },
+            {Stat.Charisma, 10 }
         };
-        public List<Skills>           skillProficiencies          = new List<Skills>();
+        public List<Skill>           skillProficiencies          = new List<Skill>();
         public List<string>           toolProficiencies           = new List<string>();
         public List<WeaponType>      weaponTypeProficiencies     = new List<WeaponType>();
         public List<WeaponCategory> weaponCategoryProficiencies = new List<WeaponCategory>() { WeaponCategory.NaturalWeapon, WeaponCategory.SimpleWeapon };
         public List<ArmorCategories>  armorCategoryProficiencies  = new List<ArmorCategories>();
-        public List<Skills>           expertises                  = new List<Skills>();
+        public List<Skill>           expertises                  = new List<Skill>();
 
         public List<string>           vulnerabilities             = new List<string>();
         public List<string>           resistances                 = new List<string>();
@@ -185,14 +185,14 @@ namespace DnD5eBattleApp
             naturalWeapons                  = new List<Weapon>(baseStats.naturalWeapons)                        ;
 
             proficiencyBonus                = baseStats.proficiencyBonus                                        ;
-            savingThrows                    = new List<Stats>(baseStats.savingThrows)                           ;
-            stats                           = new Dictionary<Stats, int>(baseStats.stats)                       ;
-            skillProficiencies              = new List<Skills>(baseStats.skillProficiencies)                    ;
+            savingThrows                    = new List<Stat>(baseStats.savingThrows)                           ;
+            stats                           = new Dictionary<Stat, int>(baseStats.stats)                       ;
+            skillProficiencies              = new List<Skill>(baseStats.skillProficiencies)                    ;
             toolProficiencies               = new List<string>(baseStats.toolProficiencies)                     ;
             weaponTypeProficiencies         = new List<WeaponType>(baseStats.weaponTypeProficiencies)          ;
             weaponCategoryProficiencies     = new List<WeaponCategory>(baseStats.weaponCategoryProficiencies) ;
             armorCategoryProficiencies      = new List<ArmorCategories>(baseStats.armorCategoryProficiencies)   ;
-            expertises                      = new List<Skills>(baseStats.expertises)                            ;
+            expertises                      = new List<Skill>(baseStats.expertises)                            ;
             languages                       = new List<string>(baseStats.languages)                             ;
 
             silenced                        = false                                                             ;
@@ -269,12 +269,12 @@ namespace DnD5eBattleApp
 
         #region Skills and Stats
 
-        public int StatMod(Stats stat)
+        public int StatMod(Stat stat)
         {
             return (int)((stats[stat] / 2) - 5);
         }
 
-        public int SkillMod(Skills skill)
+        public int SkillMod(Skill skill)
         {
             if (Proficiencies.Contains(skill.ToString()))
             {
@@ -288,7 +288,7 @@ namespace DnD5eBattleApp
         #endregion
 
         #region Choices
-        public List<List<Skills>> skillChoices = new List<List<Skills>>();
+        public List<List<Skill>> skillChoices = new List<List<Skill>>();
         public List<List<List<string>>> itemChoices = new List<List<List<string>>>();
         public List<string> weaponChoices = new List<string>();
         #endregion

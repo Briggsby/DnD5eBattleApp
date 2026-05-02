@@ -8,13 +8,13 @@ namespace DnD5eBattleApp
         public string name;
         public string parentSpecies;
 
-        public Dictionary<Stats, int> statIncreases;
+        public Dictionary<Stat, int> statIncreases;
         public List<string> feats;
         public List<string> languages;
 
         public SubSpecies()
         {
-            statIncreases = new Dictionary<Stats, int>();
+            statIncreases = new Dictionary<Stat, int>();
             feats = new List<string>();
             languages = new List<string>();
         }
@@ -22,7 +22,7 @@ namespace DnD5eBattleApp
         public virtual void AssignToCharacter(Creature creature)
         {
             //Debug.WriteLine(string.Format("Assigning {0} subspecies", name));
-            foreach (Stats stat in statIncreases.Keys)
+            foreach (Stat stat in statIncreases.Keys)
             {
                 creature.baseStats.stats[stat] += statIncreases[stat];
             }

@@ -66,7 +66,7 @@ namespace DnD5eBattleApp
             }
             else if (tags.Contains(CreatureMenuOtherOptions.ChooseSkill.ToString()))
             {
-                creature.baseStats.skillProficiencies.Add((Skills)Enum.Parse(typeof(Skills), tags[1]));
+                creature.baseStats.skillProficiencies.Add((Skill)Enum.Parse(typeof(Skill), tags[1]));
                 creature.skillChoices.RemoveAt(0);
             }
 

@@ -101,12 +101,12 @@ namespace DnD5eBattleApp
             }
             else
             {
-                baseStats.stats[Stats.Strength] = rolls[0];
-                baseStats.stats[Stats.Dexterity] = rolls[1];
-                baseStats.stats[Stats.Constitution] = rolls[2];
-                baseStats.stats[Stats.Intelligence] = rolls[3];
-                baseStats.stats[Stats.Wisdom] = rolls[4];
-                baseStats.stats[Stats.Charisma] = rolls[5];
+                baseStats.stats[Stat.Strength] = rolls[0];
+                baseStats.stats[Stat.Dexterity] = rolls[1];
+                baseStats.stats[Stat.Constitution] = rolls[2];
+                baseStats.stats[Stat.Intelligence] = rolls[3];
+                baseStats.stats[Stat.Wisdom] = rolls[4];
+                baseStats.stats[Stat.Charisma] = rolls[5];
             }
         }
 

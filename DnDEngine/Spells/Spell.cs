@@ -19,7 +19,7 @@ namespace DnD5eBattleApp
         public SpellBook spellbook;
 
         public string spellClass;
-        public Stats abilityModifier;
+        public Stat abilityModifier;
 
         public bool hideInSpellbook = false;
 
@@ -161,7 +161,7 @@ namespace DnD5eBattleApp
 
         public List<string> conditions;
 
-        public Stats saveStat;
+        public Stat saveStat;
 
         public List<int> damageDice;
         public List<int> damageDiceNumber;

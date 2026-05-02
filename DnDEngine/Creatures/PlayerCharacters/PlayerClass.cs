@@ -16,8 +16,8 @@ namespace DnD5eBattleApp
         public List<ArmorCategories> armorCategoryProficiencies;
         public List<WeaponCategory> weaponCategoryProficiencies;
         public List<WeaponType> weaponProficiencies;
-        public List<Stats> savingThrows;
-        public List<Skills> skillProficiencyOptions;
+        public List<Stat> savingThrows;
+        public List<Skill> skillProficiencyOptions;
         public int skillProficiencyNumberOfChoices;
         public List<string> items;
         public List<List<List<string>>> equipmentOptions;
@@ -25,7 +25,7 @@ namespace DnD5eBattleApp
         public int subClassLevel;
         public List<string> subClasses;
 
-        public List<Stats> statRelevanceInOrder;
+        public List<Stat> statRelevanceInOrder;
 
         public virtual void AssignToCharacter(Creature creature, int level)
         {
@@ -53,11 +53,11 @@ namespace DnD5eBattleApp
                     creature.baseStats.weaponTypeProficiencies.Add(wc);
                 }
             }
-            creature.baseStats.savingThrows = new List<Stats>(savingThrows);
+            creature.baseStats.savingThrows = new List<Stat>(savingThrows);
 
             for (int i = 0; i <skillProficiencyNumberOfChoices; i++)
             {
-                creature.skillChoices.Add(new List<Skills>(skillProficiencyOptions));
+                creature.skillChoices.Add(new List<Skill>(skillProficiencyOptions));
             }
             creature.itemChoices.AddRange(equipmentOptions);
 

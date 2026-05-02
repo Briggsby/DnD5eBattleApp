@@ -498,7 +498,7 @@ namespace DnD5eBattleApp
             template.tags = new List<List<string>>();
             if (creature.skillChoices.Count > 0)
             {
-                foreach (Skills skill in creature.skillChoices[0])
+                foreach (Skill skill in creature.skillChoices[0])
                 {
                     if (!creature.skillProficiencies.Contains(skill))
                     {

@@ -18,7 +18,7 @@ namespace DnD5eBattleApp
 
         public AttackRoll attackRoll;
         public DamageRoll damageRoll;
-        public Stats statUsed;
+        public Stat statUsed;
 
         public List<int> damageDiceFaces;
         public List<int> damageDiceNumber;
@@ -78,15 +78,15 @@ namespace DnD5eBattleApp
             {
                 if (attackerWeapon.weaponProperties.Contains(WeaponProperty.Finesse))
                 {
-                    if (attacker.stats[Stats.Strength] >= attacker.stats[Stats.Dexterity])
+                    if (attacker.stats[Stat.Strength] >= attacker.stats[Stat.Dexterity])
                     {
-                        statUsed = Stats.Strength;
-                        bonus += attacker.StatMod(Stats.Strength);
+                        statUsed = Stat.Strength;
+                        bonus += attacker.StatMod(Stat.Strength);
                     }
                     else
                     {
-                        statUsed = Stats.Dexterity;
-                        bonus += attacker.StatMod(Stats.Dexterity);
+                        statUsed = Stat.Dexterity;
+                        bonus += attacker.StatMod(Stat.Dexterity);
                     }
                 }
                 else

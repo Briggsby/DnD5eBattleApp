@@ -77,7 +77,7 @@ namespace DnD5eBattleApp
 
         public virtual int GetAC(Creature creature)
         {
-            return baseAC + Math.Min(creature.StatMod(Stats.Dexterity), maxDexBonus);
+            return baseAC + Math.Min(creature.StatMod(Stat.Dexterity), maxDexBonus);
         }
     }
 

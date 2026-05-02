@@ -1,0 +1,46 @@
+{
+    "$schema": "../../Schemas/MonsterSpecSchema.json",
+    "Alignment": "lawfulEvil",
+    "ArmorClass": 17,
+    "Name": "Lich",
+    "Size": "medium",
+    "Type": "undead",
+    "HitDiceNumber": 18,
+    "HitDiceValue": 8,
+    "Features": ["Paralyzing Touch", "Legendary Resistance (3/Day)", "Rejuvenation", "Turn Resistance"],
+    "Speed": 30,
+    "Stats": {
+        "Strength": 11,
+        "Dexterity": 16,
+        "Constitution": 16,
+        "Intelligence": 20,
+        "Wisdom": 14,
+        "Charisma": 16
+    },
+    "SkillProficiencies": ["arcana", "history", "insight", "perception"],
+    "Expertise": ["arcana"],
+    "SavingThrowProficiencies": ["constitution", "intelligence", "wisdom"],
+    "ProficiencyBonus": 7,
+    "CR": 21,
+    "Languages": ["Common", "Choose", "Choose", "Choose", "Choose", "Choose"],
+    "DamageResistances": ["cold", "lightning", "necrotic"],
+    "DamageImmunities": ["poison", "psychic"],
+    "ConditionImmunities": ["charmed", "exhaustion", "frightened", "paralyzed", "poisoned"],
+    "Spells": [
+        "Mage Hand", "Prestidigitation", "Ray of Frost",
+        "Detect Magic", "Magic Missile", "Shield", "Thunderwave",
+        "Acid Arrow", "Detect Thoughts", "Invisibility", "Mirror Image",
+        "Animate Dead", "Counterspell", "Dispel Magic", "Fireball",
+        "Blight", "Dimension Door",
+        "Cloudkill", "Scrying",
+        "Disintegrate", "Globe of Invulnerability",
+        "Finger of Death", "Plane Shift",
+        "Dominate Monster", "Power Word Stun",
+        "Power Word Kill"
+    ],
+    "LegendaryActions": {
+        "Cantrip": 1,
+        "Paralyzing Touch": 2,
+        "Frightening Gaze": 2
+    }
+}

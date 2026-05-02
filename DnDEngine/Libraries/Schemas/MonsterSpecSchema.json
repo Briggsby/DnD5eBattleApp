@@ -90,7 +90,57 @@
         "Charisma"
       ]
     },
+    "ProficiencyBonus": {
+      "type": "integer"
+    },
+    "SavingThrowProficiencies": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "enum": [
+          "strength",
+          "dexterity",
+          "constitution",
+          "intelligence",
+          "wisdom",
+          "charisma",
+          "choose",
+          "none"
+        ]
+      }
+    },
     "SkillProficiencies": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "enum": [
+          "choose",
+          "athletics",
+          "acrobatics",
+          "sleightOfHand",
+          "stealth",
+          "arcana",
+          "history",
+          "investigation",
+          "nature",
+          "religion",
+          "animalHandling",
+          "insight",
+          "medicine",
+          "perception",
+          "survival",
+          "deception",
+          "intimidation",
+          "performance",
+          "persuasion"
+        ]
+      }
+    },
+    "Expertise": {
       "type": [
         "array",
         "null"
@@ -160,22 +210,159 @@
           "null"
         ]
       }
+    },
+    "SpellcastingAbility": {
+      "enum": [
+        "strength",
+        "dexterity",
+        "constitution",
+        "intelligence",
+        "wisdom",
+        "charisma",
+        "choose",
+        "none"
+      ]
+    },
+    "Truesight": {
+      "type": "integer"
+    },
+    "DamageResistances": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "enum": [
+          "bludgeoningMagical",
+          "piercingMagical",
+          "slashingMagical",
+          "bludgeoning",
+          "piercing",
+          "slashing",
+          "fire",
+          "cold",
+          "lightning",
+          "thunder",
+          "psychic",
+          "force",
+          "poison",
+          "acid",
+          "radiant",
+          "necrotic"
+        ]
+      }
+    },
+    "DamageImmunities": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "enum": [
+          "bludgeoningMagical",
+          "piercingMagical",
+          "slashingMagical",
+          "bludgeoning",
+          "piercing",
+          "slashing",
+          "fire",
+          "cold",
+          "lightning",
+          "thunder",
+          "psychic",
+          "force",
+          "poison",
+          "acid",
+          "radiant",
+          "necrotic"
+        ]
+      }
+    },
+    "DamageVulnerabilities": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "enum": [
+          "bludgeoningMagical",
+          "piercingMagical",
+          "slashingMagical",
+          "bludgeoning",
+          "piercing",
+          "slashing",
+          "fire",
+          "cold",
+          "lightning",
+          "thunder",
+          "psychic",
+          "force",
+          "poison",
+          "acid",
+          "radiant",
+          "necrotic"
+        ]
+      }
+    },
+    "ConditionImmunities": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "spells": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "LegendaryActions": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "Actions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
     }
   },
   "required": [
     "Name",
     "Size",
     "Type",
-    "SubType",
     "Alignment",
     "ArmorClass",
     "HitDiceNumber",
     "HitDiceValue",
     "Speed",
     "Stats",
+    "ProficiencyBonus",
     "Languages",
     "CR",
-    "Features",
-    "Equipment"
+    "Features"
   ]
 }

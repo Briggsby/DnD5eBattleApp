@@ -6,9 +6,9 @@ namespace DnD5eBattleApp
 {
     public class SavingThrow : Roll
     {
-        public Stats stat;
+        public Stat stat;
 
-        public SavingThrow(Stats stat, Creature creature, Object source, List<string> tags = null) : base(creature.encounter, tags)
+        public SavingThrow(Stat stat, Creature creature, Object source, List<string> tags = null) : base(creature.encounter, tags)
         {
             roller = creature;
             this.source = source;

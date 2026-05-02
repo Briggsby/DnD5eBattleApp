@@ -7,7 +7,7 @@ namespace DnD5eBattleApp
 {
     public class SpellBook
     {
-        public Stats abilityScore;
+        public Stat abilityScore;
         public static ContextMenuTextureSet baseContextMenuTextureSet;
         public ContextMenuTextureSet contextMenuTextures;
         public List<Spell> spells;
@@ -41,7 +41,7 @@ namespace DnD5eBattleApp
             contextMenuTextures = baseContextMenuTextureSet;
         }
 
-        public SpellBook(List<Spell> spells, Creature creature, Stats spellcastingStat = Stats.None)
+        public SpellBook(List<Spell> spells, Creature creature, Stat spellcastingStat = Stat.None)
         {
             contextMenuTextures = baseContextMenuTextureSet;
             if (spells == null)
@@ -52,7 +52,7 @@ namespace DnD5eBattleApp
             spellsByLevel = SortSpellsByLevel();
             AssignOwner(creature);
 
-            if (spellcastingStat != Stats.None)
+            if (spellcastingStat != Stat.None)
             {
                 foreach( Spell spell in spells)
                 {

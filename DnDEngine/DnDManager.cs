@@ -13,8 +13,8 @@ namespace DnD5eBattleApp
     public enum Size { Small, Medium, Large, Huge, Gargantuan };
 
     #region Stats and Skills
-    public enum Stats { Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, Choose, None };
-    public enum Skills { Choose, Athletics, Acrobatics, SleightOfHand, Stealth, Arcana, History, Investigation, Nature, Religion, AnimalHandling, Insight, Medicine, Perception, Survival, Deception, Intimidation, Performance, Persuasion };
+    public enum Stat { Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, Choose, None };
+    public enum Skill { Choose, Athletics, Acrobatics, SleightOfHand, Stealth, Arcana, History, Investigation, Nature, Religion, AnimalHandling, Insight, Medicine, Perception, Survival, Deception, Intimidation, Performance, Persuasion };
     
     #endregion
 
@@ -253,7 +253,7 @@ namespace DnD5eBattleApp
                 feats.Add(s, newLibrary.feats[s]);
             }
             // TODO: Take argument for path
-            ingestMonsters("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD/Monsters");
+            ingestMonsters("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD 5.1/Monsters");
             foreach (string s in newLibrary.spells.Keys)
             {
                 spells.Add(s, newLibrary.spells[s]);
