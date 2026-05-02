@@ -1,0 +1,28 @@
+{
+    "$schema": "../../Schemas/MonsterSpecSchema.json",
+    "Alignment": "neutralEvil",
+    "ArmorClass": 15,
+    "CR": 0.25,
+    "Features": ["Nimble Escape"],
+    "HitDiceNumber": 2,
+    "HitDiceValue": 6,
+    "Name": "Goblin",
+    "Size": "Small",
+    "Type": "Humanoid",
+    "SubType": "Goblinoid",
+    "Darkvision": 60,
+    "Equipment": ["Scimitar", "Shortbow", "Shield"],
+    "Armor": "Leather Armor",
+    "Languages": ["Common", "Goblin"],
+    "SkillProficiencies": ["stealth"],
+    "Speed": 30,
+    "Stats": {
+        "Strength": 8,
+        "Dexterity": 14,
+        "Constitution": 10,
+        "Intelligence": 10,
+        "Wisdom": 8,
+        "Charisma": 8
+    }
+
+}

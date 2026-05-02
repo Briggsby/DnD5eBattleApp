@@ -241,6 +241,11 @@ namespace DnD5eBattleApp
             return monsterCreator.CreateCreature(tile);
         }
 
+        public Creature SpawnMonster(MonsterSpec monsterSpec, BoardTile tile)
+        {
+            return Monster.SpawnMonster(monsterSpec, tile);
+        }
+
         public PlayerCharacter SpawnQuickCharacter(List<string> choices, BoardTile tile)
         {
             return new PlayerCharacter(choices, tile);
@@ -353,7 +358,7 @@ namespace DnD5eBattleApp
             {
                 for (int w = 0; w < weapons.Count; w++)
                 {
-                    if (weapons[w].weaponType != WeaponTypes.Shield)
+                    if (weapons[w].weaponType != WeaponType.Shield)
                     {
                         template.texts.Add(weapons[w].name);
                         template.tags.Add(new List<string>() { CombatActions.Attack.ToString(), w.ToString() });

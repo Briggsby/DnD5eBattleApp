@@ -5,16 +5,16 @@ using System.Collections.Generic;
 namespace DnD5eBattleApp
 {
 
-    public enum WeaponCategories { None, SimpleWeapon, MartialWeapon, NaturalWeapon, Shields }
-    public enum WeaponTypes { None, Shield, Scimitar, Shortbow, Club, Dagger, Shortsword, Battleaxe, Handaxe, LightHammer, Warhammer, Greataxe, Javelin, Rapier, Longsword, Mace, LightCrossbow };
+    public enum WeaponCategory { None, SimpleWeapon, MartialWeapon, NaturalWeapon, Shields }
+    public enum WeaponType { None, Shield, Scimitar, Shortbow, Club, Dagger, Shortsword, Battleaxe, Handaxe, LightHammer, Warhammer, Greataxe, Javelin, Rapier, Longsword, Mace, LightCrossbow };
     public enum WeaponProperty { Ammunition, Finesse, Heavy, Light, Loading, Range, Reach, Special, Thrown, TwoHanded, Versatile, Improvised, Silvered, SpecialLance, SpecialNet }
 
     public enum WeaponChoices { SimpleWeapon, MartialWeapon, MartialMeleeWeapon }
 
     public class Weapon : Item
     {
-        public WeaponCategories weaponCategory;
-        public WeaponTypes weaponType;
+        public WeaponCategory weaponCategory;
+        public WeaponType weaponType;
         public List<int> damageDice;
         public List<int> versatileDamageDice = new List<int>();
         public List<int> damageDiceNumber;
@@ -36,8 +36,8 @@ namespace DnD5eBattleApp
             itemType = ItemType.Weapon.ToString();
 
             name = "Unarmed Strike";
-            weaponType = WeaponTypes.None;
-            weaponCategory = WeaponCategories.None;
+            weaponType = WeaponType.None;
+            weaponCategory = WeaponCategory.None;
             damageDice = new List<int>() { 1 };
             damageDiceNumber = new List<int>() { 1 };
             damageTypes = new List<string>() { DamageTypes.Bludgeoning.ToString() };

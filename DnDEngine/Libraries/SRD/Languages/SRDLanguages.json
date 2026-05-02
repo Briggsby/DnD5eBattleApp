@@ -1,0 +1,32 @@
+[
+    {
+        "Name": "Common"
+    },
+    {
+        "Name": "Elvish"
+    },
+    {
+        "Name": "Draconic"
+    },
+    {
+        "Name": "Dwarvish"
+    },
+    {
+        "Name": "Gnomish"
+    },
+    {
+        "Name": "Goblin"
+    },
+    {
+        "Name": "Halfling"
+    },
+    {
+        "Name": "Infernal"
+    },
+    {
+        "Name": "Orc"
+    },
+    {
+        "Name": "Deep Speech"
+    }
+]

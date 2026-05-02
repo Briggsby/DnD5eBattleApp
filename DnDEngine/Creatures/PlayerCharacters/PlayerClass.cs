@@ -14,8 +14,8 @@ namespace DnD5eBattleApp
         public string name;
         public int hitDice;
         public List<ArmorCategories> armorCategoryProficiencies;
-        public List<WeaponCategories> weaponCategoryProficiencies;
-        public List<WeaponTypes> weaponProficiencies;
+        public List<WeaponCategory> weaponCategoryProficiencies;
+        public List<WeaponType> weaponProficiencies;
         public List<Stats> savingThrows;
         public List<Skills> skillProficiencyOptions;
         public int skillProficiencyNumberOfChoices;
@@ -39,14 +39,14 @@ namespace DnD5eBattleApp
                     creature.baseStats.armorCategoryProficiencies.Add(ac);
                 }
             }
-            foreach (WeaponCategories wc in weaponCategoryProficiencies)
+            foreach (WeaponCategory wc in weaponCategoryProficiencies)
             {
                 if (!creature.baseStats.weaponCategoryProficiencies.Contains(wc))
                 {
                     creature.baseStats.weaponCategoryProficiencies.Add(wc);
                 }
             }
-            foreach (WeaponTypes wc in weaponProficiencies)
+            foreach (WeaponType wc in weaponProficiencies)
             {
                 if (!creature.baseStats.weaponTypeProficiencies.Contains(wc))
                 {

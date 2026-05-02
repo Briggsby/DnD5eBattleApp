@@ -43,11 +43,11 @@ namespace DnD5eBattleApp
                     proficiencies.Add(stat.ToString());
                 }
                 proficiencies.AddRange(toolProficiencies);
-                foreach (WeaponCategories prof in weaponCategoryProficiencies)
+                foreach (WeaponCategory prof in weaponCategoryProficiencies)
                 {
                     proficiencies.Add(prof.ToString());
                 }
-                foreach (WeaponTypes prof in weaponTypeProficiencies)
+                foreach (WeaponType prof in weaponTypeProficiencies)
                 {
                     proficiencies.Add(prof.ToString());
                 }
@@ -142,8 +142,8 @@ namespace DnD5eBattleApp
         };
         public List<Skills>           skillProficiencies          = new List<Skills>();
         public List<string>           toolProficiencies           = new List<string>();
-        public List<WeaponTypes>      weaponTypeProficiencies     = new List<WeaponTypes>();
-        public List<WeaponCategories> weaponCategoryProficiencies = new List<WeaponCategories>() { WeaponCategories.NaturalWeapon, WeaponCategories.SimpleWeapon };
+        public List<WeaponType>      weaponTypeProficiencies     = new List<WeaponType>();
+        public List<WeaponCategory> weaponCategoryProficiencies = new List<WeaponCategory>() { WeaponCategory.NaturalWeapon, WeaponCategory.SimpleWeapon };
         public List<ArmorCategories>  armorCategoryProficiencies  = new List<ArmorCategories>();
         public List<Skills>           expertises                  = new List<Skills>();
 
@@ -189,8 +189,8 @@ namespace DnD5eBattleApp
             stats                           = new Dictionary<Stats, int>(baseStats.stats)                       ;
             skillProficiencies              = new List<Skills>(baseStats.skillProficiencies)                    ;
             toolProficiencies               = new List<string>(baseStats.toolProficiencies)                     ;
-            weaponTypeProficiencies         = new List<WeaponTypes>(baseStats.weaponTypeProficiencies)          ;
-            weaponCategoryProficiencies     = new List<WeaponCategories>(baseStats.weaponCategoryProficiencies) ;
+            weaponTypeProficiencies         = new List<WeaponType>(baseStats.weaponTypeProficiencies)          ;
+            weaponCategoryProficiencies     = new List<WeaponCategory>(baseStats.weaponCategoryProficiencies) ;
             armorCategoryProficiencies      = new List<ArmorCategories>(baseStats.armorCategoryProficiencies)   ;
             expertises                      = new List<Skills>(baseStats.expertises)                            ;
             languages                       = new List<string>(baseStats.languages)                             ;
@@ -617,7 +617,7 @@ namespace DnD5eBattleApp
 
         public bool IsProficientInWeapon(Weapon weapon)
         {
-            return (Proficiencies.Contains(weapon.weaponCategory.ToString()) || Proficiencies.Contains(weapon.weaponType.ToString()) || weapon.weaponCategory == WeaponCategories.NaturalWeapon);
+            return (Proficiencies.Contains(weapon.weaponCategory.ToString()) || Proficiencies.Contains(weapon.weaponType.ToString()) || weapon.weaponCategory == WeaponCategory.NaturalWeapon);
         }
 
         public int AC

@@ -13,7 +13,6 @@ namespace DnD5eBattleApp
             creature.RecalibrateStats();
             creature.StartTurn();
             return creature;
-
         }
     }
 

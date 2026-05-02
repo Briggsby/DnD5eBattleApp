@@ -1,0 +1,181 @@
+{
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Size": {
+      "enum": [
+        "small",
+        "medium",
+        "large",
+        "huge",
+        "gargantuan"
+      ]
+    },
+    "Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "SubType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Alignment": {
+      "enum": [
+        "neutralEvil",
+        "neutral",
+        "lawfulEvil"
+      ]
+    },
+    "ArmorClass": {
+      "type": "integer"
+    },
+    "Armor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "HitDiceNumber": {
+      "type": "integer"
+    },
+    "HitDiceValue": {
+      "type": "integer"
+    },
+    "Speed": {
+      "type": "integer"
+    },
+    "Stats": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "Strength": {
+          "type": "integer"
+        },
+        "Dexterity": {
+          "type": "integer"
+        },
+        "Constitution": {
+          "type": "integer"
+        },
+        "Intelligence": {
+          "type": "integer"
+        },
+        "Wisdom": {
+          "type": "integer"
+        },
+        "Charisma": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Strength",
+        "Dexterity",
+        "Constitution",
+        "Intelligence",
+        "Wisdom",
+        "Charisma"
+      ]
+    },
+    "SkillProficiencies": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "enum": [
+          "choose",
+          "athletics",
+          "acrobatics",
+          "sleightOfHand",
+          "stealth",
+          "arcana",
+          "history",
+          "investigation",
+          "nature",
+          "religion",
+          "animalHandling",
+          "insight",
+          "medicine",
+          "perception",
+          "survival",
+          "deception",
+          "intimidation",
+          "performance",
+          "persuasion"
+        ]
+      }
+    },
+    "Darkvision": {
+      "type": "integer"
+    },
+    "Languages": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "CR": {
+      "type": "number"
+    },
+    "Features": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "Equipment": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Name",
+    "Size",
+    "Type",
+    "SubType",
+    "Alignment",
+    "ArmorClass",
+    "HitDiceNumber",
+    "HitDiceValue",
+    "Speed",
+    "Stats",
+    "Languages",
+    "CR",
+    "Features",
+    "Equipment"
+  ]
+}

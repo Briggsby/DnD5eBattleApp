@@ -418,8 +418,8 @@ namespace DnD5eBattleApp
             public Club() : base()
             {
                 name = "Club";
-                weaponCategory = WeaponCategories.SimpleWeapon;
-                weaponType = WeaponTypes.Club;
+                weaponCategory = WeaponCategory.SimpleWeapon;
+                weaponType = WeaponType.Club;
                 damageDice = new List<int>() { 4 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Bludgeoning.ToString() };
@@ -448,8 +448,8 @@ namespace DnD5eBattleApp
             public Scimitar() : base()
             {
                 name = "Scimitar";
-                weaponCategory = WeaponCategories.SimpleWeapon;
-                weaponType = WeaponTypes.Scimitar;
+                weaponCategory = WeaponCategory.SimpleWeapon;
+                weaponType = WeaponType.Scimitar;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
@@ -475,8 +475,8 @@ namespace DnD5eBattleApp
             public Shortbow() : base()
             {
                 name = "Shortbow";
-                weaponCategory = WeaponCategories.SimpleWeapon;
-                weaponType = WeaponTypes.Shortbow;
+                weaponCategory = WeaponCategory.SimpleWeapon;
+                weaponType = WeaponType.Shortbow;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
@@ -507,8 +507,8 @@ namespace DnD5eBattleApp
             public Dagger() : base()
             {
                 name = "Dagger";
-                weaponCategory = WeaponCategories.SimpleWeapon;
-                weaponType = WeaponTypes.Dagger;
+                weaponCategory = WeaponCategory.SimpleWeapon;
+                weaponType = WeaponType.Dagger;
                 damageDice = new List<int>() { 4 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
@@ -533,8 +533,8 @@ namespace DnD5eBattleApp
             public Shortsword() : base()
             {
                 name = "Shortsword";
-                weaponCategory = WeaponCategories.MartialWeapon;
-                weaponType = WeaponTypes.Shortsword;
+                weaponCategory = WeaponCategory.MartialWeapon;
+                weaponType = WeaponType.Shortsword;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
@@ -562,8 +562,8 @@ namespace DnD5eBattleApp
             public Greataxe() : base()
             {
                 name = "Greataxe";
-                weaponCategory = WeaponCategories.MartialWeapon;
-                weaponType = WeaponTypes.Greataxe;
+                weaponCategory = WeaponCategory.MartialWeapon;
+                weaponType = WeaponType.Greataxe;
                 damageDice = new List<int>() { 12 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
@@ -593,8 +593,8 @@ namespace DnD5eBattleApp
             public Handaxe() : base()
             {
                 name = "Handaxe";
-                weaponCategory = WeaponCategories.SimpleWeapon;
-                weaponType = WeaponTypes.Handaxe;
+                weaponCategory = WeaponCategory.SimpleWeapon;
+                weaponType = WeaponType.Handaxe;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
@@ -625,8 +625,8 @@ namespace DnD5eBattleApp
             public Javelin() : base()
             {
                 name = "Javelin";
-                weaponCategory = WeaponCategories.SimpleWeapon;
-                weaponType = WeaponTypes.Javelin;
+                weaponCategory = WeaponCategory.SimpleWeapon;
+                weaponType = WeaponType.Javelin;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
@@ -652,8 +652,8 @@ namespace DnD5eBattleApp
             {
                 name = "Rapier";
                 damageDice = new List<int>() { 8 };
-                weaponCategory = WeaponCategories.MartialWeapon;
-                weaponType = WeaponTypes.Rapier;
+                weaponCategory = WeaponCategory.MartialWeapon;
+                weaponType = WeaponType.Rapier;
                 damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse };
             }
@@ -674,8 +674,8 @@ namespace DnD5eBattleApp
                 name = "Longsword";
                 damageDice = new List<int>() { 8 };
                 versatileDamageDice = new List<int>() { 10 };
-                weaponCategory = WeaponCategories.MartialWeapon;
-                weaponType = WeaponTypes.Longsword;
+                weaponCategory = WeaponCategory.MartialWeapon;
+                weaponType = WeaponType.Longsword;
                 damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Versatile };
             }
@@ -695,7 +695,7 @@ namespace DnD5eBattleApp
             {
                 name = "Mace";
                 damageDice = new List<int>() { 6 };
-                weaponType = WeaponTypes.Mace;
+                weaponType = WeaponType.Mace;
             }
         }
 
@@ -714,7 +714,7 @@ namespace DnD5eBattleApp
                 name = "Warhammer";
                 damageDice = new List<int>() { 8 };
                 versatileDamageDice = new List<int>() { 10 };
-                weaponType = WeaponTypes.Warhammer;
+                weaponType = WeaponType.Warhammer;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Versatile };
             }
         }
@@ -733,7 +733,7 @@ namespace DnD5eBattleApp
             {
                 name = "Light Crossbow";
                 damageDice = new List<int>() { 8 };
-                weaponType = WeaponTypes.LightCrossbow;
+                weaponType = WeaponType.LightCrossbow;
                 minRange = 80;
                 maxRange = 320;
                 ammunition = typeof(Bolt);
@@ -1530,8 +1530,8 @@ namespace DnD5eBattleApp
                 name = "Fighter";
                 hitDice = 10;
                 armorCategoryProficiencies = new List<ArmorCategories>() { ArmorCategories.LightArmor, ArmorCategories.MediumArmor, ArmorCategories.HeavyArmor, ArmorCategories.Shields };
-                weaponCategoryProficiencies = new List<WeaponCategories>() { WeaponCategories.SimpleWeapon, WeaponCategories.MartialWeapon, WeaponCategories.Shields };
-                weaponProficiencies = new List<WeaponTypes>();
+                weaponCategoryProficiencies = new List<WeaponCategory>() { WeaponCategory.SimpleWeapon, WeaponCategory.MartialWeapon, WeaponCategory.Shields };
+                weaponProficiencies = new List<WeaponType>();
                 savingThrows = new List<Stats>() { Stats.Strength, Stats.Constitution };
                 skillProficiencyOptions = new List<Skills>() { Skills.Acrobatics, Skills.AnimalHandling, Skills.Athletics, Skills.History, Skills.Insight, Skills.Intimidation, Skills.Perception, Skills.Survival };
                 skillProficiencyNumberOfChoices = 2;
@@ -1580,8 +1580,8 @@ namespace DnD5eBattleApp
                 name = "Barbarian";
                 hitDice = 12;
                 armorCategoryProficiencies = new List<ArmorCategories>() { ArmorCategories.LightArmor, ArmorCategories.MediumArmor, ArmorCategories.Shields };
-                weaponCategoryProficiencies = new List<WeaponCategories>() { WeaponCategories.SimpleWeapon, WeaponCategories.MartialWeapon, WeaponCategories.Shields };
-                weaponProficiencies = new List<WeaponTypes>();
+                weaponCategoryProficiencies = new List<WeaponCategory>() { WeaponCategory.SimpleWeapon, WeaponCategory.MartialWeapon, WeaponCategory.Shields };
+                weaponProficiencies = new List<WeaponType>();
                 savingThrows = new List<Stats>() { Stats.Strength, Stats.Constitution };
                 skillProficiencyOptions = new List<Skills>() { Skills.AnimalHandling, Skills.Athletics, Skills.Nature, Skills.Intimidation, Skills.Perception, Skills.Survival };
                 skillProficiencyNumberOfChoices = 2;
@@ -1651,8 +1651,8 @@ namespace DnD5eBattleApp
                 name = "Bard";
                 hitDice = 8;
                 armorCategoryProficiencies = new List<ArmorCategories>() { ArmorCategories.LightArmor };
-                weaponCategoryProficiencies = new List<WeaponCategories>();
-                weaponProficiencies = new List<WeaponTypes>();
+                weaponCategoryProficiencies = new List<WeaponCategory>();
+                weaponProficiencies = new List<WeaponType>();
                 savingThrows = new List<Stats>() { Stats.Dexterity, Stats.Charisma };
                 skillProficiencyNumberOfChoices = 3;
                 skillProficiencyOptions = new List<Skills>() { Skills.Athletics, Skills.AnimalHandling, Skills.Arcana, Skills.Athletics, Skills.Deception, Skills.History, Skills.Insight, Skills.Intimidation, Skills.Investigation, Skills.Medicine, Skills.Nature, Skills.Perception, Skills.Performance, Skills.Persuasion, Skills.Religion, Skills.SleightOfHand, Skills.Stealth, Skills.Survival };
@@ -1852,21 +1852,21 @@ namespace DnD5eBattleApp
             public override void StatChange(Creature cr)
             {
                 base.StatChange(cr);
-                if (!creature.weaponTypeProficiencies.Contains(WeaponTypes.Battleaxe))
+                if (!creature.weaponTypeProficiencies.Contains(WeaponType.Battleaxe))
                 {
-                    creature.weaponTypeProficiencies.Add(WeaponTypes.Battleaxe);
+                    creature.weaponTypeProficiencies.Add(WeaponType.Battleaxe);
                 }
-                if (!creature.weaponTypeProficiencies.Contains(WeaponTypes.Handaxe))
+                if (!creature.weaponTypeProficiencies.Contains(WeaponType.Handaxe))
                 {
-                    creature.weaponTypeProficiencies.Add(WeaponTypes.Handaxe);
+                    creature.weaponTypeProficiencies.Add(WeaponType.Handaxe);
                 }
-                if (!creature.weaponTypeProficiencies.Contains(WeaponTypes.LightHammer))
+                if (!creature.weaponTypeProficiencies.Contains(WeaponType.LightHammer))
                 {
-                    creature.weaponTypeProficiencies.Add(WeaponTypes.LightHammer);
+                    creature.weaponTypeProficiencies.Add(WeaponType.LightHammer);
                 }
-                if (!creature.weaponTypeProficiencies.Contains(WeaponTypes.Warhammer))
+                if (!creature.weaponTypeProficiencies.Contains(WeaponType.Warhammer))
                 {
-                    creature.weaponTypeProficiencies.Add(WeaponTypes.Warhammer);
+                    creature.weaponTypeProficiencies.Add(WeaponType.Warhammer);
                 }
 
             }
@@ -4655,7 +4655,7 @@ namespace DnD5eBattleApp
             {
                 foreach(string mc in DnDManager.monsters.Keys)
                 {
-                    Creature creature = DnDManager.monsters[mc].CreateCreature();
+                    Creature creature = new Monster(DnDManager.monsters[mc]);
                     if (creature is Monster)
                     {
                         Monster monster = creature as Monster;
@@ -5501,7 +5501,7 @@ namespace DnD5eBattleApp
                 {
                     return true;
                 }
-                else if (weapon.weaponCategory == WeaponCategories.SimpleWeapon && !(weapon.weaponProperties.Contains(WeaponProperty.Range) || weapon.weaponProperties.Contains(WeaponProperty.TwoHanded) || weapon.weaponProperties.Contains(WeaponProperty.Heavy)))
+                else if (weapon.weaponCategory == WeaponCategory.SimpleWeapon && !(weapon.weaponProperties.Contains(WeaponProperty.Range) || weapon.weaponProperties.Contains(WeaponProperty.TwoHanded) || weapon.weaponProperties.Contains(WeaponProperty.Heavy)))
                 {
                     return true;
                 }
@@ -6800,12 +6800,6 @@ namespace DnD5eBattleApp
                 {
                     name = GoblinNameGenerator();
                 }
-            }
-
-            public string GoblinNameGenerator()
-            {
-                string[] names = new string[] { "Gobbo", "GibGob", "Gablu", "GibbyGob", "GabbyGoo", "GibGab", "GobbyGob", "GobbyGoo", "Gombini", "GabGab" };
-                return names[EngManager.random.Next(0, names.Length)];
             }
 
             public class GoblinBaseStats : BaseStats

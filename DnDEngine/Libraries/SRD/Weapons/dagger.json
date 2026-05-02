@@ -1,0 +1,10 @@
+{
+    "$schema": "../../Schemas/WeaponSpecSchema.json",
+    "Name": "Dagger",
+    "Category": "simpleWeapon",
+    "Damage": "1d4",
+    "DamageType": "Piercing",
+    "Properties": ["finesse", "light", "thrown"],
+    "Range": 20,
+    "MaxRange": 60
+}

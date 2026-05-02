@@ -8,8 +8,8 @@ namespace DnD5eBattleApp
         public Shield() : base()
         {
             name = "Shield";
-            weaponType = WeaponTypes.Shield;
-            weaponCategory = WeaponCategories.Shields;
+            weaponType = WeaponType.Shield;
+            weaponCategory = WeaponCategory.Shields;
             damageDice = new List<int>() { 0 };
             damageDiceNumber = new List<int>() { 0 };
             damageTypes = new List<string>() { };

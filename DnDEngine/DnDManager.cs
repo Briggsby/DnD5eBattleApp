@@ -50,7 +50,7 @@ namespace DnD5eBattleApp
         public static Dictionary<string, PlayerClass> classes;
         public static Dictionary<string, SubClass> subClasses;
         public static Dictionary<string, FeatCreator> feats;
-        public static Dictionary<string, CreatureCreator> monsters;
+        public static Dictionary<string, MonsterSpec> monsters;
         public static Dictionary<string, SpellCreator> spells;
         public static Dictionary<string, Dictionary<int,List<string>>> spellLists;
         public static Dictionary<string, ConditionCreator> conditions;
@@ -122,7 +122,7 @@ namespace DnD5eBattleApp
             classes = new Dictionary<string, PlayerClass>();
             subClasses = new Dictionary<string, SubClass>();
             feats = new Dictionary<string, FeatCreator>();
-            monsters = new Dictionary<string, CreatureCreator>();
+            monsters = new Dictionary<string, MonsterSpec>();
             spells = new Dictionary<string, SpellCreator>();
             spellLists = new Dictionary<string, Dictionary<int, List<string>>>();
             conditions = new Dictionary<string, ConditionCreator>();
@@ -252,10 +252,8 @@ namespace DnD5eBattleApp
             {
                 feats.Add(s, newLibrary.feats[s]);
             }
-            foreach (string s in newLibrary.monsters.Keys)
-            {
-                monsters.Add(s, newLibrary.monsters[s]);
-            }
+            // TODO: Take argument for path
+            ingestMonsters("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD/Monsters");
             foreach (string s in newLibrary.spells.Keys)
             {
                 spells.Add(s, newLibrary.spells[s]);
@@ -306,6 +304,18 @@ namespace DnD5eBattleApp
             }
 
             libraries.Add(newLibrary);
+        }
+
+        private void ingestMonsters(string path)
+        {
+            // Iterate through every file in path, parse it as a MonsterSpec, and add it to the monsters dictionary with the monster's name as the key
+            string[] monsterFiles = System.IO.Directory.GetFiles(path);
+            foreach (string file in monsterFiles)
+            {
+                string json = System.IO.File.ReadAllText(file);
+                MonsterSpec spec = System.Text.Json.JsonSerializer.Deserialize<MonsterSpec>(json, SchemaExporter.Options);
+                monsters.Add(spec.Name, spec);
+            }
         }
     }
 }

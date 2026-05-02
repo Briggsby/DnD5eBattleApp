@@ -40,8 +40,8 @@ namespace DnD5eBattleApp
         };
         public List<Skills> skillProficiencies = new List<Skills>();
         public List<string> toolProficiencies = new List<string>();
-        public List<WeaponTypes> weaponTypeProficiencies = new List<WeaponTypes>();
-        public List<WeaponCategories> weaponCategoryProficiencies = new List<WeaponCategories>() { WeaponCategories.NaturalWeapon, WeaponCategories.SimpleWeapon };
+        public List<WeaponType> weaponTypeProficiencies = new List<WeaponType>();
+        public List<WeaponCategory> weaponCategoryProficiencies = new List<WeaponCategory>() { WeaponCategory.NaturalWeapon, WeaponCategory.SimpleWeapon };
         public List<ArmorCategories> armorCategoryProficiencies = new List<ArmorCategories>();
 
         public List<Skills> expertises = new List<Skills>();
@@ -74,6 +74,32 @@ namespace DnD5eBattleApp
         {
             this.creature = creature;
             if (rollHP)
+            {
+                RollHP();
+            }
+        }
+
+        public BaseStats(MonsterSpec spec, Creature creature, bool rollHP = true)
+        {
+            this.creature = creature;
+            creatureType = spec.Type;
+            creatureSubType = spec.SubType;
+            alignment = spec.Alignment;
+            size = spec.Size;
+            naturalAC = spec.ArmorClass;
+            hitDie = spec.HitDiceValue;
+            hitDiceNumber = spec.HitDiceNumber;
+            speed = spec.Speed;
+            darkvision = spec.Darkvision;
+            languages = new List<string>(spec.Languages);
+            stats[Stats.Strength] = spec.Stats.Strength;
+            stats[Stats.Dexterity] = spec.Stats.Dexterity;
+            stats[Stats.Constitution] = spec.Stats.Constitution;
+            stats[Stats.Intelligence] = spec.Stats.Intelligence;
+            stats[Stats.Wisdom] = spec.Stats.Wisdom;
+            stats[Stats.Charisma] = spec.Stats.Charisma;
+
+         if (rollHP)
             {
                 RollHP();
             }

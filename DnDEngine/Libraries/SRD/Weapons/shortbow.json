@@ -1,0 +1,10 @@
+{
+    "$schema": "../../Schemas/WeaponSpecSchema.json",
+    "Name": "Shortbow",
+    "Category": "simpleWeapon",
+    "Damage": "1d6",
+    "DamageType": "Piercing",
+    "Properties": ["range", "ammunition"],
+    "Range": 80,
+    "MaxRange": 320
+}

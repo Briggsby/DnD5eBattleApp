@@ -1,0 +1,73 @@
+{
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Damage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "DamageType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Category": {
+      "enum": [
+        "none",
+        "simpleWeapon",
+        "martialWeapon",
+        "naturalWeapon",
+        "shields"
+      ]
+    },
+    "Properties": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "enum": [
+          "ammunition",
+          "finesse",
+          "heavy",
+          "light",
+          "loading",
+          "range",
+          "reach",
+          "special",
+          "thrown",
+          "twoHanded",
+          "versatile",
+          "improvised",
+          "silvered",
+          "specialLance",
+          "specialNet"
+        ]
+      }
+    },
+    "Range": {
+      "type": "integer"
+    },
+    "MaxRange": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "Name",
+    "Damage",
+    "DamageType",
+    "Category",
+    "Properties"
+  ]
+}

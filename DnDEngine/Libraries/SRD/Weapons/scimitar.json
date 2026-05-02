@@ -1,0 +1,8 @@
+{
+    "$schema": "../../Schemas/WeaponSpecSchema.json",
+    "Name": "Scimitar",
+    "Category": "simpleWeapon",
+    "Damage": "1d6",
+    "DamageType": "Slashing",
+    "Properties": ["finesse", "light"]
+}
