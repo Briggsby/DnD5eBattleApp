@@ -11,12 +11,12 @@ namespace BugsbyEngine;
 /// </summary>
 
 
-public abstract class IEvent
+public abstract class Event
 {
-    public List<IEventListener<IEvent>> PreEventListeners { get; set; }
+    public List<IEventListener<Event>> PreEventListeners { get; set; }
     public string EventType { get; set; } = String.Empty;
 
-    public virtual void FinishPreEvent(IEventListener<IEvent> listener)
+    public virtual void FinishPreEvent(IEventListener<Event> listener)
     {
         PreEventListeners.Remove(listener);
         if (PreEventListeners.Count == 0)
@@ -30,7 +30,7 @@ public abstract class IEvent
     }
 }
 
-public interface IEventListener<TEvent> where TEvent : IEvent
+public interface IEventListener<TEvent> where TEvent : Event
 {
     void OnPreEvent(TEvent e);
     void OnPostEvent(TEvent e);
@@ -38,33 +38,33 @@ public interface IEventListener<TEvent> where TEvent : IEvent
 
 public class EventManager
 {
-    public static Dictionary<(Type, string), List<IEventListener<IEvent>>> preEventListeners = [];
-    public static Dictionary<(Type, string), List<IEventListener<IEvent>>> postEventListeners = [];
-    public static List<IEvent> ongoingEvents = new List<IEvent>();
+    public static Dictionary<(Type, string), List<IEventListener<Event>>> preEventListeners = [];
+    public static Dictionary<(Type, string), List<IEventListener<Event>>> postEventListeners = [];
+    public static List<Event> ongoingEvents = new List<Event>();
 
 
-    public static void AddPreEventListener<T>(IEventListener<T> listener, string eventType = "") where T : IEvent
+    public static void AddPreEventListener<T>(IEventListener<T> listener, string eventType = "") where T : Event
     {
         if (!preEventListeners.ContainsKey((typeof(T), eventType)))
         {
-            preEventListeners[(typeof(T), eventType)] = new List<IEventListener<IEvent>>();
+            preEventListeners[(typeof(T), eventType)] = new List<IEventListener<Event>>();
         }
-        preEventListeners[(typeof(T), eventType)].Add((IEventListener<IEvent>)listener);
+        preEventListeners[(typeof(T), eventType)].Add((IEventListener<Event>)listener);
     }
 
-    public static void AddPostEventListener<T>(IEventListener<T> listener, string eventType = "") where T : IEvent
+    public static void AddPostEventListener<T>(IEventListener<T> listener, string eventType = "") where T : Event
     {
         if (!postEventListeners.ContainsKey((typeof(T), eventType)))
         {
-            postEventListeners[(typeof(T), eventType)] = new List<IEventListener<IEvent>>();
+            postEventListeners[(typeof(T), eventType)] = new List<IEventListener<Event>>();
         }
-        postEventListeners[(typeof(T), eventType)].Add((IEventListener<IEvent>)listener);
+        postEventListeners[(typeof(T), eventType)].Add((IEventListener<Event>)listener);
     }
 
-    public static void TriggerEvent<T>(T e) where T : IEvent
+    public static void TriggerEvent<T>(T e) where T : Event
     {
         ongoingEvents.Add(e);
-        e.PreEventListeners = new List<IEventListener<IEvent>>();
+        e.PreEventListeners = new List<IEventListener<Event>>();
 
         if (preEventListeners.ContainsKey((typeof(T), e.EventType)))
         {
@@ -76,7 +76,7 @@ public class EventManager
         }
     }
 
-    public static void FinishEvent<T>(T e) where T : IEvent
+    public static void FinishEvent<T>(T e) where T : Event
     {
         if (postEventListeners.ContainsKey((typeof(T), e.EventType)))
         {
