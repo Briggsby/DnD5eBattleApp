@@ -24,7 +24,7 @@ namespace DnD5eBattleApp
         public abstract Feat CreateFeat();
     }
 
-    public class Feat
+    public class Feat : IValueModification
     {
         public static DisplayOptionsTextureSet optionsDisplayTextures;
 
@@ -255,6 +255,17 @@ namespace DnD5eBattleApp
             {
                 SubscribeTakeDamage(creature);
             }
+
+            // Add all valueChange and valueoverride modifications
+            foreach (string valueType in valueChanges.Keys)
+            {
+                creature.Values.GetValue<int>(valueType).AddModifier(this);
+            }
+            foreach (string valueType in valueOverrides.Keys)
+            {
+                creature.Values.GetValue<int>(valueType).AddModifier(this);
+            }
+
             ResetUses();
         }
 
@@ -280,7 +291,7 @@ namespace DnD5eBattleApp
 
         #endregion
 
-        #region Stat Editing
+        #region Old Stat Editing
         public bool statChange = false;
         public bool statOverride = false;
 
@@ -295,6 +306,26 @@ namespace DnD5eBattleApp
         }
 
         #endregion
+
+        # region Value Editing
+
+        public Dictionary<string, int> valueChanges = new Dictionary<string, int>();
+        public Dictionary<string, int> valueOverrides = new Dictionary<string, int>();
+
+        public T GetModification<T>(Value<T> value, T currentValue)
+        {
+            if (valueChanges.ContainsKey(value.ValueType))
+            {
+                currentValue = (dynamic)currentValue + valueChanges[value.ValueType];
+            }
+            if (valueOverrides.ContainsKey(value.ValueType))
+            {
+                currentValue = (dynamic)valueOverrides[value.ValueType];
+            }
+            return currentValue;
+        }
+
+        # endregion
 
         #region Using
 

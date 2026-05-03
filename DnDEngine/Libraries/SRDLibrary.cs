@@ -2983,14 +2983,14 @@ namespace DnD5eBattleApp
                 statChange = true;
             }
 
-            public override void StatChange(Creature cr)
-            {
-                base.StatChange(cr);
-                if (creature.armor.armorCategory != ArmorCategories.HeavyArmor)
-                {
-                    creature.speed += 10;
-                }
-            }
+            // public override void StatChange(Creature cr)
+            // {
+            //     base.StatChange(cr);
+            //     if (creature.armor.armorCategory != ArmorCategories.HeavyArmor)
+            //     {
+            //         creature.speed += 10;
+            //     }
+            // }
 
         }
 
@@ -5830,14 +5830,14 @@ namespace DnD5eBattleApp
                 statChange = true;
             }
 
-            public override void StatChange(Creature cr)
-            {
-                base.StatChange(cr);
-                if (creature.armor.armorCategory == ArmorCategories.None && !(creature.weaponMainHand is Shield) && !(creature.weaponOffHand is Shield))
-                {
-                    creature.speed += MovementBonus;
-                }
-            }
+            // public override void StatChange(Creature cr)
+            // {
+            //     base.StatChange(cr);
+            //     if (creature.armor.armorCategory == ArmorCategories.None && !(creature.weaponMainHand is Shield) && !(creature.weaponOffHand is Shield))
+            //     {
+            //         creature.speed += MovementBonus;
+            //     }
+            // }
         }
 
         public class DeflectMissilesCreator : FeatCreator

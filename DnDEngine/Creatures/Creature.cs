@@ -13,8 +13,17 @@ namespace DnD5eBattleApp
 { 
     public enum Alignment { NeutralEvil, Neutral, LawfulEvil }
 
+    public enum CreatureValue { Speed }
+
     public class Creature : GameObject
     {
+        public ValueManager Values { get; set; } = new ValueManager();
+
+        public void SetDefaultValues()
+        {
+            Values.AddValue<int>(CreatureValue.Speed.ToString(), 30);
+        }
+
         public static Texture2D baseCommonTexture;
         public string name;
         public string controller;
@@ -91,6 +100,7 @@ namespace DnD5eBattleApp
         {
             inventory = new Inventory(this, new List<Item>());
             spellbook = new SpellBook(this);
+            SetDefaultValues();
         }
 
         public void SetInitialTile(BoardTile tile)
@@ -153,7 +163,6 @@ namespace DnD5eBattleApp
 
         public bool                   silenced                    = false;
 
-        public int                    speed                       = 30;
         public int                    flySpeed                    = 0;
         public int                    burrowSpeed                 = 0;
         public int                    swimSpeed                   = 0;
@@ -197,7 +206,6 @@ namespace DnD5eBattleApp
 
             silenced                        = false                                                             ;
                 
-            speed                           = baseStats.speed                                                   ;
             flySpeed                        = baseStats.flySpeed                                                ;
             burrowSpeed                     = baseStats.burrowSpeed                                             ;
             swimSpeed                       = baseStats.swimSpeed                                               ;
@@ -216,13 +224,14 @@ namespace DnD5eBattleApp
 
         #region Movement
 
+        public Value<int> Speed {get => Values.GetValue<int>(CreatureValue.Speed.ToString()); }
         bool canMove = true;
 
         public bool CanMove { get { if (!canMove) { return false; } else { return amountMoved < baseStats.speed; } } }
         public int AttacksLeft { get { return baseStats.attacks - attacksTaken; } }
         public int MoveSpeedLeft
         {
-            get { return Math.Max(baseStats.speed - amountMoved, 0); }
+            get { return Math.Max(Speed.GetValue() - amountMoved, 0); }
         }
 
         public IEnumerator MoveOrder(BoardTile boardTile)
@@ -261,7 +270,7 @@ namespace DnD5eBattleApp
 
         public void MoveTo(BoardTile tile)
         {
-            amountMoved += encounter.board.GetDistance(boardTile, boardTile);
+            amountMoved += encounter.board.GetDistance(boardTile, tile);
             SetToTile(tile);
         }
 
@@ -336,6 +345,10 @@ namespace DnD5eBattleApp
 
         public void SetToTile(BoardTile tile)
         {
+            if (boardTile is not null)
+            {
+                boardTile.creature = null;
+            }
             transform.localPosition = new Vector2(0, 0);
             boardTile = tile;
             tile.creature = this;

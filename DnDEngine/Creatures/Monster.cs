@@ -15,9 +15,12 @@ namespace DnD5eBattleApp
 
         public Monster(MonsterSpec spec)
         {
+            Speed.SetBaseValue(spec.Speed);
+
             baseStats = new BaseStats(spec, this, true);
             name = spec.Name;
             spellbook = new SpellBook(spec.Spells, this);
+            
             // TODO: Add Feats
             // TODO: Handle Textures
             Texture = DnDManager.monsterTextures[SRDLibrary.Monsters.Goblin.ToString()];
