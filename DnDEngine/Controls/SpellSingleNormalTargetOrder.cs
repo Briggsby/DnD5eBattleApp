@@ -6,28 +6,19 @@ using BugsbyEngine;
 
 namespace DnD5eBattleApp
 {
-    public class SpellSingleNormalTargetOrder : Control
+    public class SpellSingleNormalTargetOrder : SingleNormalTargetOrder
     {
-        Spell spell;
-        Creature creature;
+        Spell Spell {get => ControlObject as Spell; set => ControlObject = value; }
 
-        public SpellSingleNormalTargetOrder(Creature creature, Spell spell)
+        public SpellSingleNormalTargetOrder(Creature creature, Spell spell) : base(creature, spell, spell.maxRange)
         {
-            this.creature = creature;
-            this.spell = spell;
-            EngManager.StartCoroutine(SetOrderControl(
-                board: creature.encounter.board,
-                originSquare: creature.boardTile,
-                range: spell.maxRange,
-                color: Color.MistyRose,
-                criteria: new List<TileOrderCriteria>() { TileOrderCriteria.WithCreature }
-            ));
+            
         }
 
         public override void SelectionMade()
         {
             base.SelectionMade();
-            spell.SingleTargetTargeted(orderControl.selection.creature);
+            Spell.SingleTargetTargeted(orderControl.selection.creature);
         }
     }
 }
