@@ -234,40 +234,6 @@ namespace DnD5eBattleApp
             get { return Math.Max(Speed.GetValue() - amountMoved, 0); }
         }
 
-        public IEnumerator MoveOrder(BoardTile boardTile)
-        {
-
-            List<Creature> creaturesNearNewLocation = new List<Creature>();
-            foreach (BoardTile tile in encounter.board.GetTilesInRange(boardTile, 5))
-            {
-                if (tile.creature != null)
-                {
-                    creaturesNearNewLocation.Add(tile.creature);
-                }
-            }
-
-            foreach (BoardTile tile in encounter.board.GetTilesInRange(boardTile, 5))
-            {
-                if (tile.creature != null && !creaturesNearNewLocation.Contains(tile.creature))
-                {
-                    if (!tile.creature.reactionTaken)
-                    {
-                        OpportunityAttackOption optionDisplay = new OpportunityAttackOption(this, tile.creature);
-
-                        while (!optionDisplay.finished)
-                        {
-                            yield return null;
-                        }
-                        if (optionDisplay.cancelled)
-                        {
-                            yield break;
-                        }
-                    }
-                }
-            }
-            MoveTo(boardTile);
-        }
-
         public void MoveTo(BoardTile tile)
         {
             amountMoved += encounter.board.GetDistance(boardTile, tile);
