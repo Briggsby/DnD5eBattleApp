@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using BugsbyEngine;
@@ -37,6 +38,25 @@ namespace DnD5eBattleApp
                 spellsByLevel = BlankSpellsByLevel();
             }
             this.spells = new List<Spell>(spells);
+            spellsByLevel = SortSpellsByLevel(spells);
+            contextMenuTextures = baseContextMenuTextureSet;
+        }
+
+        public SpellBook(SpellBookSpec spellBookSpec, Creature owner)
+        {
+            this.owner = owner;
+            spells = new List<Spell>();
+            foreach (string spellName in spellBookSpec.Spells)
+            {
+                if (DnDManager.spells.ContainsKey(spellName))
+                {
+                    spells.Add(new Spell(DnDManager.spells[spellName], owner));
+                }
+                else
+                {
+                    Console.WriteLine(string.Format("Spell {0} not found in DnDManager.spells", spellName));
+                }
+            }
             spellsByLevel = SortSpellsByLevel(spells);
             contextMenuTextures = baseContextMenuTextureSet;
         }

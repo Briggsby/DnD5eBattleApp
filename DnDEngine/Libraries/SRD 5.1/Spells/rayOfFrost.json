@@ -1,0 +1,27 @@
+{
+    "$schema": "../../Schemas/SpellSpecSchema.json",
+    "Name": "Ray of Frost",
+    "Level": 0,
+    "School": "Evocation",
+    "CastingTime": "1 action",
+    "Range": 60,
+    "VerbalComponent": true,
+    "SomaticComponent": true,
+    "MaterialComponent": false,
+    "IsSpellAttack": true,
+    "Damages": [
+        {
+            "Type": "cold",
+            "DamageDiceValue": 1,
+            "DamageDiceNumber": 8
+        }
+    ],
+    "TargetType": "singleTarget",
+    "Description": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn.",
+    "AppliesConditions": {
+        "SpeedReduction": {
+            "Amount": 10,
+            "Duration": 1
+        }
+    }
+}

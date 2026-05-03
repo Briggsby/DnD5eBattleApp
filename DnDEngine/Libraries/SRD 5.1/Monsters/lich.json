@@ -26,18 +26,20 @@
     "DamageResistances": ["cold", "lightning", "necrotic"],
     "DamageImmunities": ["poison", "psychic"],
     "ConditionImmunities": ["charmed", "exhaustion", "frightened", "paralyzed", "poisoned"],
-    "Spells": [
-        "Mage Hand", "Prestidigitation", "Ray of Frost",
-        "Detect Magic", "Magic Missile", "Shield", "Thunderwave",
-        "Acid Arrow", "Detect Thoughts", "Invisibility", "Mirror Image",
-        "Animate Dead", "Counterspell", "Dispel Magic", "Fireball",
-        "Blight", "Dimension Door",
-        "Cloudkill", "Scrying",
-        "Disintegrate", "Globe of Invulnerability",
-        "Finger of Death", "Plane Shift",
-        "Dominate Monster", "Power Word Stun",
-        "Power Word Kill"
-    ],
+    "Spells": {
+        "Spells": [
+            "Mage Hand", "Prestidigitation", "Ray of Frost",
+            "Detect Magic", "Magic Missile", "Shield", "Thunderwave",
+            "Acid Arrow", "Detect Thoughts", "Invisibility", "Mirror Image",
+            "Animate Dead", "Counterspell", "Dispel Magic", "Fireball",
+            "Blight", "Dimension Door",
+            "Cloudkill", "Scrying",
+            "Disintegrate", "Globe of Invulnerability",
+            "Finger of Death", "Plane Shift",
+            "Dominate Monster", "Power Word Stun",
+            "Power Word Kill"
+        ]
+    },
     "LegendaryActions": {
         "Cantrip": 1,
         "Paralyzing Touch": 2,

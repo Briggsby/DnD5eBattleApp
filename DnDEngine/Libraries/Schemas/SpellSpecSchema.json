@@ -1,0 +1,128 @@
+{
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Level": {
+      "type": "integer"
+    },
+    "School": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "IsAction": {
+      "type": "boolean"
+    },
+    "IsBonusAction": {
+      "type": "boolean"
+    },
+    "Range": {
+      "type": "integer"
+    },
+    "VerbalComponent": {
+      "type": "boolean"
+    },
+    "SomaticComponent": {
+      "type": "boolean"
+    },
+    "MaterialComponent": {
+      "type": "boolean"
+    },
+    "MaterialComponentDescription": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Duration": {
+      "type": "integer"
+    },
+    "IsSpellAttack": {
+      "type": "boolean"
+    },
+    "TargetType": {
+      "enum": [
+        "singleTarget",
+        "sphere",
+        "cone",
+        "line",
+        "sphereOnSelf"
+      ]
+    },
+    "TargetCount": {
+      "type": "integer"
+    },
+    "Damages": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "Type": {
+            "enum": [
+              "bludgeoningMagical",
+              "piercingMagical",
+              "slashingMagical",
+              "bludgeoning",
+              "piercing",
+              "slashing",
+              "fire",
+              "cold",
+              "lightning",
+              "thunder",
+              "psychic",
+              "force",
+              "poison",
+              "acid",
+              "radiant",
+              "necrotic"
+            ]
+          },
+          "DamageDiceValue": {
+            "type": "integer"
+          },
+          "DamageDiceNumber": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "Type",
+          "DamageDiceValue",
+          "DamageDiceNumber"
+        ]
+      }
+    },
+    "ScaleCantripDamage": {
+      "type": "boolean"
+    },
+    "Description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "Name",
+    "Level",
+    "School",
+    "Range",
+    "VerbalComponent",
+    "SomaticComponent",
+    "MaterialComponent"
+  ]
+}

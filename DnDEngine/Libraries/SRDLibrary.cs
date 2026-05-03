@@ -68,8 +68,8 @@ namespace DnD5eBattleApp
 
         public class RageCondition : Condition
         {
-            public List<DamageTypes> resistances = new List<DamageTypes>()
-            {DamageTypes.Bludgeoning, DamageTypes.Slashing, DamageTypes.Piercing };
+            public List<DamageType> resistances = new List<DamageType>()
+            {DamageType.Bludgeoning, DamageType.Slashing, DamageType.Piercing };
 
             public override void EndTurn(Creature cr, Creature.CreatureDelegateEventArgs e)
             {
@@ -142,7 +142,7 @@ namespace DnD5eBattleApp
             public override void StatChange(Creature cr)
             {
                 creature.silenced = true;
-                foreach (DamageTypes resistance in resistances)
+                foreach (DamageType resistance in resistances)
                 {
                     if (creature.resistances.Contains(resistance.ToString()))
                     {
@@ -422,7 +422,7 @@ namespace DnD5eBattleApp
                 weaponType = WeaponType.Club;
                 damageDice = new List<int>() { 4 };
                 damageDiceNumber = new List<int>() { 1 };
-                damageTypes = new List<string>() { DamageTypes.Bludgeoning.ToString() };
+                damageTypes = new List<string>() { DamageType.Bludgeoning.ToString() };
                 abilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
@@ -452,7 +452,7 @@ namespace DnD5eBattleApp
                 weaponType = WeaponType.Scimitar;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
-                damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
+                damageTypes = new List<string>() { DamageType.Slashing.ToString() };
                 abilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
@@ -479,7 +479,7 @@ namespace DnD5eBattleApp
                 weaponType = WeaponType.Shortbow;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
-                damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
+                damageTypes = new List<string>() { DamageType.Piercing.ToString() };
                 abilityStat = Stat.Dexterity;
                 minRange = 80;
                 maxRange = 320;
@@ -511,7 +511,7 @@ namespace DnD5eBattleApp
                 weaponType = WeaponType.Dagger;
                 damageDice = new List<int>() { 4 };
                 damageDiceNumber = new List<int>() { 1 };
-                damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
+                damageTypes = new List<string>() { DamageType.Piercing.ToString() };
                 abilityStat = Stat.Strength;
                 minRange = 20;
                 maxRange = 60;
@@ -537,7 +537,7 @@ namespace DnD5eBattleApp
                 weaponType = WeaponType.Shortsword;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
-                damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
+                damageTypes = new List<string>() { DamageType.Slashing.ToString() };
                 abilityStat = Stat.Strength;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse, WeaponProperty.Light};
                 acBonus = 0;
@@ -566,7 +566,7 @@ namespace DnD5eBattleApp
                 weaponType = WeaponType.Greataxe;
                 damageDice = new List<int>() { 12 };
                 damageDiceNumber = new List<int>() { 1 };
-                damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
+                damageTypes = new List<string>() { DamageType.Slashing.ToString() };
                 abilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
@@ -597,7 +597,7 @@ namespace DnD5eBattleApp
                 weaponType = WeaponType.Handaxe;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
-                damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
+                damageTypes = new List<string>() { DamageType.Slashing.ToString() };
                 abilityStat = Stat.Strength;
                 minRange = 20;
                 maxRange = 60;
@@ -629,7 +629,7 @@ namespace DnD5eBattleApp
                 weaponType = WeaponType.Javelin;
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
-                damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
+                damageTypes = new List<string>() { DamageType.Piercing.ToString() };
                 abilityStat = Stat.Strength;
                 minRange = 30;
                 maxRange = 120;
@@ -654,7 +654,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 8 };
                 weaponCategory = WeaponCategory.MartialWeapon;
                 weaponType = WeaponType.Rapier;
-                damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
+                damageTypes = new List<string>() { DamageType.Piercing.ToString() };
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse };
             }
         }
@@ -676,7 +676,7 @@ namespace DnD5eBattleApp
                 versatileDamageDice = new List<int>() { 10 };
                 weaponCategory = WeaponCategory.MartialWeapon;
                 weaponType = WeaponType.Longsword;
-                damageTypes = new List<string>() { DamageTypes.Slashing.ToString() };
+                damageTypes = new List<string>() { DamageType.Slashing.ToString() };
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Versatile };
             }
         }
@@ -737,7 +737,7 @@ namespace DnD5eBattleApp
                 minRange = 80;
                 maxRange = 320;
                 ammunition = typeof(Bolt);
-                damageTypes = new List<string>() { DamageTypes.Piercing.ToString() };
+                damageTypes = new List<string>() { DamageType.Piercing.ToString() };
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Ammunition, WeaponProperty.Range, WeaponProperty.Loading, WeaponProperty.TwoHanded };
             }
         }
@@ -1816,9 +1816,9 @@ namespace DnD5eBattleApp
             public override void StatChange(Creature cr)
             {
                 base.StatChange(cr);
-                if (!creature.resistances.Contains(DamageTypes.Poison.ToString()))
+                if (!creature.resistances.Contains(DamageType.Poison.ToString()))
                 {
-                    creature.resistances.Add(DamageTypes.Poison.ToString());
+                    creature.resistances.Add(DamageType.Poison.ToString());
                 }
             }
 
@@ -2141,18 +2141,18 @@ namespace DnD5eBattleApp
         {
             public enum DragonTypes { Black, Blue, Brass, Bronze, Copper, Gold, Green, Red, Silver, White }
 
-            public Dictionary<string, DamageTypes> damageType = new Dictionary<string, DamageTypes>()
+            public Dictionary<string, DamageType> damageType = new Dictionary<string, DamageType>()
             {
-                {DragonTypes.Black.ToString(), DamageTypes.Acid },
-                {DragonTypes.Blue.ToString(), DamageTypes.Lightning },
-                {DragonTypes.Brass.ToString(), DamageTypes.Fire },
-                {DragonTypes.Bronze.ToString(), DamageTypes.Lightning },
-                {DragonTypes.Copper.ToString(), DamageTypes.Acid },
-                {DragonTypes.Gold.ToString(), DamageTypes.Fire },
-                {DragonTypes.Green.ToString(), DamageTypes.Poison },
-                {DragonTypes.Red.ToString(), DamageTypes.Fire },
-                {DragonTypes.Silver.ToString(), DamageTypes.Cold },
-                {DragonTypes.White.ToString(), DamageTypes.Cold }
+                {DragonTypes.Black.ToString(), DamageType.Acid },
+                {DragonTypes.Blue.ToString(), DamageType.Lightning },
+                {DragonTypes.Brass.ToString(), DamageType.Fire },
+                {DragonTypes.Bronze.ToString(), DamageType.Lightning },
+                {DragonTypes.Copper.ToString(), DamageType.Acid },
+                {DragonTypes.Gold.ToString(), DamageType.Fire },
+                {DragonTypes.Green.ToString(), DamageType.Poison },
+                {DragonTypes.Red.ToString(), DamageType.Fire },
+                {DragonTypes.Silver.ToString(), DamageType.Cold },
+                {DragonTypes.White.ToString(), DamageType.Cold }
             };
             public Dictionary<string, Stat> saveType = new Dictionary<string, Stat>()
             {
@@ -2199,7 +2199,7 @@ namespace DnD5eBattleApp
                 base.FeatChoice(choice);
                 choiceMade = true;
                 if (creature.baseStats.resistances.Contains(damageType[choice].ToString())) {
-                    creature.baseStats.resistances.Add(DamageTypes.Cold.ToString());
+                    creature.baseStats.resistances.Add(DamageType.Cold.ToString());
                 }
                 name = "Breath Weapon";
                 description = "You can use your action to exhale destructive energy.Your draconic ancestry determines the size, shape, and damage type of the exhalation.When you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry.The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus.A creature takes 2d6 damage on a failed save, and half as much damage on a successful one.The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.After you use your breath weapon, you can’t use it again until you complete a short or long rest.";
@@ -2461,9 +2461,9 @@ namespace DnD5eBattleApp
             public override void StatChange(Creature cr)
             {
                 base.StatChange(cr);
-                if (!creature.resistances.Contains(DamageTypes.Fire.ToString()))
+                if (!creature.resistances.Contains(DamageType.Fire.ToString()))
                 {
-                    creature.resistances.Add(DamageTypes.Fire.ToString());
+                    creature.resistances.Add(DamageType.Fire.ToString());
                 }
             }
         }
@@ -3461,9 +3461,16 @@ namespace DnD5eBattleApp
             {
                 foreach (string s in DnDManager.spellLists[Classes.Bard.ToString()][0])
                 {
-                    Spell spell = DnDManager.spells[s].CreateSpell();
-                    spell.abilityModifier = Stat.Charisma;
-                    cantripChoices.Add(spell);
+                    if (DnDManager.spells.ContainsKey(s))
+                    {
+                        Spell spell = new Spell(DnDManager.spells[s]);
+                        spell.abilityModifier = Stat.Charisma;
+                        cantripChoices.Add(spell);
+                    }
+                    else
+                    {
+                        Debug.WriteLine(string.Format("Spell {0} not found for bard cantrip feat", s));
+                    }
                 }
             }
 
@@ -3509,9 +3516,16 @@ namespace DnD5eBattleApp
                 {
                     foreach (string s in DnDManager.spellLists[Classes.Bard.ToString()][level])
                     {
-                        Spell spell = (DnDManager.spells[s].CreateSpell());
-                        spell.abilityModifier = Stat.Charisma;
-                        spellChoices.Add(spell);
+                        if (DnDManager.spells.ContainsKey(s))
+                        {
+                            Spell spell = new Spell(DnDManager.spells[s]);
+                            spell.abilityModifier = Stat.Charisma;
+                            spellChoices.Add(spell);
+                        }
+                        else
+                        {
+                            Debug.WriteLine(string.Format("Spell {0} not found for bard spell list", s));
+                        }
                     }
                 }
                 spellChoicesByLevel = SpellBook.SortSpellsByLevelStatic(spellChoices);
@@ -3918,9 +3932,16 @@ namespace DnD5eBattleApp
                 spellChoices = new List<Spell>();
                 foreach (string s in DnDManager.spells.Keys)
                 {
-                    Spell spell = (DnDManager.spells[s].CreateSpell());
-                    spell.abilityModifier = Stat.Charisma;
-                    spellChoices.Add(spell);
+                    if (DnDManager.spells.ContainsKey(s))
+                    {
+                        Spell spell = new Spell(DnDManager.spells[s]);
+                        spell.abilityModifier = Stat.Charisma;
+                        spellChoices.Add(spell);
+                    }
+                    else
+                    {
+                        Debug.WriteLine(string.Format("Spell {0} not found for complete spell list", s));
+                    }
                 }
                 spellChoicesByLevel = SpellBook.SortSpellsByLevelStatic(spellChoices);
             }
@@ -4124,9 +4145,16 @@ namespace DnD5eBattleApp
                 List<Spell> list = new List<Spell>();
                 foreach (string s in DnDManager.spellLists[Classes.Cleric.ToString()][0])
                 {
-                    Spell spell = DnDManager.spells[s].CreateSpell();
-                    spell.abilityModifier = Stat.Wisdom;
-                    list.Add(spell);
+                    if (DnDManager.spells.ContainsKey(s))
+                    {
+                        Spell spell = new Spell(DnDManager.spells[s]);
+                        spell.abilityModifier = Stat.Wisdom;
+                        list.Add(spell);
+                    }
+                    else
+                    {
+                        Debug.WriteLine(string.Format("Spell {0} not found for cleric cantrip list", s));
+                    }
                 }
 
                 return list;
@@ -4178,9 +4206,16 @@ namespace DnD5eBattleApp
                 {
                     foreach (string s in DnDManager.spellLists[Classes.Cleric.ToString()][i])
                     {
-                        Spell spell = DnDManager.spells[s].CreateSpell();
-                        spell.abilityModifier = Stat.Wisdom;
-                        list.Add(spell);
+                        if (DnDManager.spells.ContainsKey(s))
+                        {
+                            Spell spell = new Spell(DnDManager.spells[s]);
+                            spell.abilityModifier = Stat.Wisdom;
+                            list.Add(spell);
+                        }
+                        else
+                        {
+                            Debug.WriteLine(string.Format("Spell {0} not found for cleric spell list", s));
+                        }
                     }
                 }
 
@@ -4352,7 +4387,7 @@ namespace DnD5eBattleApp
                     {
                         rollDam.diceFaces.Add(die);
                         rollDam.numberOfDice.Add(NumberOfDie);
-                        rollDam.damageTypes.Add(DamageTypes.Radiant.ToString());
+                        rollDam.damageTypes.Add(DamageType.Radiant.ToString());
                     }
                 }
                 base.FeatPreRollCheck(roll, e);
@@ -4447,9 +4482,16 @@ namespace DnD5eBattleApp
                 List<Spell> list = new List<Spell>();
                 foreach (string s in DnDManager.spellLists[Classes.Druid.ToString()][0])
                 {
-                    Spell spell = DnDManager.spells[s].CreateSpell();
-                    spell.abilityModifier = Stat.Wisdom;
-                    list.Add(spell);
+                    if (DnDManager.spells.ContainsKey(s))
+                    {
+                        Spell spell = new Spell(DnDManager.spells[s]);
+                        spell.abilityModifier = Stat.Wisdom;
+                        list.Add(spell);
+                    }
+                    else
+                    {
+                        Debug.WriteLine(string.Format("Spell {0} not found for druid cantrip list", s));
+                    }
                 }
 
                 return list;
@@ -4513,9 +4555,16 @@ namespace DnD5eBattleApp
                 {
                     foreach (string s in DnDManager.spellLists[Classes.Druid.ToString()][i])
                     {
-                        Spell spell = DnDManager.spells[s].CreateSpell();
-                        spell.abilityModifier = Stat.Wisdom;
-                        list.Add(spell);
+                        if (DnDManager.spells.ContainsKey(s))
+                        {
+                            Spell spell = new Spell(DnDManager.spells[s]);
+                            spell.abilityModifier = Stat.Wisdom;
+                            list.Add(spell);
+                        }
+                        else
+                        {
+                            Debug.WriteLine(string.Format("Spell {0} not found for druid spell list", s));
+                        }
                     }
                 }
 
@@ -4812,7 +4861,7 @@ namespace DnD5eBattleApp
 
             public override void FeatPreRollCheck(Roll roll, RollEventArgs e)
             {
-                if (roll.rollTags.Contains(DamageTypes.Poison.ToString()) || roll.rollTags.Contains(MiscRollTags.Disease.ToString()))
+                if (roll.rollTags.Contains(DamageType.Poison.ToString()) || roll.rollTags.Contains(MiscRollTags.Disease.ToString()))
                 {
                     roll.autoSuccess = true;
                 }
@@ -7136,7 +7185,7 @@ namespace DnD5eBattleApp
                 maxRange = 60;
                 minRange = 60;
                 saveStat = Stat.Dexterity;
-                damageTypes = new List<string>() { DamageTypes.Radiant.ToString() };
+                damageTypes = new List<string>() { DamageType.Radiant.ToString() };
                 damageDice = new List<int>() { 8 };
                 noneOnSave = true;
             }
@@ -7388,7 +7437,7 @@ namespace DnD5eBattleApp
                 spellAttack = true;
                 maxRange = 5;
                 minRange = 5;
-                damageTypes = new List<string>() { DamageTypes.Necrotic.ToString() };
+                damageTypes = new List<string>() { DamageType.Necrotic.ToString() };
                 damageDice = new List<int>() { 10 };
                 damageDiceNumber = new List<int>() { 3 };
             }
@@ -7572,7 +7621,7 @@ namespace DnD5eBattleApp
                 width = 5;
                 maxRange = 30;
                 abilityModifier = Stat.Constitution;
-                damageTypes = new List<string>() { DamageTypes.Acid.ToString() };
+                damageTypes = new List<string>() { DamageType.Acid.ToString() };
                 damageDice = new List<int>() { 6 };
                 noneOnSave = false;
                 hideInSpellbook = true;

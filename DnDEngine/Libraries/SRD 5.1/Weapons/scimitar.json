@@ -2,7 +2,10 @@
     "$schema": "../../Schemas/WeaponSpecSchema.json",
     "Name": "Scimitar",
     "Category": "simpleWeapon",
-    "Damage": "1d6",
-    "DamageType": "Slashing",
+    "Damage": {
+        "Type": "slashing",
+        "DamageDiceNumber": 1,
+        "DamageDiceValue": 6
+    },
     "Properties": ["finesse", "light"]
 }

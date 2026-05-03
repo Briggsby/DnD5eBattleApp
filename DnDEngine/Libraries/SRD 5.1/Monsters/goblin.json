@@ -7,7 +7,7 @@
     "HitDiceNumber": 2,
     "HitDiceValue": 6,
     "Name": "Goblin",
-    "Size": "Small",
+    "Size": "small",
     "Type": "Humanoid",
     "SubType": "Goblinoid",
     "Darkvision": 60,

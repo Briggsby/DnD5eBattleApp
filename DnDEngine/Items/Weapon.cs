@@ -40,11 +40,31 @@ namespace DnD5eBattleApp
             weaponCategory = WeaponCategory.None;
             damageDice = new List<int>() { 1 };
             damageDiceNumber = new List<int>() { 1 };
-            damageTypes = new List<string>() { DamageTypes.Bludgeoning.ToString() };
+            damageTypes = new List<string>() { DamageType.Bludgeoning.ToString() };
             abilityStat = Stat.Strength;
             minRange = 5;
             maxRange = 5;
             weaponProperties = new List<WeaponProperty>() { WeaponProperty.Light };
+            acBonus = 0;
+        }
+
+        public Weapon(WeaponSpec spec)
+        {
+            itemType = ItemType.Weapon.ToString();
+
+            name = spec.Name;
+            weaponCategory = spec.Category;
+            damageDice = new List<int>() { spec.Damage.DamageDiceValue };
+            damageDiceNumber = new List<int>() { spec.Damage.DamageDiceNumber };
+            damageTypes = new List<string>() { spec.Damage.Type.ToString() };
+            if (spec.Properties.Contains(WeaponProperty.Range)) {
+                abilityStat = Stat.Dexterity;
+            } else {
+                abilityStat = Stat.Strength;
+            }
+            minRange = spec.Range;
+            maxRange = spec.MaxRange;
+            weaponProperties = new List<WeaponProperty>(spec.Properties);
             acBonus = 0;
         }
 

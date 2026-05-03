@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace DnD5eBattleApp
 {
-    public enum DamageTypes { BludgeoningMagical, PiercingMagical, SlashingMagical, Bludgeoning, Piercing, Slashing, Fire, Cold, Lightning, Thunder, Psychic, Force, Poison, Acid, Radiant, Necrotic }
+    public enum DamageType { BludgeoningMagical, PiercingMagical, SlashingMagical, Bludgeoning, Piercing, Slashing, Fire, Cold, Lightning, Thunder, Psychic, Force, Poison, Acid, Radiant, Necrotic }
     public enum Size { Small, Medium, Large, Huge, Gargantuan };
 
     #region Stats and Skills
@@ -43,7 +43,7 @@ namespace DnD5eBattleApp
 
         public static List<string> languages;
         public static Dictionary<string, ItemCreator> items;
-        public static Dictionary<string, WeaponCreator> weapons;
+        public static Dictionary<string, WeaponSpec> weapons;
         public static Dictionary<string, ArmorCreator> armors;
         public static Dictionary<string, Species> species;
         public static Dictionary<string, SubSpecies> subSpecies;
@@ -51,7 +51,7 @@ namespace DnD5eBattleApp
         public static Dictionary<string, SubClass> subClasses;
         public static Dictionary<string, FeatCreator> feats;
         public static Dictionary<string, MonsterSpec> monsters;
-        public static Dictionary<string, SpellCreator> spells;
+        public static Dictionary<string, SpellSpec> spells;
         public static Dictionary<string, Dictionary<int,List<string>>> spellLists;
         public static Dictionary<string, ConditionCreator> conditions;
 
@@ -123,7 +123,7 @@ namespace DnD5eBattleApp
             subClasses = new Dictionary<string, SubClass>();
             feats = new Dictionary<string, FeatCreator>();
             monsters = new Dictionary<string, MonsterSpec>();
-            spells = new Dictionary<string, SpellCreator>();
+            spells = new Dictionary<string, SpellSpec>();
             spellLists = new Dictionary<string, Dictionary<int, List<string>>>();
             conditions = new Dictionary<string, ConditionCreator>();
 
@@ -253,11 +253,12 @@ namespace DnD5eBattleApp
                 feats.Add(s, newLibrary.feats[s]);
             }
             // TODO: Take argument for path
-            ingestMonsters("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD 5.1/Monsters");
-            foreach (string s in newLibrary.spells.Keys)
-            {
-                spells.Add(s, newLibrary.spells[s]);
-            }
+            var path = "E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD 5.1/";
+            IngestSpecs(path + "Monsters", monsters);
+            IngestSpecs(path + "Spells", spells);
+            
+            weapons = new Dictionary<string, WeaponSpec>();
+            IngestSpecs(path + "Weapons", weapons);
             foreach (string classString in newLibrary.spellLists.Keys)
             {
                 if (spellLists.Keys.Contains(classString))
@@ -306,15 +307,15 @@ namespace DnD5eBattleApp
             libraries.Add(newLibrary);
         }
 
-        private void ingestMonsters(string path)
+        private void IngestSpecs<T>(string path, Dictionary<string, T> dict)
         {
-            // Iterate through every file in path, parse it as a MonsterSpec, and add it to the monsters dictionary with the monster's name as the key
-            string[] monsterFiles = System.IO.Directory.GetFiles(path);
-            foreach (string file in monsterFiles)
+            // Iterate through every file in path, parse it as the given type, and add it to the given dictionary with the spec's name as the key
+            string[] files = System.IO.Directory.GetFiles(path);
+            foreach (string file in files)
             {
                 string json = System.IO.File.ReadAllText(file);
-                MonsterSpec spec = System.Text.Json.JsonSerializer.Deserialize<MonsterSpec>(json, SchemaExporter.Options);
-                monsters.Add(spec.Name, spec);
+                T spec = System.Text.Json.JsonSerializer.Deserialize<T>(json, SchemaExporter.Options);
+                dict.Add((string)typeof(T).GetProperty("Name").GetValue(spec), spec);
             }
         }
     }

@@ -12,14 +12,41 @@
     },
     "Damage": {
       "type": [
-        "string",
+        "object",
         "null"
-      ]
-    },
-    "DamageType": {
-      "type": [
-        "string",
-        "null"
+      ],
+      "properties": {
+        "Type": {
+          "enum": [
+            "bludgeoningMagical",
+            "piercingMagical",
+            "slashingMagical",
+            "bludgeoning",
+            "piercing",
+            "slashing",
+            "fire",
+            "cold",
+            "lightning",
+            "thunder",
+            "psychic",
+            "force",
+            "poison",
+            "acid",
+            "radiant",
+            "necrotic"
+          ]
+        },
+        "DamageDiceValue": {
+          "type": "integer"
+        },
+        "DamageDiceNumber": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Type",
+        "DamageDiceValue",
+        "DamageDiceNumber"
       ]
     },
     "Category": {
@@ -66,7 +93,6 @@
   "required": [
     "Name",
     "Damage",
-    "DamageType",
     "Category",
     "Properties"
   ]

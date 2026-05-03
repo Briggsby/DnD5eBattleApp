@@ -39,6 +39,36 @@ namespace DnD5eBattleApp
         public Feat linkedFeat;
         public bool noSpellSlot = false;
 
+        public Spell() { }
+
+        public Spell(SpellSpec spellSpec, Creature caster = null)
+        {
+            name = spellSpec.Name;
+            spellLevel = spellSpec.Level;
+            useAction = spellSpec.IsAction;
+            useBonusAction = spellSpec.IsBonusAction;
+            maxRange = spellSpec.Range;
+            if (spellSpec.IsSpellAttack)
+            {
+                spellAttack = spellSpec.IsSpellAttack;
+                targetType = spellSpec.TargetType;
+                simpleSpellTargetRollDamage = true;
+                damageDice = new List<int>();
+                damageDiceNumber = new List<int>();
+                damageTypes = new List<string>();
+                foreach (DamageSpec damageSpec in spellSpec.Damages)
+                {
+                    damageDice.Add(damageSpec.DamageDiceValue);
+                    damageDiceNumber.Add(damageSpec.DamageDiceNumber);
+                    damageTypes.Add(damageSpec.Type.ToString());
+                }           
+            }
+            if (caster != null)
+            {
+                this.caster = caster;
+            }
+        }
+
         public virtual ContextMenuTemplate GetChildMenu()
         {
             return null;

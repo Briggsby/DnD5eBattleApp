@@ -25,12 +25,6 @@ namespace DnD5eBattleApp
             SortInventory();
         }
 
-        public Inventory(List<Item> items)
-        {
-            this.items = items;
-            SortInventory();
-        }
-
         public Inventory CopyInventory(Creature creature)
         {
             return new Inventory(creature, items);

@@ -316,16 +316,24 @@
         ]
       }
     },
-    "spells": {
+    "Spells": {
       "type": [
-        "array",
+        "object",
         "null"
       ],
-      "items": {
-        "type": [
-          "string",
-          "null"
-        ]
+      "properties": {
+        "Spells": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
       }
     },
     "LegendaryActions": {

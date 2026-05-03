@@ -13,6 +13,11 @@ public record StatsSpec
     public required int Charisma {get; init;}
 }
 
+public record SpellBookSpec
+{
+    public List<string> Spells {get; init;} = new List<string>();
+}
+
 public record MonsterSpec
 {
     public required string Name {get; init;}
@@ -41,11 +46,11 @@ public record MonsterSpec
 
     public Stat SpellcastingAbility {get; init;} = Stat.Intelligence;
     public int Truesight {get; init;} = 0;
-    public List<DamageTypes> DamageResistances {get; init;} = new List<DamageTypes>();
-    public List<DamageTypes> DamageImmunities {get; init;} = new List<DamageTypes>();
-    public List<DamageTypes> DamageVulnerabilities {get; init;} = new List<DamageTypes>();
+    public List<DamageType> DamageResistances {get; init;} = new List<DamageType>();
+    public List<DamageType> DamageImmunities {get; init;} = new List<DamageType>();
+    public List<DamageType> DamageVulnerabilities {get; init;} = new List<DamageType>();
     public List<string> ConditionImmunities {get; init;} = new List<string>();
-    public List<string> spells {get; init;} = new List<string>();
+    public SpellBookSpec Spells {get; init;} = new SpellBookSpec();
 
     public Dictionary<string, int> LegendaryActions {get; init;} = new Dictionary<string, int>();
     public List<string> Actions {get; init;} = new List<string>();

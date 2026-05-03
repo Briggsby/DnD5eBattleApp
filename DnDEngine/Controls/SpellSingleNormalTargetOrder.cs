@@ -15,7 +15,13 @@ namespace DnD5eBattleApp
         {
             this.creature = creature;
             this.spell = spell;
-            EngManager.StartCoroutine(SetOrderControl(creature.encounter.board, creature.boardTile, spell.maxRange, Color.MistyRose, new List<TileOrderCriteria>() { TileOrderCriteria.WithCreature }));
+            EngManager.StartCoroutine(SetOrderControl(
+                board: creature.encounter.board,
+                originSquare: creature.boardTile,
+                range: spell.maxRange,
+                color: Color.MistyRose,
+                criteria: new List<TileOrderCriteria>() { TileOrderCriteria.WithCreature }
+            ));
         }
 
         public override void SelectionMade()

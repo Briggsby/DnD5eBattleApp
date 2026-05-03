@@ -32,5 +32,6 @@ public class SchemaExporter {
     {
         ExtractSchema(typeof(WeaponSpec), Path.Combine(folderPath, "WeaponSpecSchema.json"));
         ExtractSchema(typeof(MonsterSpec), Path.Combine(folderPath, "MonsterSpecSchema.json"));
+        ExtractSchema(typeof(SpellSpec), Path.Combine(folderPath, "SpellSpecSchema.json"));
     }
 }

@@ -21,7 +21,13 @@ namespace DnD5eBattleApp
             this.standardAttackAction = standardAttackAction;
             this.bonusAction = bonusAction;
             this.offHand = offHand;
-            EngManager.StartCoroutine(SetOrderControl(creature.encounter.board, creature.boardTile, weapon.maxRange, Color.MistyRose, new List<TileOrderCriteria>() { TileOrderCriteria.WithCreature }));
+            EngManager.StartCoroutine(SetOrderControl(
+                board: creature.encounter.board, 
+                originSquare: creature.boardTile, 
+                range: weapon.maxRange,
+                color: Color.MistyRose,
+                criteria: new List<TileOrderCriteria>() { TileOrderCriteria.WithCreature }
+            ));
         }
 
         public override void SelectionMade()
