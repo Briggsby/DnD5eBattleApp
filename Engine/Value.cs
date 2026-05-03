@@ -7,7 +7,7 @@ public interface IValue
 }
 /// <summary>
 /// Represents a value on a Unit in a game. This value has a base value, and a current value,
-/// and triggers events whenever it is modified.
+/// and triggers Effects whenever it is modified.
 /// </summary>
 public class Value<T> : IValue
 {
@@ -48,16 +48,16 @@ public class Value<T> : IValue
         return newValue;
     }
 
-    public void ModifyValue(T newValue, bool triggerEvent = true)
+    public void ModifyValue(T newValue, bool triggerEffect = true)
     {
-        if (!triggerEvent)
+        if (!triggerEffect)
         {
             modifiedValue = newValue;
             return;
         }
         
-        var modifyEvent = new ModifyValue<T>(this, ModifiedValue, newValue);
-        EventManager.TriggerEvent(modifyEvent);
+        var modifyEffect = new ModifyValue<T>(this, ModifiedValue, newValue);
+        EffectManager.TriggerEffect(modifyEffect);
     }
 
     public void AddModifier(IValueModification modifier)
@@ -109,7 +109,7 @@ public interface IValueModification
     public T GetModification<T>(Value<T> value, T currentValue);
 }
 
-public class ModifyValue<T> : IEvent
+public class ModifyValue<T> : Effect
 {
     public Value<T> Value { get; private set; }
     public T PreviousValue { get; private set; }
@@ -117,15 +117,15 @@ public class ModifyValue<T> : IEvent
 
     public ModifyValue(Value<T> value, T previous_value, T new_value)
      {
-        EventType = value.ValueType;
+        EffectType = value.ValueType;
         Value = value;
         PreviousValue = previous_value;
         NewValue = new_value;
     }
 
-    public override void EnactEvent()
+    public override void EnactEffect()
     {
         Value.ModifyValue(NewValue, false);
-        base.EnactEvent();
+        base.EnactEffect();
     }
 }
