@@ -12,7 +12,7 @@ namespace DnD5eBattleApp
         public Creature defender;
 
         public bool isSpell;
-        public Spell spell;
+        public OldSpell spell;
 
         public bool offHand = false;
 
@@ -50,7 +50,7 @@ namespace DnD5eBattleApp
 
         }
 
-        public Attack(Creature attacker, Creature defender, Spell spell)
+        public Attack(Creature attacker, Creature defender, OldSpell spell)
         {
             this.attacker = attacker;
             this.defender = defender;

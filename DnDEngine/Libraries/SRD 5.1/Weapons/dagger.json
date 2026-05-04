@@ -3,9 +3,10 @@
     "Name": "Dagger",
     "Category": "simpleWeapon",
     "Damage": {
-        "Type": "piercing",
-        "DamageDiceNumber": 1,
-        "DamageDiceValue": 4
+        "FlatValue": 0,
+        "MaxValueOfDice": 4,
+        "NumberOfDice": 1,
+        "DamageType": "Piercing"
     },
     "Properties": ["finesse", "light", "thrown"],
     "Range": 20,

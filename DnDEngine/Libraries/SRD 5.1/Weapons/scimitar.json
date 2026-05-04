@@ -3,9 +3,10 @@
     "Name": "Scimitar",
     "Category": "simpleWeapon",
     "Damage": {
-        "Type": "slashing",
-        "DamageDiceNumber": 1,
-        "DamageDiceValue": 6
+        "FlatValue": 0,
+        "MaxValueOfDice": 6,
+        "NumberOfDice": 1,
+        "DamageType": "Slashing"
     },
     "Properties": ["finesse", "light"]
 }

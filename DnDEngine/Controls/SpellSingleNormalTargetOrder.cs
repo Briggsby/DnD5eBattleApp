@@ -8,9 +8,9 @@ namespace DnD5eBattleApp
 {
     public class SpellSingleNormalTargetOrder : SingleNormalTargetOrder
     {
-        Spell Spell {get => ControlObject as Spell; set => ControlObject = value; }
+        OldSpell Spell {get => ControlObject as OldSpell; set => ControlObject = value; }
 
-        public SpellSingleNormalTargetOrder(Creature creature, Spell spell) : base(creature, spell, spell.maxRange)
+        public SpellSingleNormalTargetOrder(Creature creature, OldSpell spell) : base(creature, spell, spell.maxRange)
         {
             
         }

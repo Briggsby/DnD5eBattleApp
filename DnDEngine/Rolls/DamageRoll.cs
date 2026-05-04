@@ -7,7 +7,7 @@ namespace DnD5eBattleApp
     public class DamageRoll : Roll
     {
         public Attack attack;
-        public Spell spell;
+        public OldSpell spell;
 
         public override int Bonus { get => base.Bonus; set
             {
@@ -41,7 +41,7 @@ namespace DnD5eBattleApp
             finishRoll += new RollDelegate(attack.FinishDamageRoll);
         }
 
-        public DamageRoll(Spell spell) : base(spell.caster.encounter)
+        public DamageRoll(OldSpell spell) : base(spell.caster.encounter)
         {
             this.spell = spell;
             roller = spell.caster;

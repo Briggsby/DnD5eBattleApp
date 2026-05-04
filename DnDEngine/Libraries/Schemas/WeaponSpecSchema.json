@@ -16,38 +16,22 @@
         "null"
       ],
       "properties": {
-        "Type": {
-          "enum": [
-            "bludgeoningMagical",
-            "piercingMagical",
-            "slashingMagical",
-            "bludgeoning",
-            "piercing",
-            "slashing",
-            "fire",
-            "cold",
-            "lightning",
-            "thunder",
-            "psychic",
-            "force",
-            "poison",
-            "acid",
-            "radiant",
-            "necrotic"
+        "DamageType": {
+          "type": [
+            "string",
+            "null"
           ]
         },
-        "DamageDiceValue": {
+        "NumberOfDice": {
           "type": "integer"
         },
-        "DamageDiceNumber": {
+        "MaxValueOfDice": {
+          "type": "integer"
+        },
+        "FlatValue": {
           "type": "integer"
         }
-      },
-      "required": [
-        "Type",
-        "DamageDiceValue",
-        "DamageDiceNumber"
-      ]
+      }
     },
     "Category": {
       "enum": [

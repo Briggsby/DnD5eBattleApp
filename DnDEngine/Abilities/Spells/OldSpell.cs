@@ -8,15 +8,15 @@ namespace DnD5eBattleApp
 {
     public abstract class SpellCreator
     {
-        public abstract Spell CreateSpell();
+        public abstract OldSpell CreateSpell();
     }
 
-    public class Spell
+    public class OldSpell
     {
         public string name;
         public int spellLevel;
         public Creature caster;
-        public SpellBook spellbook;
+        public OldSpellBook spellbook;
 
         public string spellClass;
         public Stat abilityModifier;
@@ -39,29 +39,26 @@ namespace DnD5eBattleApp
         public OldFeat linkedFeat;
         public bool noSpellSlot = false;
 
-        public Spell() { }
+        public OldSpell() { }
 
-        public Spell(SpellSpec spellSpec, Creature caster = null)
+        public OldSpell(SpellSpec spellSpec, Creature caster = null)
         {
             name = spellSpec.Name;
             spellLevel = spellSpec.Level;
-            useAction = spellSpec.IsAction;
-            useBonusAction = spellSpec.IsBonusAction;
-            maxRange = spellSpec.Range;
-            if (spellSpec.IsSpellAttack)
+            useAction = spellSpec.ActionType == ActionType.Action;
+            useBonusAction = spellSpec.ActionType == ActionType.BonusAction;
+            maxRange = spellSpec.Targeting.Range;
+            if (spellSpec.Targeting.HasAttackRoll)
             {
-                spellAttack = spellSpec.IsSpellAttack;
-                targetType = spellSpec.TargetType;
+                spellAttack = true;
+                targetType = TargetType.SingleTarget;
                 simpleSpellTargetRollDamage = true;
                 damageDice = new List<int>();
                 damageDiceNumber = new List<int>();
                 damageTypes = new List<string>();
-                foreach (DamageSpec damageSpec in spellSpec.Damages)
-                {
-                    damageDice.Add(damageSpec.DamageDiceValue);
-                    damageDiceNumber.Add(damageSpec.DamageDiceNumber);
-                    damageTypes.Add(damageSpec.Type.ToString());
-                }           
+                damageDice.Add(spellSpec.Damage.MaxValueOfDice);
+                damageDiceNumber.Add(spellSpec.Damage.NumberOfDice);
+                damageTypes.Add(spellSpec.Damage.DamageType);
             }
             if (caster != null)
             {

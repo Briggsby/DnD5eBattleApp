@@ -10,7 +10,7 @@ namespace DnD5eBattleApp
     public class DirectionalAreaOrder : Control
     {
         Board board;
-        Spell spell;
+        OldSpell spell;
 
         public enum Style { Circle, Cone, Line }
 
@@ -25,7 +25,7 @@ namespace DnD5eBattleApp
         public Style style;
 
 
-        public DirectionalAreaOrder(BoardTile origin, int length, int width, Style style, Color? color = null, Spell spell = null, bool includeOrigin = false)
+        public DirectionalAreaOrder(BoardTile origin, int length, int width, Style style, Color? color = null, OldSpell spell = null, bool includeOrigin = false)
         {
             Debug.WriteLine("Directional Order Started");
             board = origin.board;

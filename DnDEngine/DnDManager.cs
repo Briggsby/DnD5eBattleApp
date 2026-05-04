@@ -81,7 +81,7 @@ namespace DnD5eBattleApp
             DnDManager.monsterTextures = new Dictionary<string, Texture2D>(monsterTextures);
             this.menuTextureSet = menuTextureSet;
             this.boardTextureSet = boardTextureSet;
-            SpellBook.baseContextMenuTextureSet = menuTextureSet;
+            OldSpellBook.baseContextMenuTextureSet = menuTextureSet;
 
             InitializeLibraryLists();
 
@@ -102,7 +102,7 @@ namespace DnD5eBattleApp
             DnDManager.monsterTextures = new Dictionary<string, Texture2D>(monsterTextures);
             this.menuTextureSet = menuTextureSet;
             this.boardTextureSet = boardTextureSet;
-            SpellBook.baseContextMenuTextureSet = menuTextureSet;
+            OldSpellBook.baseContextMenuTextureSet = menuTextureSet;
 
             InitializeLibraryLists();
 

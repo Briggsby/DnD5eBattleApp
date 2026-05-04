@@ -54,9 +54,9 @@ namespace DnD5eBattleApp
 
             name = spec.Name;
             weaponCategory = spec.Category;
-            damageDice = new List<int>() { spec.Damage.DamageDiceValue };
-            damageDiceNumber = new List<int>() { spec.Damage.DamageDiceNumber };
-            damageTypes = new List<string>() { spec.Damage.Type.ToString() };
+            damageDice = new List<int>() { spec.Damage.MaxValueOfDice };
+            damageDiceNumber = new List<int>() { spec.Damage.NumberOfDice };
+            damageTypes = new List<string>() { spec.Damage.DamageType };
             if (spec.Properties.Contains(WeaponProperty.Range)) {
                 abilityStat = Stat.Dexterity;
             } else {

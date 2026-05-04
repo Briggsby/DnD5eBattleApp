@@ -6,51 +6,51 @@ using BugsbyEngine;
 
 namespace DnD5eBattleApp
 {
-    public class SpellBook
+    public class OldSpellBook
     {
         public Stat abilityScore;
         public static ContextMenuTextureSet baseContextMenuTextureSet;
         public ContextMenuTextureSet contextMenuTextures;
-        public List<Spell> spells;
-        public Dictionary<int, List<Spell>> spellsByLevel;
+        public List<OldSpell> spells;
+        public Dictionary<int, List<OldSpell>> spellsByLevel;
         public Creature owner;
 
-        public SpellBook()
+        public OldSpellBook()
         {
-            spells = new List<Spell>();
+            spells = new List<OldSpell>();
             spellsByLevel = BlankSpellsByLevel();
             contextMenuTextures = baseContextMenuTextureSet;
         }
 
-        public SpellBook(Creature creature)
+        public OldSpellBook(Creature creature)
         {
-            spells = new List<Spell>();
+            spells = new List<OldSpell>();
             spellsByLevel = BlankSpellsByLevel();
             contextMenuTextures = baseContextMenuTextureSet;
             owner = creature;
         }
 
-        public SpellBook(List<Spell> spells)
+        public OldSpellBook(List<OldSpell> spells)
         {
             if (spells == null)
             {
-                spells = new List<Spell>();
+                spells = new List<OldSpell>();
                 spellsByLevel = BlankSpellsByLevel();
             }
-            this.spells = new List<Spell>(spells);
+            this.spells = new List<OldSpell>(spells);
             spellsByLevel = SortSpellsByLevel(spells);
             contextMenuTextures = baseContextMenuTextureSet;
         }
 
-        public SpellBook(SpellBookSpec spellBookSpec, Creature owner)
+        public OldSpellBook(SpellBookSpec spellBookSpec, Creature owner)
         {
             this.owner = owner;
-            spells = new List<Spell>();
+            spells = new List<OldSpell>();
             foreach (string spellName in spellBookSpec.Spells)
             {
                 if (DnDManager.spells.ContainsKey(spellName))
                 {
-                    spells.Add(new Spell(DnDManager.spells[spellName], owner));
+                    spells.Add(new OldSpell(DnDManager.spells[spellName], owner));
                 }
                 else
                 {
@@ -61,104 +61,104 @@ namespace DnD5eBattleApp
             contextMenuTextures = baseContextMenuTextureSet;
         }
 
-        public SpellBook(List<Spell> spells, Creature creature, Stat spellcastingStat = Stat.None)
+        public OldSpellBook(List<OldSpell> spells, Creature creature, Stat spellcastingStat = Stat.None)
         {
             contextMenuTextures = baseContextMenuTextureSet;
             if (spells == null)
             {
-                spells = new List<Spell>();
+                spells = new List<OldSpell>();
             }
-            this.spells = new List<Spell>(spells);
+            this.spells = new List<OldSpell>(spells);
             spellsByLevel = SortSpellsByLevel();
             AssignOwner(creature);
 
             if (spellcastingStat != Stat.None)
             {
-                foreach( Spell spell in spells)
+                foreach( OldSpell spell in spells)
                 {
                     spell.abilityModifier = spellcastingStat;
                 }
             }
         }
 
-        public SpellBook(List<Spell> spells, Dictionary<int, List<Spell>> spellsByLevel, ContextMenuTextureSet contextMenuTextures)
+        public OldSpellBook(List<OldSpell> spells, Dictionary<int, List<OldSpell>> spellsByLevel, ContextMenuTextureSet contextMenuTextures)
         {
-            this.spells = new List<Spell>(spells);
-            this.spellsByLevel = new Dictionary<int, List<Spell>>(spellsByLevel);
+            this.spells = new List<OldSpell>(spells);
+            this.spellsByLevel = new Dictionary<int, List<OldSpell>>(spellsByLevel);
             this.contextMenuTextures = contextMenuTextures;
         }
 
-        public SpellBook(SpellBook copy)
+        public OldSpellBook(OldSpellBook copy)
         {
-            spells = new List<Spell>(copy.spells);
-            spellsByLevel = new Dictionary<int, List<Spell>>(copy.spellsByLevel);
+            spells = new List<OldSpell>(copy.spells);
+            spellsByLevel = new Dictionary<int, List<OldSpell>>(copy.spellsByLevel);
             contextMenuTextures = copy.contextMenuTextures;
         }
 
-        public Dictionary<int, List<Spell>> BlankSpellsByLevel()
+        public Dictionary<int, List<OldSpell>> BlankSpellsByLevel()
         {
-            return new Dictionary<int, List<Spell>>()
+            return new Dictionary<int, List<OldSpell>>()
             {
-                {0, new List<Spell>() },
-                {1, new List<Spell>() },
-                {2, new List<Spell>() },
-                {3, new List<Spell>() },
-                {4, new List<Spell>() },
-                {5, new List<Spell>() },
-                {6, new List<Spell>() },
-                {7, new List<Spell>() },
-                {8, new List<Spell>() },
-                {9, new List<Spell>() },
+                {0, new List<OldSpell>() },
+                {1, new List<OldSpell>() },
+                {2, new List<OldSpell>() },
+                {3, new List<OldSpell>() },
+                {4, new List<OldSpell>() },
+                {5, new List<OldSpell>() },
+                {6, new List<OldSpell>() },
+                {7, new List<OldSpell>() },
+                {8, new List<OldSpell>() },
+                {9, new List<OldSpell>() },
             };
         }
 
-        public static Dictionary<int, List<Spell>> SortSpellsByLevelStatic(List<Spell> spells)
+        public static Dictionary<int, List<OldSpell>> SortSpellsByLevelStatic(List<OldSpell> spells)
         {
-            Dictionary<int, List<Spell>> spellsSortedByLevel = new Dictionary<int, List<Spell>>
+            Dictionary<int, List<OldSpell>> spellsSortedByLevel = new Dictionary<int, List<OldSpell>>
             {
-                {0, new List<Spell>() },
-                {1, new List<Spell>() },
-                {2, new List<Spell>() },
-                {3, new List<Spell>() },
-                {4, new List<Spell>() },
-                {5, new List<Spell>() },
-                {6, new List<Spell>() },
-                {7, new List<Spell>() },
-                {8, new List<Spell>() },
-                {9, new List<Spell>() }
+                {0, new List<OldSpell>() },
+                {1, new List<OldSpell>() },
+                {2, new List<OldSpell>() },
+                {3, new List<OldSpell>() },
+                {4, new List<OldSpell>() },
+                {5, new List<OldSpell>() },
+                {6, new List<OldSpell>() },
+                {7, new List<OldSpell>() },
+                {8, new List<OldSpell>() },
+                {9, new List<OldSpell>() }
             };
-            foreach (Spell spell in spells)
+            foreach (OldSpell spell in spells)
             {
                 spellsSortedByLevel[spell.spellLevel].Add(spell);
             }
             return spellsSortedByLevel;
         }
 
-        public Dictionary<int, List<Spell>> SortSpellsByLevel(List<Spell> spells = null)
+        public Dictionary<int, List<OldSpell>> SortSpellsByLevel(List<OldSpell> spells = null)
         {
-            List<Spell> spellsToSort;
+            List<OldSpell> spellsToSort;
             if (spells != null)
             {
-                spellsToSort = new List<Spell>(spells);
+                spellsToSort = new List<OldSpell>(spells);
             }
             else
             {
-                spellsToSort = new List<Spell>(this.spells);
+                spellsToSort = new List<OldSpell>(this.spells);
             }
-            Dictionary<int,List<Spell>> spellsSortedByLevel = new Dictionary<int, List<Spell>>
+            Dictionary<int,List<OldSpell>> spellsSortedByLevel = new Dictionary<int, List<OldSpell>>
             {
-                {0, new List<Spell>() },
-                {1, new List<Spell>() },
-                {2, new List<Spell>() },
-                {3, new List<Spell>() },
-                {4, new List<Spell>() },
-                {5, new List<Spell>() },
-                {6, new List<Spell>() },
-                {7, new List<Spell>() },
-                {8, new List<Spell>() },
-                {9, new List<Spell>() }
+                {0, new List<OldSpell>() },
+                {1, new List<OldSpell>() },
+                {2, new List<OldSpell>() },
+                {3, new List<OldSpell>() },
+                {4, new List<OldSpell>() },
+                {5, new List<OldSpell>() },
+                {6, new List<OldSpell>() },
+                {7, new List<OldSpell>() },
+                {8, new List<OldSpell>() },
+                {9, new List<OldSpell>() }
             };
-            foreach (Spell spell in spellsToSort)
+            foreach (OldSpell spell in spellsToSort)
             {
                 spellsSortedByLevel[spell.spellLevel].Add(spell);
             }
@@ -169,9 +169,9 @@ namespace DnD5eBattleApp
             return spellsSortedByLevel;
         }
 
-        public SpellBook CopyNewSpellBook(bool alsoTextures = false)
+        public OldSpellBook CopyNewSpellBook(bool alsoTextures = false)
         {
-            return new SpellBook(spells);
+            return new OldSpellBook(spells);
         }
 
         public ContextMenuTemplate SpellControls()
@@ -194,7 +194,7 @@ namespace DnD5eBattleApp
                 spellControlsEachLevel[i].childMenus = new List<ContextMenuTemplate>();
             }
 
-            foreach (Spell spell in spells)
+            foreach (OldSpell spell in spells)
             {
                 if (!spell.hideInSpellbook)
                 {
@@ -238,9 +238,9 @@ namespace DnD5eBattleApp
 
         }
 
-        public bool ContainsSpellLevel(int i, List<Spell> spellList = null)
+        public bool ContainsSpellLevel(int i, List<OldSpell> spellList = null)
         {
-            Dictionary<int, List<Spell>> spellsSortedByLevel;
+            Dictionary<int, List<OldSpell>> spellsSortedByLevel;
             if (spellList == null)
             {
                 spellsSortedByLevel = spellsByLevel;
@@ -256,14 +256,14 @@ namespace DnD5eBattleApp
         public void AssignOwner(Creature creature)
         {
             owner = creature;
-            foreach(Spell spell in spells)
+            foreach(OldSpell spell in spells)
             {
                 spell.caster = creature;
                 spell.spellbook = this;
             }
         }
 
-        public void AddSpell(Spell spell, bool takeAbilityScoreOfSpellbook = true)
+        public void AddSpell(OldSpell spell, bool takeAbilityScoreOfSpellbook = true)
         {
             spells.Add(spell);
             spell.caster = owner;
@@ -274,9 +274,9 @@ namespace DnD5eBattleApp
             SortSpellsByLevel();
         }
 
-        public void AddSpells(List<Spell> newSpells, bool takeAbilityScoreOfSpellbook = true)
+        public void AddSpells(List<OldSpell> newSpells, bool takeAbilityScoreOfSpellbook = true)
         {
-            foreach (Spell spell in newSpells)
+            foreach (OldSpell spell in newSpells)
             {
                 if (!spells.Contains(spell))
                 {
@@ -294,7 +294,7 @@ namespace DnD5eBattleApp
 
         public bool HasSpellOfName(string name)
         {
-            foreach (Spell spell in spells)
+            foreach (OldSpell spell in spells)
             {
                 if (spell.name == name)
                 {

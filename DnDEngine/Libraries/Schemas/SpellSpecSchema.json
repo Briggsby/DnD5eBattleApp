@@ -4,12 +4,6 @@
     "null"
   ],
   "properties": {
-    "Name": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
     "Level": {
       "type": "integer"
     },
@@ -19,97 +13,67 @@
         "null"
       ]
     },
-    "IsAction": {
-      "type": "boolean"
+    "Components": {
+      "type": "string"
     },
-    "IsBonusAction": {
-      "type": "boolean"
-    },
-    "Range": {
-      "type": "integer"
-    },
-    "VerbalComponent": {
-      "type": "boolean"
-    },
-    "SomaticComponent": {
-      "type": "boolean"
-    },
-    "MaterialComponent": {
-      "type": "boolean"
-    },
-    "MaterialComponentDescription": {
+    "Name": {
       "type": [
         "string",
         "null"
       ]
     },
-    "Duration": {
-      "type": "integer"
-    },
-    "IsSpellAttack": {
-      "type": "boolean"
-    },
-    "TargetType": {
-      "enum": [
-        "singleTarget",
-        "sphere",
-        "cone",
-        "line",
-        "sphereOnSelf"
-      ]
-    },
-    "TargetCount": {
-      "type": "integer"
-    },
-    "Damages": {
+    "Targeting": {
       "type": [
-        "array",
+        "object",
         "null"
       ],
-      "items": {
-        "type": [
-          "object",
-          "null"
-        ],
-        "properties": {
-          "Type": {
-            "enum": [
-              "bludgeoningMagical",
-              "piercingMagical",
-              "slashingMagical",
-              "bludgeoning",
-              "piercing",
-              "slashing",
-              "fire",
-              "cold",
-              "lightning",
-              "thunder",
-              "psychic",
-              "force",
-              "poison",
-              "acid",
-              "radiant",
-              "necrotic"
-            ]
-          },
-          "DamageDiceValue": {
-            "type": "integer"
-          },
-          "DamageDiceNumber": {
-            "type": "integer"
-          }
+      "properties": {
+        "HasAttackRoll": {
+          "type": "boolean"
         },
-        "required": [
-          "Type",
-          "DamageDiceValue",
-          "DamageDiceNumber"
-        ]
+        "HasSavingThrow": {
+          "type": "boolean"
+        },
+        "TargetCount": {
+          "type": "integer"
+        },
+        "Range": {
+          "type": "integer"
+        }
       }
     },
-    "ScaleCantripDamage": {
-      "type": "boolean"
+    "ActionType": {
+      "enum": [
+        "action",
+        "bonusAction",
+        "reaction",
+        "free"
+      ]
     },
-    "Description": {
+    "Damage": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "DamageType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "NumberOfDice": {
+          "type": "integer"
+        },
+        "MaxValueOfDice": {
+          "type": "integer"
+        },
+        "FlatValue": {
+          "type": "integer"
+        }
+      }
+    },
+    "AppliesCondition": {
       "type": [
         "string",
         "null"
@@ -117,12 +81,11 @@
     }
   },
   "required": [
-    "Name",
     "Level",
     "School",
-    "Range",
-    "VerbalComponent",
-    "SomaticComponent",
-    "MaterialComponent"
+    "Components",
+    "Name",
+    "Targeting",
+    "ActionType"
   ]
 }

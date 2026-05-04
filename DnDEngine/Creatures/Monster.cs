@@ -19,7 +19,7 @@ namespace DnD5eBattleApp
 
             baseStats = new BaseStats(spec, this, true);
             name = spec.Name;
-            spellbook = new SpellBook(spec.Spells, this);
+            spellbook = new OldSpellBook(spec.Spells, this);
             
             // TODO: Add Feats
             // TODO: Handle Textures

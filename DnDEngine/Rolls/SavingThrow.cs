@@ -19,9 +19,9 @@ namespace DnD5eBattleApp
                 bonus += creature.proficiencyBonus;
             }
 
-            if (source is Spell)
+            if (source is OldSpell)
             {
-                finishRoll += new RollDelegate((source as Spell).SavingThrowFinished);
+                finishRoll += new RollDelegate((source as OldSpell).SavingThrowFinished);
             }
         }
     }

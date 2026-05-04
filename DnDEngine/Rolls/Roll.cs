@@ -216,9 +216,9 @@ namespace DnD5eBattleApp
 
         public Creature GetSourceCreature()
         {
-            if (source is Spell)
+            if (source is OldSpell)
             {
-                return (source as Spell).caster;
+                return (source as OldSpell).caster;
             }
             else if (source is OldFeat)
             {

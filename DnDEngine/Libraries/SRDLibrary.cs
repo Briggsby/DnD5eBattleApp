@@ -2169,21 +2169,21 @@ namespace DnD5eBattleApp
 
             };
 
-            public Dictionary<string, Spell.TargetType> targetTypes = new Dictionary<string, Spell.TargetType>()
+            public Dictionary<string, OldSpell.TargetType> targetTypes = new Dictionary<string, OldSpell.TargetType>()
             {
-                {DragonTypes.Black.ToString(), Spell.TargetType.Line },
-                {DragonTypes.Blue.ToString(),  Spell.TargetType.Line },
-                {DragonTypes.Brass.ToString(), Spell.TargetType.Line },
-                {DragonTypes.Bronze.ToString(),Spell.TargetType.Line },
-                {DragonTypes.Copper.ToString(),Spell.TargetType.Line },
-                {DragonTypes.Gold.ToString(),  Spell.TargetType.Cone },
-                {DragonTypes.Green.ToString(), Spell.TargetType.Cone },
-                {DragonTypes.Red.ToString(),   Spell.TargetType.Cone },
-                {DragonTypes.Silver.ToString(),Spell.TargetType.Cone },
-                {DragonTypes.White.ToString(), Spell.TargetType.Cone }
+                {DragonTypes.Black.ToString(), OldSpell.TargetType.Line },
+                {DragonTypes.Blue.ToString(),  OldSpell.TargetType.Line },
+                {DragonTypes.Brass.ToString(), OldSpell.TargetType.Line },
+                {DragonTypes.Bronze.ToString(),OldSpell.TargetType.Line },
+                {DragonTypes.Copper.ToString(),OldSpell.TargetType.Line },
+                {DragonTypes.Gold.ToString(),  OldSpell.TargetType.Cone },
+                {DragonTypes.Green.ToString(), OldSpell.TargetType.Cone },
+                {DragonTypes.Red.ToString(),   OldSpell.TargetType.Cone },
+                {DragonTypes.Silver.ToString(),OldSpell.TargetType.Cone },
+                {DragonTypes.White.ToString(), OldSpell.TargetType.Cone }
             };
 
-            Spell dragonBreath = new DragonBreath();
+            OldSpell dragonBreath = new DragonBreath();
 
             public DraconicAncestry() : base()
             {
@@ -2210,12 +2210,12 @@ namespace DnD5eBattleApp
 
             }
 
-            public Spell GetDragonBreathSpell(string choice)
+            public OldSpell GetDragonBreathSpell(string choice)
             {
-                Spell spell = new DragonBreath();
+                OldSpell spell = new DragonBreath();
                 spell.damageTypes[0] = damageType[choice].ToString();
                 spell.targetType = targetTypes[choice];
-                if (spell.targetType == Spell.TargetType.Cone)
+                if (spell.targetType == OldSpell.TargetType.Cone)
                 {
                     spell.width = 15;
                     spell.maxRange = 15;
@@ -2274,7 +2274,7 @@ namespace DnD5eBattleApp
                 if (roll.roller == creature && roll is SavingThrow)
                 {
                     SavingThrow rollSave = roll as SavingThrow;
-                    if (rollSave.source is Spell && (rollSave.stat == Stat.Intelligence || rollSave.stat == Stat.Wisdom || rollSave.stat == Stat.Charisma))
+                    if (rollSave.source is OldSpell && (rollSave.stat == Stat.Intelligence || rollSave.stat == Stat.Wisdom || rollSave.stat == Stat.Charisma))
                     {
                         roll.advantage = true;
                     }
@@ -2589,8 +2589,8 @@ namespace DnD5eBattleApp
 
         public class CantripsFeat : OldFeat
         {
-            public List<Spell> cantrips = new List<Spell>();
-            public List<Spell> cantripChoices = new List<Spell>();
+            public List<OldSpell> cantrips = new List<OldSpell>();
+            public List<OldSpell> cantripChoices = new List<OldSpell>();
 
             public int NumberOfChoices { get { return GetNumberOfChoices(); } }
             public PlayerClass playerClass;
@@ -2608,7 +2608,7 @@ namespace DnD5eBattleApp
                     return false;
                 }
                 featChoices = new List<string>();
-                foreach (Spell spell in cantripChoices)
+                foreach (OldSpell spell in cantripChoices)
                 {
                     if (!creature.spellbook.HasSpellOfName(spell.name))
                     {
@@ -2621,7 +2621,7 @@ namespace DnD5eBattleApp
             public override void FeatChoice(string choice)
             {
                 base.FeatChoice(choice);
-                foreach (Spell spell in cantripChoices)
+                foreach (OldSpell spell in cantripChoices)
                 {
                     if (spell.name == choice)
                     {
@@ -2653,8 +2653,8 @@ namespace DnD5eBattleApp
 
         public class SpellCasting : OldFeat
         {
-            public List<Spell> spells = new List<Spell>();
-            public List<Spell> spellChoices = new List<Spell>();
+            public List<OldSpell> spells = new List<OldSpell>();
+            public List<OldSpell> spellChoices = new List<OldSpell>();
             public PlayerClass playerClass;
             public int classLevel;
             public SpellCasterType spellcasterType;
@@ -2682,7 +2682,7 @@ namespace DnD5eBattleApp
                 }
             }
 
-            public Dictionary<int, List<Spell>> spellChoicesByLevel;
+            public Dictionary<int, List<OldSpell>> spellChoicesByLevel;
 
             public void GetChoiceMenu()
             {
@@ -2700,7 +2700,7 @@ namespace DnD5eBattleApp
             {
                 ContextMenuTemplate template = BaseChildMenuTemplate();
                 int level = (choice[choice.Length - 1]) - '0';
-                foreach (Spell spell in spellChoicesByLevel[level])
+                foreach (OldSpell spell in spellChoicesByLevel[level])
                 {
                     if (!creature.spellbook.HasSpellOfName(spell.name))
                     {
@@ -2714,8 +2714,8 @@ namespace DnD5eBattleApp
             public override void FeatChoice(string choice)
             {
                 base.FeatChoice(choice);
-                Spell spellChosen = null;
-                foreach (Spell spell in spellChoices)
+                OldSpell spellChosen = null;
+                foreach (OldSpell spell in spellChoices)
                 {
                     if (spell.name == choice)
                     {
@@ -3463,7 +3463,7 @@ namespace DnD5eBattleApp
                 {
                     if (DnDManager.spells.ContainsKey(s))
                     {
-                        Spell spell = new Spell(DnDManager.spells[s]);
+                        OldSpell spell = new OldSpell(DnDManager.spells[s]);
                         spell.abilityModifier = Stat.Charisma;
                         cantripChoices.Add(spell);
                     }
@@ -3518,7 +3518,7 @@ namespace DnD5eBattleApp
                     {
                         if (DnDManager.spells.ContainsKey(s))
                         {
-                            Spell spell = new Spell(DnDManager.spells[s]);
+                            OldSpell spell = new OldSpell(DnDManager.spells[s]);
                             spell.abilityModifier = Stat.Charisma;
                             spellChoices.Add(spell);
                         }
@@ -3528,7 +3528,7 @@ namespace DnD5eBattleApp
                         }
                     }
                 }
-                spellChoicesByLevel = SpellBook.SortSpellsByLevelStatic(spellChoices);
+                spellChoicesByLevel = OldSpellBook.SortSpellsByLevelStatic(spellChoices);
             }
 
             public override void StatOverride(Creature cr)
@@ -3929,12 +3929,12 @@ namespace DnD5eBattleApp
 
             public void GetCompleteSpellList()
             {
-                spellChoices = new List<Spell>();
+                spellChoices = new List<OldSpell>();
                 foreach (string s in DnDManager.spells.Keys)
                 {
                     if (DnDManager.spells.ContainsKey(s))
                     {
-                        Spell spell = new Spell(DnDManager.spells[s]);
+                        OldSpell spell = new OldSpell(DnDManager.spells[s]);
                         spell.abilityModifier = Stat.Charisma;
                         spellChoices.Add(spell);
                     }
@@ -3943,7 +3943,7 @@ namespace DnD5eBattleApp
                         Debug.WriteLine(string.Format("Spell {0} not found for complete spell list", s));
                     }
                 }
-                spellChoicesByLevel = SpellBook.SortSpellsByLevelStatic(spellChoices);
+                spellChoicesByLevel = OldSpellBook.SortSpellsByLevelStatic(spellChoices);
             }
 
             public override void StatOverride(Creature cr)
@@ -4140,14 +4140,14 @@ namespace DnD5eBattleApp
                 playerClass = DnDManager.classes[Classes.Cleric.ToString()];
             }
 
-            public List<Spell> GetClericCantripChoices()
+            public List<OldSpell> GetClericCantripChoices()
             {
-                List<Spell> list = new List<Spell>();
+                List<OldSpell> list = new List<OldSpell>();
                 foreach (string s in DnDManager.spellLists[Classes.Cleric.ToString()][0])
                 {
                     if (DnDManager.spells.ContainsKey(s))
                     {
-                        Spell spell = new Spell(DnDManager.spells[s]);
+                        OldSpell spell = new OldSpell(DnDManager.spells[s]);
                         spell.abilityModifier = Stat.Wisdom;
                         list.Add(spell);
                     }
@@ -4199,16 +4199,16 @@ namespace DnD5eBattleApp
                 spells = GetClericSpellList();
             }
 
-            public List<Spell> GetClericSpellList()
+            public List<OldSpell> GetClericSpellList()
             {
-                List<Spell> list = new List<Spell>();
+                List<OldSpell> list = new List<OldSpell>();
                 for (int i = 1; i<=9; i++ )
                 {
                     foreach (string s in DnDManager.spellLists[Classes.Cleric.ToString()][i])
                     {
                         if (DnDManager.spells.ContainsKey(s))
                         {
-                            Spell spell = new Spell(DnDManager.spells[s]);
+                            OldSpell spell = new OldSpell(DnDManager.spells[s]);
                             spell.abilityModifier = Stat.Wisdom;
                             list.Add(spell);
                         }
@@ -4238,7 +4238,7 @@ namespace DnD5eBattleApp
                 name = "Channel Divinity";
                 perShortRest = true;
                 statOverride = true;
-                channelDivinities = new List<Spell>() { new TurnUndead() };
+                channelDivinities = new List<OldSpell>() { new TurnUndead() };
                 channelDivinities[0].linkedFeat = this;
             }
 
@@ -4279,7 +4279,7 @@ namespace DnD5eBattleApp
                 }
             }
 
-            List<Spell> channelDivinities;
+            List<OldSpell> channelDivinities;
 
             public override void UseFeatChildMenu(List<string> tags)
             {
@@ -4321,9 +4321,9 @@ namespace DnD5eBattleApp
             {
                 if (roll.roller == creature && roll is HealingRoll)
                 {
-                    if (roll.source is Spell && (roll.source as Spell).spellLevel >= 1)
+                    if (roll.source is OldSpell && (roll.source as OldSpell).spellLevel >= 1)
                     {
-                        (roll as HealingRoll).target.Heal(2 + (roll.source as Spell).spellLevel);
+                        (roll as HealingRoll).target.Heal(2 + (roll.source as OldSpell).spellLevel);
                     }
                 }
                 base.FeatPostRollCheck(roll, e);
@@ -4350,9 +4350,9 @@ namespace DnD5eBattleApp
             {
                 if (roll.roller == creature && roll is HealingRoll)
                 {
-                    if (roll.source is Spell && (roll.source as Spell).spellLevel >= 1)
+                    if (roll.source is OldSpell && (roll.source as OldSpell).spellLevel >= 1)
                     {
-                        creature.Heal(2 + (roll.source as Spell).spellLevel);
+                        creature.Heal(2 + (roll.source as OldSpell).spellLevel);
                     }
                 }
                 base.FeatPostRollCheck(roll, e);
@@ -4443,12 +4443,12 @@ namespace DnD5eBattleApp
                 spells = GetLifeDomainSpellList();
             }
 
-            public List<Spell> GetLifeDomainSpellList()
+            public List<OldSpell> GetLifeDomainSpellList()
             {
-                List<Spell> list = new List<Spell>();
-                list.AddRange(new List<Spell>() { });
+                List<OldSpell> list = new List<OldSpell>();
+                list.AddRange(new List<OldSpell>() { });
 
-                foreach (Spell spell in list)
+                foreach (OldSpell spell in list)
                 {
                     spell.abilityModifier = Stat.Wisdom;
                 }
@@ -4477,14 +4477,14 @@ namespace DnD5eBattleApp
                 playerClass = DnDManager.classes[Classes.Druid.ToString()];
             }
 
-            public List<Spell> GetDruidCantripChoices()
+            public List<OldSpell> GetDruidCantripChoices()
             {
-                List<Spell> list = new List<Spell>();
+                List<OldSpell> list = new List<OldSpell>();
                 foreach (string s in DnDManager.spellLists[Classes.Druid.ToString()][0])
                 {
                     if (DnDManager.spells.ContainsKey(s))
                     {
-                        Spell spell = new Spell(DnDManager.spells[s]);
+                        OldSpell spell = new OldSpell(DnDManager.spells[s]);
                         spell.abilityModifier = Stat.Wisdom;
                         list.Add(spell);
                     }
@@ -4548,16 +4548,16 @@ namespace DnD5eBattleApp
                 spells = GetDruidSpellList();
             }
 
-            public List<Spell> GetDruidSpellList()
+            public List<OldSpell> GetDruidSpellList()
             {
-                List<Spell> list = new List<Spell>();
+                List<OldSpell> list = new List<OldSpell>();
                 for (int i = 1; i <= 9; i++)
                 {
                     foreach (string s in DnDManager.spellLists[Classes.Druid.ToString()][i])
                     {
                         if (DnDManager.spells.ContainsKey(s))
                         {
-                            Spell spell = new Spell(DnDManager.spells[s]);
+                            OldSpell spell = new OldSpell(DnDManager.spells[s]);
                             spell.abilityModifier = Stat.Wisdom;
                             list.Add(spell);
                         }
@@ -4809,7 +4809,7 @@ namespace DnD5eBattleApp
         public class DruidCircleSpells : SpellCasting
         {
             public enum DruidCircles { None, Arctic, Coast, Desert, Forest, Grassland, Mountain, Swamp };
-            public Dictionary<DruidCircles, List<Spell>> circleSpells = new Dictionary<DruidCircles, List<Spell>>()
+            public Dictionary<DruidCircles, List<OldSpell>> circleSpells = new Dictionary<DruidCircles, List<OldSpell>>()
             {
 
             };
@@ -6938,7 +6938,7 @@ namespace DnD5eBattleApp
                 armor = DnDManager.armors[Armors.Leather.ToString()].CreateArmor();
                 weaponMainHand = new Dagger();
                 spellSlots = new SpellSlots(4, SpellCasterType.Full);
-                spellbook = new SpellBook(new List<Spell>()
+                spellbook = new OldSpellBook(new List<OldSpell>()
                     {
                         new LightCantrip(), new SacredFlame(),
                         new Thaumaturgy(), new CommandSpell(),
@@ -7154,12 +7154,12 @@ namespace DnD5eBattleApp
 
         public class LightCantripCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new LightCantrip();
             }
         }
-        public class LightCantrip : Spell
+        public class LightCantrip : OldSpell
         {
             public LightCantrip()
             {
@@ -7169,12 +7169,12 @@ namespace DnD5eBattleApp
         }
         public class SacredFlameCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new SacredFlame();
             }
         }
-        public class SacredFlame : Spell
+        public class SacredFlame : OldSpell
         {
             public SacredFlame()
             {
@@ -7215,12 +7215,12 @@ namespace DnD5eBattleApp
         }
         public class ThaumaturgyCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new Thaumaturgy();
             }
         }
-        public class Thaumaturgy : Spell
+        public class Thaumaturgy : OldSpell
         {
             public Thaumaturgy()
             {
@@ -7231,13 +7231,13 @@ namespace DnD5eBattleApp
 
         public class DancingLightsCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new DancingLights();
             }
         }
 
-        public class DancingLights : Spell
+        public class DancingLights : OldSpell
         {
             public DancingLights() : base()
             {
@@ -7248,13 +7248,13 @@ namespace DnD5eBattleApp
 
         public class MageHandCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new MageHand();
             }
         }
 
-        public class MageHand : Spell
+        public class MageHand : OldSpell
         {
             public MageHand() : base()
             {
@@ -7266,13 +7266,13 @@ namespace DnD5eBattleApp
 
         public class MendingCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new Mending();
             }
         }
 
-        public class Mending : Spell
+        public class Mending : OldSpell
         {
             public Mending() : base()
             {
@@ -7284,13 +7284,13 @@ namespace DnD5eBattleApp
 
         public class MessageCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new Message();
             }
         }
 
-        public class Message : Spell
+        public class Message : OldSpell
         {
             public Message() : base()
             {
@@ -7301,13 +7301,13 @@ namespace DnD5eBattleApp
 
         public class MinorIllusionCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new MinorIllusion();
             }
         }
 
-        public class MinorIllusion : Spell
+        public class MinorIllusion : OldSpell
         {
             public MinorIllusion() : base()
             {
@@ -7318,13 +7318,13 @@ namespace DnD5eBattleApp
 
         public class PrestidigitationCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new Prestidigitation();
             }
         }
 
-        public class Prestidigitation : Spell
+        public class Prestidigitation : OldSpell
         {
             public Prestidigitation() : base()
             {
@@ -7335,12 +7335,12 @@ namespace DnD5eBattleApp
 
         public class TrueStrikeCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new TrueStrike();
             }
         }
-        public class TrueStrike : Spell
+        public class TrueStrike : OldSpell
         {
             public TrueStrike() : base()
             {
@@ -7351,12 +7351,12 @@ namespace DnD5eBattleApp
 
         public class ViciousMockeryCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new ViciousMockery();
             }
         }
-        public class ViciousMockery : Spell
+        public class ViciousMockery : OldSpell
         {
             public ViciousMockery() : base()
             {
@@ -7372,13 +7372,13 @@ namespace DnD5eBattleApp
 
         public class AnimalFriendshipCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new AnimalFriendship();
             }
         }
 
-        public class AnimalFriendship : Spell
+        public class AnimalFriendship : OldSpell
         {
             public AnimalFriendship()
             {
@@ -7389,13 +7389,13 @@ namespace DnD5eBattleApp
 
         public class BaneCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new Bane();
             }
         }
 
-        public class Bane : Spell
+        public class Bane : OldSpell
         {
             public Bane()
             {
@@ -7406,12 +7406,12 @@ namespace DnD5eBattleApp
 
         public class CommandSpellCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new CommandSpell();
             }
         }
-        public class CommandSpell : Spell
+        public class CommandSpell : OldSpell
         {
             public CommandSpell()
             {
@@ -7422,12 +7422,12 @@ namespace DnD5eBattleApp
 
         public class InflictWoundsCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new InflictWounds();
             }
         }
-        public class InflictWounds : Spell
+        public class InflictWounds : OldSpell
         {
             public InflictWounds()
             {
@@ -7445,12 +7445,12 @@ namespace DnD5eBattleApp
 
         public class ShieldOfFaithCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new ShieldOfFaith();
             }
         }
-        public class ShieldOfFaith : Spell
+        public class ShieldOfFaith : OldSpell
         {
             public ShieldOfFaith()
             {
@@ -7465,12 +7465,12 @@ namespace DnD5eBattleApp
 
         public class HoldPersonCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new HoldPerson();
             }
         }
-        public class HoldPerson : Spell
+        public class HoldPerson : OldSpell
         {
             public HoldPerson()
             {
@@ -7481,12 +7481,12 @@ namespace DnD5eBattleApp
 
         public class SpiritualWeaponCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new SpiritualWeapon();
             }
         }
-        public class SpiritualWeapon : Spell
+        public class SpiritualWeapon : OldSpell
         {
             public SpiritualWeapon()
             {
@@ -7501,13 +7501,13 @@ namespace DnD5eBattleApp
 
         public class TurnUndeadCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new TurnUndead();
             }
         }
 
-        public class TurnUndead : Spell
+        public class TurnUndead : OldSpell
         {
             public TurnUndead() : base()
             {
@@ -7581,13 +7581,13 @@ namespace DnD5eBattleApp
 
         public class PreserveLifeCreator : SpellCreator
         {
-            public override Spell CreateSpell()
+            public override OldSpell CreateSpell()
             {
                 return new PreserveLife();
             }
         }
 
-        public class PreserveLife : Spell
+        public class PreserveLife : OldSpell
         {
             int Healing { get { return caster.level * 5; } }
             public PreserveLife() : base()
@@ -7604,7 +7604,7 @@ namespace DnD5eBattleApp
 
         #region Other
 
-        public class DragonBreath : Spell
+        public class DragonBreath : OldSpell
         {
             public DragonBreath() : base()
             {
@@ -7650,7 +7650,7 @@ namespace DnD5eBattleApp
             }
         }
 
-        public class IntimidatingPresenceSpell : Spell
+        public class IntimidatingPresenceSpell : OldSpell
         {
             public List<Creature> resistedCreatures;
             public List<Creature> affectedCreatures;

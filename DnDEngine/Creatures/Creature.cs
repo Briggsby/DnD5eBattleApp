@@ -72,7 +72,7 @@ namespace DnD5eBattleApp
         public List<OldFeat> oldFeats = new List<OldFeat>();
         public List<Feat> Feats {get; set;} = new List<Feat>();
 
-        public SpellBook spellbook;
+        public OldSpellBook spellbook;
         public SpellSlots spellSlots = new SpellSlots(0, SpellCasterType.None);
         public Inventory inventory;
         public Armor armor = new Armor();
@@ -100,7 +100,7 @@ namespace DnD5eBattleApp
         public void Initializing()
         {
             inventory = new Inventory(this, new List<Item>());
-            spellbook = new SpellBook(this);
+            spellbook = new OldSpellBook(this);
             SetDefaultValues();
         }
 
@@ -726,9 +726,9 @@ namespace DnD5eBattleApp
                     Weapon weaponSource = source as Weapon;
                     return weaponSource.inventory.creature;
                 }
-                if (source is Spell)
+                if (source is OldSpell)
                 {
-                    Spell spellSource = source as Spell;
+                    OldSpell spellSource = source as OldSpell;
                     return spellSource.caster;
                 }
                 else

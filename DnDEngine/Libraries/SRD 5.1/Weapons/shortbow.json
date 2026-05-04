@@ -3,9 +3,10 @@
     "Name": "Shortbow",
     "Category": "simpleWeapon",
     "Damage": {
-        "Type": "piercing",
-        "DamageDiceNumber": 1,
-        "DamageDiceValue": 6
+        "FlatValue": 0,
+        "MaxValueOfDice": 6,
+        "NumberOfDice": 1,
+        "DamageType": "Piercing"
     },
     "Properties": ["range", "ammunition"],
     "Range": 80,
