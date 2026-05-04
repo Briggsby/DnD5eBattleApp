@@ -285,7 +285,7 @@ namespace DnD5eBattleApp
 
         public virtual void RemoveFromCreature()
         {
-            creature.feats.Remove(this);
+            creature.oldFeats.Remove(this);
             RemoveFeat();
         }
 
@@ -428,7 +428,7 @@ namespace DnD5eBattleApp
 
         public List<string> GetChoiceChildMenuTags(List<string> tags)
         {
-            List<string> returnTags = new List<string>() {CreatureMenuOtherOptions.FeatChoices.ToString(), creature.feats.IndexOf(this).ToString()};
+            List<string> returnTags = new List<string>() {CreatureMenuOtherOptions.FeatChoices.ToString(), creature.oldFeats.IndexOf(this).ToString()};
             returnTags.AddRange(tags);
             return returnTags;
         }
@@ -534,9 +534,9 @@ namespace DnD5eBattleApp
         public List<string> MakeTags(List<string> tags)
         {
             int index = 0;
-            for (int i = 0; i <creature.feats.Count; i++)
+            for (int i = 0; i <creature.oldFeats.Count; i++)
             {
-                if (creature.feats[i] == this)
+                if (creature.oldFeats[i] == this)
                 {
                     index = i;
                 }

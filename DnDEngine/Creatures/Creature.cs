@@ -69,7 +69,8 @@ namespace DnD5eBattleApp
             }
         }
 
-        public List<OldFeat> feats = new List<OldFeat>();
+        public List<OldFeat> oldFeats = new List<OldFeat>();
+        public List<Feat> Feats {get; set;} = new List<Feat>();
 
         public SpellBook spellbook;
         public SpellSlots spellSlots = new SpellSlots(0, SpellCasterType.None);
@@ -437,7 +438,7 @@ namespace DnD5eBattleApp
 
         public bool CheckFeat(Type type)
         {
-            foreach (OldFeat feat in feats)
+            foreach (OldFeat feat in oldFeats)
             {
                 if (feat.GetType().IsAssignableFrom(type))
                 {
@@ -449,7 +450,7 @@ namespace DnD5eBattleApp
 
         public OldFeat GetFeat(Type type)
         {
-            foreach (OldFeat feat in feats)
+            foreach (OldFeat feat in oldFeats)
             {
                 if (feat.GetType().IsAssignableFrom(type))
                 {
@@ -461,13 +462,13 @@ namespace DnD5eBattleApp
 
         public OldFeat RemoveFeat(Type type, bool allConditions = false)
         {
-            List<OldFeat> listFeats = new List<OldFeat>(feats);
+            List<OldFeat> listFeats = new List<OldFeat>(oldFeats);
             foreach (OldFeat feat in listFeats)
             {
                 if (feat.GetType().IsAssignableFrom(type))
                 {
                     feat.RemoveFeat();
-                    feats.Remove(feat);
+                    oldFeats.Remove(feat);
                     if (!allConditions)
                     {
                         RecalibrateStats();
@@ -497,7 +498,7 @@ namespace DnD5eBattleApp
                 type = null;
             }
 
-            foreach (OldFeat feat in feats)
+            foreach (OldFeat feat in oldFeats)
             {
                 if (feat.GetType().IsAssignableFrom(type))
                 {
@@ -510,7 +511,7 @@ namespace DnD5eBattleApp
         public OldFeat RemoveFeat(OldFeat feat)
         {
             feat.RemoveFeat();
-            feats.Remove(feat);
+            oldFeats.Remove(feat);
             RecalibrateStats();
             return feat;
         }
@@ -518,7 +519,7 @@ namespace DnD5eBattleApp
         public OldFeat AddFeat(OldFeat feat)
         {
             feat.creature = this;
-            feats.Add(feat);
+            oldFeats.Add(feat);
             feat.AddFeat();
             RecalibrateStats();
             return feat;
@@ -526,7 +527,7 @@ namespace DnD5eBattleApp
 
         public bool HasFeatChoices()
         {
-            foreach (OldFeat feat in feats)
+            foreach (OldFeat feat in oldFeats)
             {
                 if (feat.HasChoices())
                 {

@@ -385,13 +385,13 @@ namespace DnD5eBattleApp
             template.inactives = new List<bool>();
             template.childMenus = new List<ContextMenuTemplate>();
 
-            for (int i = 0; i < creature.feats.Count; i++)
+            for (int i = 0; i < creature.oldFeats.Count; i++)
             {
-                if (creature.feats[i].IsUsable())
+                if (creature.oldFeats[i].IsUsable())
                 {
-                    template.texts.Add(creature.feats[i].name);
+                    template.texts.Add(creature.oldFeats[i].name);
                     template.inactives.Add(false);
-                    template.childMenus.Add(creature.feats[i].ChildMenu());
+                    template.childMenus.Add(creature.oldFeats[i].ChildMenu());
                     template.tags.Add(new List<string>() { CombatActions.UseFeat.ToString(), i.ToString() });
                 }
 
@@ -519,7 +519,7 @@ namespace DnD5eBattleApp
             template.texts = new List<string>();
             template.tags = new List<List<string>>();
             template.childMenus = new List<ContextMenuTemplate>();
-            foreach (OldFeat feat in creature.feats)
+            foreach (OldFeat feat in creature.oldFeats)
             {
                 if (feat.HasChoices())
                 {
@@ -532,7 +532,7 @@ namespace DnD5eBattleApp
                         childMenu.texts.Add(s);
                         if (feat.FeatChoiceChildMenu(s) == null)
                         {
-                            childMenu.tags.Add(new List<string>() { CreatureMenuOtherOptions.FeatChoices.ToString(), creature.feats.IndexOf(feat).ToString(), s });
+                            childMenu.tags.Add(new List<string>() { CreatureMenuOtherOptions.FeatChoices.ToString(), creature.oldFeats.IndexOf(feat).ToString(), s });
                             childMenu.childMenus.Add(null);
                         }
                         else

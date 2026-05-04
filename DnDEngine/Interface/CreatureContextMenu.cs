@@ -72,7 +72,7 @@ namespace DnD5eBattleApp
 
             else if (tags.Contains(CombatActions.UseFeat.ToString()))
             {
-                creature.feats[int.Parse(tags[1])].UseFeat();
+                creature.oldFeats[int.Parse(tags[1])].UseFeat();
             }
 
             else if (tags.Contains(CreatureMenuOtherOptions.UseFeatChildMenu.ToString()))
@@ -82,13 +82,13 @@ namespace DnD5eBattleApp
                 {
                     featList.Add(tags[i]);
                 }
-                creature.feats[int.Parse(tags[1])].UseFeatChildMenu(featList);
+                creature.oldFeats[int.Parse(tags[1])].UseFeatChildMenu(featList);
 
             }
 
             else if (tags.Contains(CreatureMenuOtherOptions.FeatChoices.ToString()))
             {
-                creature.feats[int.Parse(tags[1])].FeatChoice(tags[2]);
+                creature.oldFeats[int.Parse(tags[1])].FeatChoice(tags[2]);
             }
 
             else if (tags.Contains(CreatureMenuOtherOptions.EquipItem.ToString()))

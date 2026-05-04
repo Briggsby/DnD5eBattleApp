@@ -256,6 +256,7 @@ namespace DnD5eBattleApp
             var path = "E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD 5.1/";
             IngestSpecs(path + "Monsters", monsters);
             IngestSpecs(path + "Spells", spells);
+            // IngestSpecs(path + "Conditions", conditions);
             
             weapons = new Dictionary<string, WeaponSpec>();
             IngestSpecs(path + "Weapons", weapons);
@@ -317,6 +318,33 @@ namespace DnD5eBattleApp
                 T spec = System.Text.Json.JsonSerializer.Deserialize<T>(json, SchemaExporter.Options);
                 dict.Add((string)typeof(T).GetProperty("Name").GetValue(spec), spec);
             }
+        }
+
+        public static T GetResource<T>(string name)
+        {
+            TryGetResource<T>(name, out T value);
+            return value;
+        }
+
+        public static bool TryGetResource<T>(string name, out T value)
+        {
+            Dictionary<string, T> dict = typeof(T) switch
+            {
+                Type t when t == typeof(ConditionSpec) => conditions as Dictionary<string, T>,
+                Type t when t == typeof(MonsterSpec) => monsters as Dictionary<string, T>,
+                Type t when t == typeof(SpellSpec) => spells as Dictionary<string, T>,
+                Type t when t == typeof(WeaponSpec) => weapons as Dictionary<string, T>,
+                _ => throw new SystemException($"No matching resource in library of type {typeof(T)}")
+            };
+
+            if (!dict.TryGetValue(name, out T result))
+            {
+                Console.WriteLine($"No resource of {typeof(T)} named {name} found");
+                value = result;
+                return false;
+            }
+            value = result;
+            return true;
         }
     }
 }

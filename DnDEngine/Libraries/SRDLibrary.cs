@@ -3229,7 +3229,7 @@ namespace DnD5eBattleApp
             public override void AddFeat()
             {
                 base.AddFeat();
-                foreach (OldFeat feat in creature.feats)
+                foreach (OldFeat feat in creature.oldFeats)
                 {
                     if (feat is RageFeat)
                     {
@@ -6837,7 +6837,7 @@ namespace DnD5eBattleApp
             {
                 baseStats = new GoblinBaseStats(this);
                 name = "Goblin";
-                feats.Add(new NimbleEscape());
+                oldFeats.Add(new NimbleEscape());
                 Texture = DnDManager.monsterTextures[Monsters.Goblin.ToString()];
                 armor = DnDManager.armors[Armors.Leather.ToString()].CreateArmor();
                 weaponMainHand = new Scimitar();
@@ -6890,7 +6890,7 @@ namespace DnD5eBattleApp
                 baseStats = new CultistBaseStats(this);
                 name = "Cultist";
                 armor = DnDManager.armors[Armors.Leather.ToString()].CreateArmor();
-                feats.Add(new DarkDevotion());
+                oldFeats.Add(new DarkDevotion());
                 weaponMainHand = new Scimitar();
                 if (DnDManager.monsterTextures.ContainsKey(Monsters.Cultist.ToString()))
                 {
@@ -7022,7 +7022,7 @@ namespace DnD5eBattleApp
                 name = "Aboleth";
                 cr = 10;
                 naturalWeapons = new List<Weapon>() { new AbolethTentacle() };
-                feats = new List<OldFeat>() { new Amphibious(), new MucousCloud(), new ProbingTelepathy(), new AbolethEnslave() };
+                oldFeats = new List<OldFeat>() { new Amphibious(), new MucousCloud(), new ProbingTelepathy(), new AbolethEnslave() };
             }
 
             public class AbolethBaseStats : BaseStats
@@ -7691,7 +7691,7 @@ namespace DnD5eBattleApp
                     Debug.WriteLine(string.Format("{0} has already resisted {1}", target.name, name));
                     return null;
                 }
-                foreach (OldCondition con in target.feats)
+                foreach (OldCondition con in target.oldFeats)
                 {
                     if (fears.Contains(con))
                     {

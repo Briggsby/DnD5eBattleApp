@@ -39,7 +39,7 @@ namespace DnD5eBattleApp
 
         public override void RemoveFromCreature()
         {
-            creature.feats.Remove(this);
+            creature.oldFeats.Remove(this);
             RemoveFeat();
         }
     }
