@@ -7,16 +7,19 @@ namespace DnD5eBattleApp;
 
 public class SpellBook
 {
+    public Creature Owner {get; set;}
     public CreatureValue SpellcastingAbility {get; set;}
     public Dictionary<int, List<Spell>> SpellsByLevel {get; set;}
 
     public List<Spell> AllSpells { get => SpellsByLevel.Values.ToList().SelectMany(x => x).ToList(); }
 
     public SpellBook(
+        Creature owner,
         CreatureValue spellcastingAbility,
         List<string> spellSpecs
     )
     {
+        Owner = owner;
         SpellcastingAbility = spellcastingAbility;
         SpellsByLevel = new Dictionary<int, List<Spell>>
         {
@@ -35,7 +38,7 @@ public class SpellBook
         {
             if (DnDManager.TryGetResource(spell, out SpellSpec spec))
             {
-                SpellsByLevel[spec.Level].Add(new Spell(spec));
+                SpellsByLevel[spec.Level].Add(new Spell(spec, this));
             }
         }
     }

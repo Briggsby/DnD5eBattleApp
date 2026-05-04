@@ -8,7 +8,7 @@ namespace DnD5eBattleApp
     {
         public Attack attack;
         public OldSpell spell;
-
+        public Creature Target {get; set;}
         public override int Bonus { get => base.Bonus; set
             {
                 bonus += value;
@@ -34,7 +34,7 @@ namespace DnD5eBattleApp
         {
             this.attack = attack;
             roller = attack.attacker;
-            GetSource(attack);
+            source = attack.GetSource();
             attack.GetDamageDice(this);
             bonus = attack.GetDamageBonus();
             critical = attack.attackRoll.Natural == 20;
@@ -49,6 +49,22 @@ namespace DnD5eBattleApp
             spell.GetDamageDice(this);
             bonus = spell.GetDamageBonus();
             finishRoll += new RollDelegate(spell.FinishDamageRoll);
+        }
+
+        public DamageRoll(
+            Creature roller, object source, Creature target,
+            Damage damage, Encounter encounter,
+            RollDelegate finishRoll
+        ) : base(encounter)
+        {
+            this.roller = roller;
+            this.source = source;
+            Target = target;
+            diceFaces = new List<int>() {damage.MaxValueOfDice};
+            numberOfDice = new List<int>() {damage.NumberOfDice};
+            damageTypes = new List<string>() {damage.DamageType};
+            bonus = damage.FlatValue;
+            this.finishRoll += finishRoll;
         }
 
         public override int MakeRoll()

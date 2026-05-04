@@ -15,8 +15,8 @@ public class Value<T> : IValue
     public string ValueType { get; set; }
     public T BaseValue { get; set; }
 
-    private T modifiedValue;
-    public T ModifiedValue
+    private T currentValue;
+    public T CurrentValue
     {
         get { return GetValue(); }
     }
@@ -28,7 +28,7 @@ public class Value<T> : IValue
         this.Source = Source;
         this.ValueType = ValueType;
         BaseValue = baseValue;
-        modifiedValue = baseValue;
+        currentValue = baseValue;
     }
 
     public T SetBaseValue(T newBaseValue)
@@ -40,23 +40,23 @@ public class Value<T> : IValue
 
     public T GetValue()
     {
-        T newValue = BaseValue;
+        T currentValue = this.currentValue;
         foreach (var modifier in Modifiers)
         {
-            newValue = modifier.GetModification(this, newValue);
+            currentValue = modifier.GetModification(this, currentValue);
         }
-        return newValue;
+        return currentValue;
     }
 
     public void ModifyValue(T newValue, bool triggerEffect = true)
     {
         if (!triggerEffect)
         {
-            modifiedValue = newValue;
+            currentValue = newValue;
             return;
         }
         
-        var modifyEffect = new ModifyValue<T>(this, ModifiedValue, newValue);
+        var modifyEffect = new ModifyValue<T>(this, CurrentValue, newValue);
         EffectManager.TriggerEffect(modifyEffect);
     }
 

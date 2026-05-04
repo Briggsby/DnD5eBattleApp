@@ -12,7 +12,15 @@ namespace DnD5eBattleApp;
 
 public enum Alignment { NeutralEvil, Neutral, LawfulEvil }
 
-public enum CreatureValue { Speed, Intelligence }
+public enum CreatureValue { 
+    Speed, 
+    Strength,
+    Dexterity,
+    Constitution,
+    Wisdom,
+    Intelligence,
+    Charisma,
+}
 
 public class Creature : GameObject
 {
@@ -21,6 +29,12 @@ public class Creature : GameObject
     public void SetDefaultValues()
     {
         Values.AddValue<int>(CreatureValue.Speed.ToString(), 30);
+        Values.AddValue<int>(CreatureValue.Strength.ToString(), 10);
+        Values.AddValue<int>(CreatureValue.Dexterity.ToString(), 10);
+        Values.AddValue<int>(CreatureValue.Constitution.ToString(), 10);
+        Values.AddValue<int>(CreatureValue.Wisdom.ToString(), 10);
+        Values.AddValue<int>(CreatureValue.Intelligence.ToString(), 10);
+        Values.AddValue<int>(CreatureValue.Charisma.ToString(), 10);
     }
 
     public static Texture2D baseCommonTexture;
@@ -248,6 +262,11 @@ public class Creature : GameObject
     public int StatMod(Stat stat)
     {
         return (int)((stats[stat] / 2) - 5);
+    }
+
+    public int StatMod(CreatureValue stat)
+    {
+        return (GetValue<int>(stat).CurrentValue / 2) - 5;
     }
 
     public int SkillMod(Skill skill)
@@ -796,4 +815,9 @@ public class Creature : GameObject
         }
     }
     #endregion
+
+    public Value<T> GetValue<T>(CreatureValue value)
+    {
+        return Values.GetValue<T>(value.ToString());
+    }
 }

@@ -333,7 +333,7 @@ namespace DnD5eBattleApp
         {
             Dictionary<string, T> dict = typeof(T) switch
             {
-                Type t when t == typeof(ConditionSpec) => oldConditions as Dictionary<string, T>,
+                Type t when t == typeof(ConditionSpec) => Conditions as Dictionary<string, T>,
                 Type t when t == typeof(MonsterSpec) => monsters as Dictionary<string, T>,
                 Type t when t == typeof(SpellSpec) => spells as Dictionary<string, T>,
                 Type t when t == typeof(WeaponSpec) => weapons as Dictionary<string, T>,

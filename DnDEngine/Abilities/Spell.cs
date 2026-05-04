@@ -12,21 +12,31 @@ public enum SpellComponent
 
 public class Spell : Ability
 {
+    public SpellBook SpellBook {get; set;}
     public int SpellLevel {get; set;}
     public string SpellSchool {get; set;}
     public SpellComponent spellComponents {get; set;}
-    public Spell(SpellSpec spellSpec) : base(spellSpec)
+    public Spell(SpellSpec spellSpec, SpellBook spellBook) : base(spellSpec, spellBook.Owner)
     {
+        SpellBook = spellBook;
         SpellLevel = spellSpec.Level;
         SpellSchool = spellSpec.School;
     }
 
-    public override void SpendResources(Creature user)
+    public override void SpendResources()
     {
         if (SpellLevel > 0)
         {
-            user.spellSlots.spellSlotsCurrent[SpellLevel]--;
+            Owner.spellSlots.spellSlotsCurrent[SpellLevel]--;
         }
-        base.SpendResources(user);
+        base.SpendResources();
+    }
+
+    public override int GetAttackBonus()
+    {
+        int bonus = 0;
+        bonus += SpellBook.Owner.proficiencyBonus;
+        bonus += SpellBook.Owner.StatMod(SpellBook.SpellcastingAbility);
+        return bonus;
     }
 }

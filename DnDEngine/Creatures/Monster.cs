@@ -16,10 +16,16 @@ namespace DnD5eBattleApp
         public Monster(MonsterSpec spec)
         {
             Speed.SetBaseValue(spec.Speed);
+            GetValue<int>(CreatureValue.Strength).SetBaseValue(spec.Stats.Strength);
+            GetValue<int>(CreatureValue.Dexterity).SetBaseValue(spec.Stats.Dexterity);
+            GetValue<int>(CreatureValue.Constitution).SetBaseValue(spec.Stats.Constitution);
+            GetValue<int>(CreatureValue.Intelligence).SetBaseValue(spec.Stats.Intelligence);
+            GetValue<int>(CreatureValue.Wisdom).SetBaseValue(spec.Stats.Wisdom);
+            GetValue<int>(CreatureValue.Charisma).SetBaseValue(spec.Stats.Charisma);
 
             baseStats = new BaseStats(spec, this, true);
             name = spec.Name;
-            SpellBook = new SpellBook(spec.SpellcastingAbility, spec.Spells);
+            SpellBook = new SpellBook(this, spec.SpellcastingAbility, spec.Spells);
             oldSpellbook = new OldSpellBook(spec.Spells, this);
             
             // TODO: Add Feats

@@ -28,6 +28,11 @@
         "null"
       ],
       "properties": {
+        "TargetType": {
+          "enum": [
+            "singleTargetRanged"
+          ]
+        },
         "HasAttackRoll": {
           "type": "boolean"
         },

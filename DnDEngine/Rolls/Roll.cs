@@ -201,19 +201,6 @@ namespace DnD5eBattleApp
         }
         public event RollDelegate endRoll;
 
-
-        public void GetSource(Attack attack)
-        {
-            if (attack.isSpell)
-            {
-                source = attack.spell;
-            }
-            else
-            {
-                source = attack.attackerWeapon;
-            }
-        }
-
         public Creature GetSourceCreature()
         {
             if (source is OldSpell)

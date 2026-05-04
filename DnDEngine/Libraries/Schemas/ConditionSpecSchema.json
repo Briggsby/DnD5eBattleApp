@@ -1,0 +1,44 @@
+{
+  "type": [
+    "object",
+    "null"
+  ],
+  "properties": {
+    "Name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ValueModifications": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "ValueType": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ValueChange": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ValueType",
+          "ValueChange"
+        ]
+      }
+    }
+  },
+  "required": [
+    "Name"
+  ]
+}

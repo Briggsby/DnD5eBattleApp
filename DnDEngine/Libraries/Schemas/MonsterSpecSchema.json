@@ -214,7 +214,12 @@
     "SpellcastingAbility": {
       "enum": [
         "speed",
-        "intelligence"
+        "strength",
+        "dexterity",
+        "constitution",
+        "wisdom",
+        "intelligence",
+        "charisma"
       ]
     },
     "Truesight": {

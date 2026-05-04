@@ -11,6 +11,8 @@ namespace DnD5eBattleApp
         public int numberAttacks;
         public Creature defender;
 
+        public Ability Ability {get; set;}
+
         public bool isSpell;
         public OldSpell spell;
 
@@ -65,6 +67,18 @@ namespace DnD5eBattleApp
             DoAttackRoll();
         }
 
+        public Attack(Creature attacker, Creature defender, Ability ability)
+        {
+            this.attacker = attacker;
+            this.defender = defender;
+            this.Ability = ability;
+
+            GetRange();
+            finished = false;
+            attacker.attacksThisTurn.Add(this);
+            DoAttackRoll();
+        }
+
         public void GetRange()
         {
             range = attacker.encounter.board.GetDistance(attacker.boardTile, defender.boardTile);
@@ -73,6 +87,10 @@ namespace DnD5eBattleApp
         public int GetAttackBonus()
         {
             int bonus = 0;
+            if (Ability is not null)
+            {
+                return Ability.GetAttackBonus();
+            }
 
             if (!isSpell)
             {
@@ -154,6 +172,12 @@ namespace DnD5eBattleApp
         public void FinishAttackRoll(Roll roll, RollEventArgs e)
         {
             RemoveThrownOrAmmunition();
+            if (Ability is not null)
+            {
+                Ability.FinishAttackRoll(roll as AttackRoll, e);
+                finished = true;
+                return;
+            }
             if (attackRoll.Success)
             {
                 Debug.WriteLine(string.Format("{0} hit {1} with an attack with an attack roll of {2} ({3} + {4}) against an AC of {5} {6}", attacker.name, defender.name, roll.score, roll.score - roll.bonus, roll.bonus, defender.AC, roll.WithAdvantagePrint()));
@@ -168,6 +192,11 @@ namespace DnD5eBattleApp
 
         public void RemoveThrownOrAmmunition()
         {
+            if (Ability is not null)
+            {
+                // Todo: Should be handled by 'spend' on ability, remove this method that's implemented
+                return;
+            }
             if (isSpell)
             {
                 return;
@@ -201,13 +230,18 @@ namespace DnD5eBattleApp
 
         public void DoDamageRoll()
         {
-                damageRoll = new DamageRoll(this);
-                damageRoll.DoRoll();
+            damageRoll = new DamageRoll(this);
+            damageRoll.DoRoll();
         }
 
         public void GetDamageDice(DamageRoll roll)
         {
-            if (!isSpell)
+            if (Ability is not null)
+            {
+                damageDiceFaces = new List<int>() {Ability.Damage.MaxValueOfDice};
+                damageDiceNumber = new List<int>() {Ability.Damage.NumberOfDice};
+                damageTypes = new List<string>() {Ability.Damage.DamageType};
+            } else if (!isSpell)
             {
                 attackerWeapon.GetDamageDice(this);
             }
@@ -224,6 +258,11 @@ namespace DnD5eBattleApp
 
         public void FinishDamageRoll(Roll roll, RollEventArgs e)
         {
+            if (Ability is not null)
+            {
+                Ability.FinishDamageRoll(roll as DamageRoll, e);
+                return;
+            }
             if (!isSpell)
             {
                 Debug.WriteLine(string.Format("{0} did {1} ({2} + {3}) {4} damage to {5} with a {6}", attacker.name, roll.score, roll.score-roll.bonus, roll.bonus, damageTypes[0], defender.name, attackerWeapon.name));
@@ -236,5 +275,20 @@ namespace DnD5eBattleApp
             defender.TakeDamage(this);
         }
 
+        public object GetSource()
+        {
+            if (Ability is not null)
+            {
+                return Ability;
+            }
+            if (isSpell)
+            {
+                return spell;
+            }
+            else
+            {
+                return attackerWeapon;
+            }
+        }
     }
 }

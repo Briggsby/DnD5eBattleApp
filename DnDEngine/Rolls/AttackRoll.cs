@@ -7,7 +7,7 @@ namespace DnD5eBattleApp
         public AttackRoll(Attack attack) : base(attack.attacker.encounter)
         {
             this.attack = attack;
-            GetSource(attack);
+            source = attack.GetSource();
 
             die = 20;
             DC = attack.defender.AC;
