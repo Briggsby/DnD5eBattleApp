@@ -7,12 +7,14 @@ namespace DnD5eBattleApp
 {
     public abstract class Control
     {
+        public Creature creature;
         public OrderControl orderControl;
 
         public OldFeat linkedFeat;
 
-        public Control()
+        public Control(Creature creature)
         {
+            this.creature = creature;
             DnDManager.ongoingControls.Add(this);
         }
 

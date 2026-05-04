@@ -565,7 +565,6 @@ public class Creature : GameObject
     #endregion
 
     #region Battling
-
     public List<Weapon> GetAttackWeapons()
     {
         List<Weapon> weaponList = new List<Weapon>();

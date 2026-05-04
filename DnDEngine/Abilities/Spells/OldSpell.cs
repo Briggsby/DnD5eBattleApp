@@ -240,17 +240,17 @@ namespace DnD5eBattleApp
 
         public virtual void SimpleConeTarget(BoardTile origin = null)
         {
-            new DirectionalAreaOrder(origin??caster.boardTile, maxRange, width, TargetTypeToStyle(targetType), null, this);
+            new DirectionalAreaOrder(caster, origin??caster.boardTile, maxRange, width, TargetTypeToStyle(targetType), null, this);
         }
 
         public virtual void SimpleLineTarget(BoardTile origin = null)
         {
-            new DirectionalAreaOrder(origin ?? caster.boardTile, maxRange, width, TargetTypeToStyle(targetType), null, this);
+            new DirectionalAreaOrder(caster, origin ?? caster.boardTile, maxRange, width, TargetTypeToStyle(targetType), null, this);
         }
 
         public virtual void SimpleSphereTarget(BoardTile origin = null)
         {
-            new DirectionalAreaOrder(origin ?? caster.boardTile, maxRange, width, TargetTypeToStyle(targetType), null, this);
+            new DirectionalAreaOrder(caster, origin ?? caster.boardTile, maxRange, width, TargetTypeToStyle(targetType), null, this);
         }
 
         public virtual void SimpleSphereOnSelfTarget(BoardTile origin = null, bool includeOrigin = false)

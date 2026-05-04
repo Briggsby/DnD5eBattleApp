@@ -8,15 +8,13 @@ namespace DnD5eBattleApp
 {
     public class AttackOrder : Control
     {
-        Creature creature;
         Weapon weapon;
         bool standardAttackAction;
         bool bonusAction;
         bool offHand;
 
-        public AttackOrder(Creature creature, Weapon weapon, bool standardAttackAction = true, bool bonusAction = false, bool offHand = false)
+        public AttackOrder(Creature creature, Weapon weapon, bool standardAttackAction = true, bool bonusAction = false, bool offHand = false) : base(creature)
         {
-            this.creature = creature;
             this.weapon = weapon;
             this.standardAttackAction = standardAttackAction;
             this.bonusAction = bonusAction;

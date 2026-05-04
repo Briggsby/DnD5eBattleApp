@@ -20,4 +20,13 @@ public class Spell : Ability
         SpellLevel = spellSpec.Level;
         SpellSchool = spellSpec.School;
     }
+
+    public override void SpendResources(Creature user)
+    {
+        if (SpellLevel > 0)
+        {
+            user.spellSlots.spellSlotsCurrent[SpellLevel]--;
+        }
+        base.SpendResources(user);
+    }
 }

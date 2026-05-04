@@ -10,11 +10,9 @@ namespace DnD5eBattleApp
     public class SingleNormalTargetOrder : Control
     {
         public virtual Object ControlObject {get; set;}
-        Creature creature;
 
-        public SingleNormalTargetOrder(Creature creature, Object controlObject, int range, Color? color = null)
+        public SingleNormalTargetOrder(Creature creature, Object controlObject, int range, Color? color = null) : base(creature)
         {
-            this.creature = creature;
             this.ControlObject = controlObject;
             EngManager.StartCoroutine(SetOrderControl(creature.encounter.board, creature.boardTile, range, color ?? Color.OrangeRed, new List<TileOrderCriteria>() { TileOrderCriteria.WithCreature }));
         }
@@ -25,6 +23,9 @@ namespace DnD5eBattleApp
             if (ControlObject is OldFeat)
             {
                 (ControlObject as OldFeat).SelectionMadeOrder(this);
+            } else if (ControlObject is Ability)
+            {
+                (ControlObject as Ability).SelectionMade(this);
             }
         }
 

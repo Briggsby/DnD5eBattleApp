@@ -25,7 +25,7 @@ namespace DnD5eBattleApp
         public Style style;
 
 
-        public DirectionalAreaOrder(BoardTile origin, int length, int width, Style style, Color? color = null, OldSpell spell = null, bool includeOrigin = false)
+        public DirectionalAreaOrder(Creature creature, BoardTile origin, int length, int width, Style style, Color? color = null, OldSpell spell = null, bool includeOrigin = false) : base(creature)
         {
             Debug.WriteLine("Directional Order Started");
             board = origin.board;

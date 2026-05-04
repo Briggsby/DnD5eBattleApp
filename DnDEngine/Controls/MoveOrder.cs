@@ -9,11 +9,8 @@ namespace DnD5eBattleApp
 {
     public class MoveOrder : Control
     {
-        Creature creature;
-
-        public MoveOrder(Creature creature)
+        public MoveOrder(Creature creature) : base(creature)
         {
-            this.creature = creature;
             EngManager.StartCoroutine(SetOrderControl(creature.encounter.board, creature.boardTile, creature.MoveSpeedLeft, Color.Aqua, new List<TileOrderCriteria>() { TileOrderCriteria.WithoutCreature }));
         }
 

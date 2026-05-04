@@ -7,6 +7,7 @@ public enum TargetType
 
 public class Targeting
 {
+    public TargetType TargetType {get; set;}
     public bool HasAttackRoll {get; set;} = true;
     public bool HasSavingThrow {get; set;} = false;
     public int TargetCount {get; set; } = 1;    
