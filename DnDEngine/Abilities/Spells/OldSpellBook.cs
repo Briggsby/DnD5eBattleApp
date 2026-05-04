@@ -42,19 +42,15 @@ namespace DnD5eBattleApp
             contextMenuTextures = baseContextMenuTextureSet;
         }
 
-        public OldSpellBook(SpellBookSpec spellBookSpec, Creature owner)
+        public OldSpellBook(List<string> spellList, Creature owner)
         {
             this.owner = owner;
             spells = new List<OldSpell>();
-            foreach (string spellName in spellBookSpec.Spells)
+            foreach (string spellName in spellList)
             {
-                if (DnDManager.spells.ContainsKey(spellName))
+                if (DnDManager.TryGetResource(spellName, out SpellSpec spec))
                 {
-                    spells.Add(new OldSpell(DnDManager.spells[spellName], owner));
-                }
-                else
-                {
-                    Console.WriteLine(string.Format("Spell {0} not found in DnDManager.spells", spellName));
+                    spells.Add(new OldSpell(spec, owner));
                 }
             }
             spellsByLevel = SortSpellsByLevel(spells);

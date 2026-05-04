@@ -5,14 +5,14 @@ namespace DnD5eBattleApp;
 
 public class SpellBook
 {
-    public string SpellcastingAbility {get; set;}
+    public CreatureValue SpellcastingAbility {get; set;}
     public Dictionary<int, List<Spell>> SpellsByLevel {get; set;}
 
     public List<Spell> AllSpells { get => SpellsByLevel.Values.ToList().SelectMany(x => x).ToList(); }
 
     public SpellBook(
-        string spellcastingAbility,
-        List<SpellSpec> spellSpecs
+        CreatureValue spellcastingAbility,
+        List<string> spellSpecs
     )
     {
         SpellcastingAbility = spellcastingAbility;
@@ -29,16 +29,12 @@ public class SpellBook
             {8, new List<Spell>() },
             {9, new List<Spell>() }
         };
-        foreach (SpellSpec spell in spellSpecs)
+        foreach (string spell in spellSpecs)
         {
-            SpellsByLevel[spell.Level].Add(new Spell(spell));
+            if (DnDManager.TryGetResource(spell, out SpellSpec spec))
+            {
+                SpellsByLevel[spec.Level].Add(new Spell(spec));
+            }
         }
-    }
-
-    public Spell AddSpell(SpellSpec spec)
-    {
-        Spell spell = new Spell(spec);
-        SpellsByLevel[spec.Level].Add(spell);
-        return spell;
     }
 }

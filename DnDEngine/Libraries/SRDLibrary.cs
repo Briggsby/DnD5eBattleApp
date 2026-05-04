@@ -2206,7 +2206,7 @@ namespace DnD5eBattleApp
 
                 dragonBreath = GetDragonBreathSpell(choice);
 
-                creature.spellbook.AddSpell(dragonBreath, false);
+                creature.oldSpellbook.AddSpell(dragonBreath, false);
 
             }
 
@@ -2610,7 +2610,7 @@ namespace DnD5eBattleApp
                 featChoices = new List<string>();
                 foreach (OldSpell spell in cantripChoices)
                 {
-                    if (!creature.spellbook.HasSpellOfName(spell.name))
+                    if (!creature.oldSpellbook.HasSpellOfName(spell.name))
                     {
                         featChoices.Add(spell.name);
                     }
@@ -2634,7 +2634,7 @@ namespace DnD5eBattleApp
             public override void StatChange(Creature creature)
             {
                 base.StatChange(creature);
-                creature.spellbook.AddSpells(cantrips, false);
+                creature.oldSpellbook.AddSpells(cantrips, false);
             }
 
             public virtual int GetNumberOfChoices()
@@ -2702,7 +2702,7 @@ namespace DnD5eBattleApp
                 int level = (choice[choice.Length - 1]) - '0';
                 foreach (OldSpell spell in spellChoicesByLevel[level])
                 {
-                    if (!creature.spellbook.HasSpellOfName(spell.name))
+                    if (!creature.oldSpellbook.HasSpellOfName(spell.name))
                     {
                         template.texts.Add(spell.name);
                         template.tags.Add(GetChoiceChildMenuTags(new List<string>() { spell.name }));
@@ -2731,7 +2731,7 @@ namespace DnD5eBattleApp
             public override void StatChange(Creature creature)
             {
                 base.StatChange(creature);
-                creature.spellbook.AddSpells(spells, false);
+                creature.oldSpellbook.AddSpells(spells, false);
                 creature.spellSlots.SpellcastingFeat(classLevel, spellcasterType);
             }
         }
@@ -3358,7 +3358,7 @@ namespace DnD5eBattleApp
             public override void AddFeat()
             {
                 base.AddFeat();
-                creature.spellbook.AddSpell(intimidatingPresence);
+                creature.oldSpellbook.AddSpell(intimidatingPresence);
             }
 
             public override void UseFeat()
@@ -6938,7 +6938,7 @@ namespace DnD5eBattleApp
                 armor = DnDManager.armors[Armors.Leather.ToString()].CreateArmor();
                 weaponMainHand = new Dagger();
                 spellSlots = new SpellSlots(4, SpellCasterType.Full);
-                spellbook = new OldSpellBook(new List<OldSpell>()
+                oldSpellbook = new OldSpellBook(new List<OldSpell>()
                     {
                         new LightCantrip(), new SacredFlame(),
                         new Thaumaturgy(), new CommandSpell(),

@@ -313,7 +313,7 @@ namespace DnD5eBattleApp
                 null,
                 null,
                 GetAttackMenu(creature),
-                creature.spellbook.SpellControls(),
+                creature.oldSpellbook.SpellControls(),
                 null,
                 null,
                 null,

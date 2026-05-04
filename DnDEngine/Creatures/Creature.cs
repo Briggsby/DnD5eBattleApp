@@ -13,7 +13,7 @@ namespace DnD5eBattleApp
 { 
     public enum Alignment { NeutralEvil, Neutral, LawfulEvil }
 
-    public enum CreatureValue { Speed }
+    public enum CreatureValue { Speed, Intelligence }
 
     public class Creature : GameObject
     {
@@ -72,7 +72,8 @@ namespace DnD5eBattleApp
         public List<OldFeat> oldFeats = new List<OldFeat>();
         public List<Feat> Feats {get; set;} = new List<Feat>();
 
-        public OldSpellBook spellbook;
+        public SpellBook spellBook;
+        public OldSpellBook oldSpellbook;
         public SpellSlots spellSlots = new SpellSlots(0, SpellCasterType.None);
         public Inventory inventory;
         public Armor armor = new Armor();
@@ -100,7 +101,7 @@ namespace DnD5eBattleApp
         public void Initializing()
         {
             inventory = new Inventory(this, new List<Item>());
-            spellbook = new OldSpellBook(this);
+            oldSpellbook = new OldSpellBook(this);
             SetDefaultValues();
         }
 

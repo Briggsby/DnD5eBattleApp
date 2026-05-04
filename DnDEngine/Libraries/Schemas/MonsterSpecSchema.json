@@ -213,14 +213,8 @@
     },
     "SpellcastingAbility": {
       "enum": [
-        "strength",
-        "dexterity",
-        "constitution",
-        "intelligence",
-        "wisdom",
-        "charisma",
-        "choose",
-        "none"
+        "speed",
+        "intelligence"
       ]
     },
     "Truesight": {
@@ -318,22 +312,14 @@
     },
     "Spells": {
       "type": [
-        "object",
+        "array",
         "null"
       ],
-      "properties": {
-        "Spells": {
-          "type": [
-            "array",
-            "null"
-          ],
-          "items": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        }
+      "items": {
+        "type": [
+          "string",
+          "null"
+        ]
       }
     },
     "LegendaryActions": {
