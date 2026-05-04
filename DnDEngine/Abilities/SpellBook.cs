@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using BugsbyEngine;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace DnD5eBattleApp;
 
@@ -16,7 +18,7 @@ public class SpellBook
     )
     {
         SpellcastingAbility = spellcastingAbility;
-        Dictionary<int, List<Spell>> SpellsByLevel = new Dictionary<int, List<Spell>>
+        SpellsByLevel = new Dictionary<int, List<Spell>>
         {
             {0, new List<Spell>() },
             {1, new List<Spell>() },
@@ -36,5 +38,49 @@ public class SpellBook
                 SpellsByLevel[spec.Level].Add(new Spell(spec));
             }
         }
+    }
+
+    public ContextMenuTemplate GetCommandMenu(
+        ButtonTextures buttonTextures,
+        SpriteFont spriteFont
+    )
+    {
+        if (AllSpells.Count < 0)
+        {
+            return null;
+        }
+
+        List<ContextMenuTemplateItemDef> spellControlsEachLevel = new List<ContextMenuTemplateItemDef>();
+
+        for (int level = 0; level <= 9; level++)
+        {
+            List<ContextMenuTemplateItemDef> spellItems = new List<ContextMenuTemplateItemDef>();
+            for (int i = 0; i < SpellsByLevel[level].Count; i++)
+            {
+                var spell = SpellsByLevel[level][i];
+                spellItems.Add(new ContextMenuTemplateItemDef(
+                    text: spell.Name,
+                    tags: new List<string>() {CombatActions.CastSpell.ToString(), level.ToString(), i.ToString() },
+                    inactive: false // TODO: Check castable
+                ));
+            }
+            if (spellItems.Count == 0)
+            {
+                continue;
+            }
+
+            spellControlsEachLevel.Add(new ContextMenuTemplateItemDef(
+                text: level == 0 ? "Cantrips" : $"Level {level}",
+                tags: new List<string>() { level.ToString(), ContextMenu.DefaultTags.ParentMenu.ToString()},
+                inactive: false,
+                childMenu: spellItems
+            ));
+        }
+
+        return new ContextMenuTemplate(
+            buttonTextures,
+            spriteFont,
+            spellControlsEachLevel
+        );
     }
 }

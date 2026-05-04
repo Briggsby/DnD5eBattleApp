@@ -72,7 +72,7 @@ namespace DnD5eBattleApp
         public List<OldFeat> oldFeats = new List<OldFeat>();
         public List<Feat> Feats {get; set;} = new List<Feat>();
 
-        public SpellBook spellBook;
+        public SpellBook SpellBook {get; set;}
         public OldSpellBook oldSpellbook;
         public SpellSlots spellSlots = new SpellSlots(0, SpellCasterType.None);
         public Inventory inventory;

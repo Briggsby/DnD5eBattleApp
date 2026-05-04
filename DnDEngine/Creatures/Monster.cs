@@ -10,7 +10,7 @@ namespace DnD5eBattleApp
 
         public Monster()
         {
-            
+            // TODO: Remove when SRDLibrary deprecated
         }
 
         public Monster(MonsterSpec spec)
@@ -19,7 +19,7 @@ namespace DnD5eBattleApp
 
             baseStats = new BaseStats(spec, this, true);
             name = spec.Name;
-            spellBook = new SpellBook(spec.SpellcastingAbility, spec.Spells);
+            SpellBook = new SpellBook(spec.SpellcastingAbility, spec.Spells);
             oldSpellbook = new OldSpellBook(spec.Spells, this);
             
             // TODO: Add Feats

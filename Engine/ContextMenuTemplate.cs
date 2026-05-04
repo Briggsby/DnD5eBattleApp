@@ -11,6 +11,23 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BugsbyEngine
 {
+    // TODO: Replace this with a non 'def' suffix class
+    // and replace the texts, tags, etc. used in template with it
+    public class ContextMenuTemplateItemDef
+    {
+        public string Text {get; set; }
+        public List<string> Tags {get; set; }
+        public bool Inactive { get; set; }
+        public List<ContextMenuTemplateItemDef> ChildMenu { get; set; }
+
+        public ContextMenuTemplateItemDef(string text, List<string> tags, bool inactive, List<ContextMenuTemplateItemDef> childMenu = null)
+        {
+            Text = text;
+            Tags = tags;
+            Inactive = inactive;
+            ChildMenu = childMenu;
+        }
+    }
     public class ContextMenuTemplate
     {
         public ButtonTextures textures;
@@ -33,6 +50,40 @@ namespace BugsbyEngine
             get { return _buttonSize?? GetButtonSize(); }
         }
 
+        public ContextMenuTemplate()
+        {
+            
+        }
+
+        public ContextMenuTemplate(
+            ButtonTextures buttonTextures,
+            SpriteFont spriteFont,
+            List<ContextMenuTemplateItemDef> items
+        )
+        {
+            textures = buttonTextures;
+            font = spriteFont;
+            
+            texts = new List<string>();
+            tags = new List<List<string>>();
+            inactives = new List<bool>();
+            childMenus = new List<ContextMenuTemplate>();
+
+            foreach (ContextMenuTemplateItemDef itemDef in items)
+            {
+                texts.Add(itemDef.Text);
+                tags.Add(itemDef.Tags);
+                inactives.Add(itemDef.Inactive);
+                if (itemDef.ChildMenu is not null)
+                {
+                    childMenus.Add(new ContextMenuTemplate(
+                        buttonTextures,
+                        spriteFont,
+                        itemDef.ChildMenu
+                    ));
+                }
+            }
+        }
 
         public ContextMenuTemplate Copy()
         {
