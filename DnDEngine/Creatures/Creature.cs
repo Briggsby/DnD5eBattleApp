@@ -483,14 +483,14 @@ namespace DnD5eBattleApp
         public bool CheckFeat(string form)
         {
             Type type;
-            if (DnDManager.feats.ContainsKey(form))
+            if (DnDManager.oldFeats.ContainsKey(form))
             {
-                OldFeat exampleFeat = DnDManager.feats[form].CreateFeat();
+                OldFeat exampleFeat = DnDManager.oldFeats[form].CreateFeat();
                 type = exampleFeat.GetType();
             }
-            if (DnDManager.conditions.ContainsKey(form))
+            if (DnDManager.oldConditions.ContainsKey(form))
             {
-                OldCondition exampleCondition = DnDManager.conditions[form].CreateCondition();
+                OldCondition exampleCondition = DnDManager.oldConditions[form].CreateCondition();
                 type = exampleCondition.GetType();
             }
             else
@@ -539,17 +539,17 @@ namespace DnD5eBattleApp
 
         public OldCondition AddCondition(string condition)
         {
-            return AddFeat(DnDManager.conditions[condition].CreateCondition()) as OldCondition;
+            return AddFeat(DnDManager.oldConditions[condition].CreateCondition()) as OldCondition;
         }
 
         public bool CheckCondition(string condition)
         {
-            return CheckFeat(DnDManager.conditions[condition].CreateCondition().GetType());
+            return CheckFeat(DnDManager.oldConditions[condition].CreateCondition().GetType());
         }
 
         public OldCondition RemoveCondition(string condition, bool removeAll = false)
         {
-            return RemoveFeat(DnDManager.conditions[condition].CreateCondition().GetType(), removeAll) as OldCondition;
+            return RemoveFeat(DnDManager.oldConditions[condition].CreateCondition().GetType(), removeAll) as OldCondition;
         }
 
         public void GainExhaustion()

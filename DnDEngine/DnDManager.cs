@@ -42,18 +42,21 @@ namespace DnD5eBattleApp
         public static List<Library> libraries;
 
         public static List<string> languages;
-        public static Dictionary<string, ItemCreator> items;
+
         public static Dictionary<string, WeaponSpec> weapons;
+        public static Dictionary<string, SpellSpec> spells;
+        public static Dictionary<string, MonsterSpec> monsters;
+        public static Dictionary<string, ConditionSpec> Conditions {get; set;} = new Dictionary<string, ConditionSpec>();
+
+        public static Dictionary<string, ItemCreator> items;
         public static Dictionary<string, ArmorCreator> armors;
         public static Dictionary<string, Species> species;
         public static Dictionary<string, SubSpecies> subSpecies;
         public static Dictionary<string, PlayerClass> classes;
         public static Dictionary<string, SubClass> subClasses;
-        public static Dictionary<string, FeatCreator> feats;
-        public static Dictionary<string, MonsterSpec> monsters;
-        public static Dictionary<string, SpellSpec> spells;
+        public static Dictionary<string, FeatCreator> oldFeats;
         public static Dictionary<string, Dictionary<int,List<string>>> spellLists;
-        public static Dictionary<string, ConditionCreator> conditions;
+        public static Dictionary<string, ConditionCreator> oldConditions;
 
 
         #region Weapon Categories
@@ -121,11 +124,11 @@ namespace DnD5eBattleApp
             subSpecies = new Dictionary<string, SubSpecies>();
             classes = new Dictionary<string, PlayerClass>();
             subClasses = new Dictionary<string, SubClass>();
-            feats = new Dictionary<string, FeatCreator>();
+            oldFeats = new Dictionary<string, FeatCreator>();
             monsters = new Dictionary<string, MonsterSpec>();
             spells = new Dictionary<string, SpellSpec>();
             spellLists = new Dictionary<string, Dictionary<int, List<string>>>();
-            conditions = new Dictionary<string, ConditionCreator>();
+            oldConditions = new Dictionary<string, ConditionCreator>();
 
             martialMeleeWeapons = new List<string>();
             simpleMeleeWeapons = new List<string>();
@@ -222,7 +225,7 @@ namespace DnD5eBattleApp
             }
             foreach (string s in newLibrary.conditions.Keys)
             {
-                conditions.Add(s, newLibrary.conditions[s]);
+                oldConditions.Add(s, newLibrary.conditions[s]);
             }
             foreach (string s in newLibrary.items.Keys)
             {
@@ -250,13 +253,13 @@ namespace DnD5eBattleApp
             }
             foreach (string s in newLibrary.feats.Keys)
             {
-                feats.Add(s, newLibrary.feats[s]);
+                oldFeats.Add(s, newLibrary.feats[s]);
             }
             // TODO: Take argument for path
             var path = "E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD 5.1/";
             IngestSpecs(path + "Monsters", monsters);
             IngestSpecs(path + "Spells", spells);
-            // IngestSpecs(path + "Conditions", conditions);
+            IngestSpecs(path + "Conditions", Conditions);
             
             weapons = new Dictionary<string, WeaponSpec>();
             IngestSpecs(path + "Weapons", weapons);
@@ -330,7 +333,7 @@ namespace DnD5eBattleApp
         {
             Dictionary<string, T> dict = typeof(T) switch
             {
-                Type t when t == typeof(ConditionSpec) => conditions as Dictionary<string, T>,
+                Type t when t == typeof(ConditionSpec) => oldConditions as Dictionary<string, T>,
                 Type t when t == typeof(MonsterSpec) => monsters as Dictionary<string, T>,
                 Type t when t == typeof(SpellSpec) => spells as Dictionary<string, T>,
                 Type t when t == typeof(WeaponSpec) => weapons as Dictionary<string, T>,

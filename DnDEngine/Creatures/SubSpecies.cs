@@ -28,7 +28,7 @@ namespace DnD5eBattleApp
             }
             foreach (string feat in feats)
             {
-                creature.AddFeat(DnDManager.feats[feat].CreateFeat());
+                creature.AddFeat(DnDManager.oldFeats[feat].CreateFeat());
             }
             creature.baseStats.languages.AddRange(languages);
         }

@@ -68,7 +68,7 @@ namespace DnD5eBattleApp
                     foreach (string fc in feats[l])
                     {
                         //Debug.WriteLine(string.Format("Assigning feat {0}", fc));
-                        creature.AddFeat(DnDManager.feats[fc].CreateFeat());
+                        creature.AddFeat(DnDManager.oldFeats[fc].CreateFeat());
                     }
                 }
             }
