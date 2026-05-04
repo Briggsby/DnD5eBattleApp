@@ -82,6 +82,7 @@ namespace DnD5eBattleApp
         public BaseStats(MonsterSpec spec, Creature creature, bool rollHP = true)
         {
             this.creature = creature;
+            proficiencyBonus = spec.ProficiencyBonus;
             creatureType = spec.Type;
             creatureSubType = spec.SubType;
             alignment = spec.Alignment;

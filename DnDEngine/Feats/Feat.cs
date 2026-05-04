@@ -30,14 +30,13 @@ public class Feat : IValueModification
         FeatSpec = spec;
         Owner = owner;
         owner.Feats.Add(this);
-        foreach (string valueType in valueChanges.Keys)
+
+        foreach (ValueModificationSpec valueModification in spec.ValueModifications)
         {
-            owner.Values.GetValue<int>(valueType).AddModifier(this);
+            valueChanges[valueModification.ValueType] = valueModification.ValueChange;
+            owner.Values.GetValue<int>(valueModification.ValueType).AddModifier(this);
         }
-        foreach (string valueType in valueOverrides.Keys)
-        {
-            owner.Values.GetValue<int>(valueType).AddModifier(this);
-        }
+
     }
 
     public static bool TryAddFeat(Creature owner, string name, out Feat feat)
