@@ -220,9 +220,9 @@ namespace DnD5eBattleApp
             {
                 return (source as Spell).caster;
             }
-            else if (source is Feat)
+            else if (source is OldFeat)
             {
-                return (source as Feat).creature;
+                return (source as OldFeat).creature;
             }
             else if (source is Item)
             {

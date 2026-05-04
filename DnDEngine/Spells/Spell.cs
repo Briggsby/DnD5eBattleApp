@@ -36,7 +36,7 @@ namespace DnD5eBattleApp
 
         public bool childMenu = false;
 
-        public Feat linkedFeat;
+        public OldFeat linkedFeat;
         public bool noSpellSlot = false;
 
         public Spell() { }

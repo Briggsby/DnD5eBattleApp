@@ -519,7 +519,7 @@ namespace DnD5eBattleApp
             template.texts = new List<string>();
             template.tags = new List<List<string>>();
             template.childMenus = new List<ContextMenuTemplate>();
-            foreach (Feat feat in creature.feats)
+            foreach (OldFeat feat in creature.feats)
             {
                 if (feat.HasChoices())
                 {

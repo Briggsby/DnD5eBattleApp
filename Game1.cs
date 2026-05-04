@@ -268,7 +268,7 @@ public class Game1 : Game
         opportunityAttackSet.cancelText = "Cancel Move";
 
         OpportunityAttackOption.opportunityAttackTextureSet = opportunityAttackSet;
-        Feat.optionsDisplayTextures = opportunityAttackSet;
+        OldFeat.optionsDisplayTextures = opportunityAttackSet;
     }
 
     #endregion

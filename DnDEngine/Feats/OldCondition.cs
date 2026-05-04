@@ -2,15 +2,15 @@ namespace DnD5eBattleApp
 { 
     public abstract class ConditionCreator : FeatCreator
     {
-        public virtual Condition CreateCondition(Creature creature = null)
+        public virtual OldCondition CreateCondition(Creature creature = null)
         {
-            Condition condition = CreateFeat() as Condition;
+            OldCondition condition = CreateFeat() as OldCondition;
             condition.creature = creature;
             return condition;
         }
     }
 
-    public abstract class Condition : Feat
+    public abstract class OldCondition : OldFeat
     {
         public string source;
         public int duration = 0;

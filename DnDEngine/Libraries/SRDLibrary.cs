@@ -60,13 +60,13 @@ namespace DnD5eBattleApp
 
         public class RageCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new RageCondition();
             }
         }
 
-        public class RageCondition : Condition
+        public class RageCondition : OldCondition
         {
             public List<DamageType> resistances = new List<DamageType>()
             {DamageType.Bludgeoning, DamageType.Slashing, DamageType.Piercing };
@@ -155,13 +155,13 @@ namespace DnD5eBattleApp
 
         public class BlindedCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Blinded();
             }
         }
 
-        public class Blinded : Condition
+        public class Blinded : OldCondition
         {
             public Blinded() : base()
             {
@@ -171,13 +171,13 @@ namespace DnD5eBattleApp
 
         public class DeafenedCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Deafened();
             }
         }
 
-        public class Deafened : Condition
+        public class Deafened : OldCondition
         {
             public Deafened() : base()
             {
@@ -187,13 +187,13 @@ namespace DnD5eBattleApp
 
         public class IncapacitatedCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Incapacitated();
             }
         }
 
-        public class Incapacitated : Condition
+        public class Incapacitated : OldCondition
         {
             public Incapacitated() : base()
             {
@@ -203,13 +203,13 @@ namespace DnD5eBattleApp
 
         public class SurprisedCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Surprised();
             }
         }
 
-        public class Surprised : Condition
+        public class Surprised : OldCondition
         {
             public Surprised() : base()
             {
@@ -219,13 +219,13 @@ namespace DnD5eBattleApp
 
         public class ExhaustedCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Exhausted();
             }
         }
 
-        public class Exhausted : Condition
+        public class Exhausted : OldCondition
         {
             public Exhausted() : base()
             {
@@ -235,13 +235,13 @@ namespace DnD5eBattleApp
 
         public class CharmedCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Charmed();
             }
         }
 
-        public class Charmed : Condition
+        public class Charmed : OldCondition
         {
             public Charmed() : base()
             {
@@ -251,12 +251,12 @@ namespace DnD5eBattleApp
 
         public class FrightenedCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Frightened();
             }
 
-            public Feat CreateFeat(Creature creature)
+            public OldFeat CreateFeat(Creature creature)
             {
                 Frightened feat = CreateFeat() as Frightened;
                 feat.fearSource = creature;
@@ -264,7 +264,7 @@ namespace DnD5eBattleApp
             }
         }
 
-        public class Frightened : Condition
+        public class Frightened : OldCondition
         {
             public Creature fearSource;
 
@@ -1797,13 +1797,13 @@ namespace DnD5eBattleApp
         public class DwarvenResilienceCreator : FeatCreator
         {
 
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DwarvenResilience();
             }
         }
 
-        public class DwarvenResilience : Feat
+        public class DwarvenResilience : OldFeat
         {
             public DwarvenResilience() : base()
             {
@@ -1834,13 +1834,13 @@ namespace DnD5eBattleApp
 
         public class DwarvenCombatTrainingCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DwarvenCombatTraining();
             }
         }
 
-        public class DwarvenCombatTraining : Feat
+        public class DwarvenCombatTraining : OldFeat
         {
             public DwarvenCombatTraining() : base()
             {
@@ -1874,13 +1874,13 @@ namespace DnD5eBattleApp
 
         public class DwarvenToolProficiencyCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DwarvenToolProficiency();
             }
         }
 
-        public class DwarvenToolProficiency : Feat
+        public class DwarvenToolProficiency : OldFeat
         {
             public DwarvenToolProficiency() : base()
             {
@@ -1904,13 +1904,13 @@ namespace DnD5eBattleApp
 
         public class StonecunningCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Stonecunning();
             }
         }
 
-        public class Stonecunning : Feat
+        public class Stonecunning : OldFeat
         {
             public Stonecunning() : base()
             {
@@ -1921,13 +1921,13 @@ namespace DnD5eBattleApp
 
         public class DwarvenToughnessCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DwarvenToughness();
             }
         }
 
-        public class DwarvenToughness : Feat
+        public class DwarvenToughness : OldFeat
         {
             public DwarvenToughness() : base()
             {
@@ -1949,13 +1949,13 @@ namespace DnD5eBattleApp
         #region Elves 
         public class FeyAncestryCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FeyAncestry();
             }
         }
 
-        public class FeyAncestry : Feat
+        public class FeyAncestry : OldFeat
         {
             public FeyAncestry() : base()
             {
@@ -1984,13 +1984,13 @@ namespace DnD5eBattleApp
 
         public class ElfTranceCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new ElfTrance();
             }
         }
 
-        public class ElfTrance : Feat
+        public class ElfTrance : OldFeat
         {
             public ElfTrance() : base()
             {
@@ -2001,13 +2001,13 @@ namespace DnD5eBattleApp
 
         public class HighElfCantripCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new HighElfCantrip();
             }
         }
 
-        public class HighElfCantrip : Feat
+        public class HighElfCantrip : OldFeat
         {
             public HighElfCantrip() : base()
             {
@@ -2024,13 +2024,13 @@ namespace DnD5eBattleApp
 
         public class HalflingLuckyCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new HalflingLucky();
             }
         }
 
-        public class HalflingLucky : Feat
+        public class HalflingLucky : OldFeat
         {
             public HalflingLucky() : base()
             {
@@ -2063,13 +2063,13 @@ namespace DnD5eBattleApp
 
         public class HalflingBraveCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new HalflingBrave();
             }
         }
 
-        public class HalflingBrave : Feat
+        public class HalflingBrave : OldFeat
         {
             public HalflingBrave() : base()
             {
@@ -2093,13 +2093,13 @@ namespace DnD5eBattleApp
 
         public class HalflingNimblenessCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new HalflingNimbleness();
             }
         }
 
-        public class HalflingNimbleness : Feat
+        public class HalflingNimbleness : OldFeat
         {
             public HalflingNimbleness() : base()
             {
@@ -2110,13 +2110,13 @@ namespace DnD5eBattleApp
 
         public class NaturallyStealthyCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new NaturallyStealthy();
             }
         }
 
-        public class NaturallyStealthy : Feat
+        public class NaturallyStealthy : OldFeat
         {
             public NaturallyStealthy() : base()
             {
@@ -2131,13 +2131,13 @@ namespace DnD5eBattleApp
 
         public class DraconicAncestryCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DraconicAncestry();
             }
         }
 
-        public class DraconicAncestry : Feat
+        public class DraconicAncestry : OldFeat
         {
             public enum DragonTypes { Black, Blue, Brass, Bronze, Copper, Gold, Green, Red, Silver, White }
 
@@ -2254,13 +2254,13 @@ namespace DnD5eBattleApp
 
         public class GnomeCunningCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new GnomeCunning();
             }
         }
 
-        public class GnomeCunning : Feat
+        public class GnomeCunning : OldFeat
         {
             public GnomeCunning() : base()
             {
@@ -2289,13 +2289,13 @@ namespace DnD5eBattleApp
 
         public class HalfElfStatVersatilityCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new HalfElfStatVersatility();
             }
         }
 
-        public class HalfElfStatVersatility : Feat
+        public class HalfElfStatVersatility : OldFeat
         {
             int statChoicesLeft = 2;
 
@@ -2326,13 +2326,13 @@ namespace DnD5eBattleApp
 
         public class HalfElfSkillVersatilityCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new HalfElfSkillVersatility();
             }
         }
 
-        public class HalfElfSkillVersatility : Feat
+        public class HalfElfSkillVersatility : OldFeat
         {
             public int skillChoicesLeft = 2;
             public HalfElfSkillVersatility() : base()
@@ -2376,13 +2376,13 @@ namespace DnD5eBattleApp
 
         public class RelentlessEnduranceCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new RelentlessEndurance();
             }
         }
 
-        public class RelentlessEndurance : Feat
+        public class RelentlessEndurance : OldFeat
         {
             public RelentlessEndurance() : base()
             {
@@ -2409,13 +2409,13 @@ namespace DnD5eBattleApp
 
         public class SavageAttacksCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SavageAttacks();
             }
         }
 
-        public class SavageAttacks : Feat
+        public class SavageAttacks : OldFeat
         {
             public SavageAttacks() : base()
             {
@@ -2443,13 +2443,13 @@ namespace DnD5eBattleApp
 
         public class HellishResistanceCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new HellishResistance();
             }
         }
 
-        public class HellishResistance : Feat
+        public class HellishResistance : OldFeat
         {
             public HellishResistance() : base()
             {
@@ -2470,13 +2470,13 @@ namespace DnD5eBattleApp
 
         public class InfernalLegacyCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new InfernalLegacy();
             }
         }
 
-        public class InfernalLegacy : Feat
+        public class InfernalLegacy : OldFeat
         {
             public InfernalLegacy() : base()
             {
@@ -2500,13 +2500,13 @@ namespace DnD5eBattleApp
 
         public class ExtraAttackCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new AbilityScoreImprovement();
             }
         }
 
-        public class ExtraAttack : Feat
+        public class ExtraAttack : OldFeat
         {
 
             public ExtraAttack() : base()
@@ -2526,13 +2526,13 @@ namespace DnD5eBattleApp
 
         public class AbilityScoreImprovementCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new AbilityScoreImprovement();
             }
         }
 
-        public class AbilityScoreImprovement : Feat
+        public class AbilityScoreImprovement : OldFeat
         {
             int choices = 2;
             public AbilityScoreImprovement() : base()
@@ -2581,13 +2581,13 @@ namespace DnD5eBattleApp
 
         public class CantripsFeatCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new CantripsFeat();
             }
         }
 
-        public class CantripsFeat : Feat
+        public class CantripsFeat : OldFeat
         {
             public List<Spell> cantrips = new List<Spell>();
             public List<Spell> cantripChoices = new List<Spell>();
@@ -2645,13 +2645,13 @@ namespace DnD5eBattleApp
 
         public class SpellcastingCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SpellCasting();
             }
         }
 
-        public class SpellCasting : Feat
+        public class SpellCasting : OldFeat
         {
             public List<Spell> spells = new List<Spell>();
             public List<Spell> spellChoices = new List<Spell>();
@@ -2738,13 +2738,13 @@ namespace DnD5eBattleApp
 
         public class RitualCastingCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new RitualCasting();
             }
         }
        
-        public class RitualCasting : Feat
+        public class RitualCasting : OldFeat
         {
             PlayerClass spellClass;
 
@@ -2759,13 +2759,13 @@ namespace DnD5eBattleApp
 
         public class RageFeatCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new RageFeat();
             }
         }
 
-        public class RageFeat : Feat
+        public class RageFeat : OldFeat
         {
             public new int MaxUses
             {
@@ -2838,13 +2838,13 @@ namespace DnD5eBattleApp
 
         public class UnarmoredDefenseBarbarianCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new UnarmoredDefenseBarbarian();
             }
         }
 
-        public class UnarmoredDefenseBarbarian : Feat
+        public class UnarmoredDefenseBarbarian : OldFeat
         {
             public UnarmoredDefenseBarbarian() : base()
             {
@@ -2864,13 +2864,13 @@ namespace DnD5eBattleApp
 
         public class RecklessAttackCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new RecklessAttack();
             }
         }
 
-        public class RecklessAttack : Feat
+        public class RecklessAttack : OldFeat
         {
             bool usedThisTurn = false;
 
@@ -2938,13 +2938,13 @@ namespace DnD5eBattleApp
 
         public class DangerSenseCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DangerSense();
             }
         }
 
-        public class DangerSense : Feat
+        public class DangerSense : OldFeat
         {
             public DangerSense() : base()
             {
@@ -2967,13 +2967,13 @@ namespace DnD5eBattleApp
 
         public class FastMovementBarbarianCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FastMovementBarbarian();
             }
         }
 
-        public class FastMovementBarbarian : Feat
+        public class FastMovementBarbarian : OldFeat
         {
             bool heavyArmorReduced = false;
 
@@ -2996,13 +2996,13 @@ namespace DnD5eBattleApp
 
         public class FeralInstinctCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FeralInstinct();
             }
         }
 
-        public class FeralInstinct : Feat
+        public class FeralInstinct : OldFeat
         {
             public FeralInstinct() : base()
             {
@@ -3040,13 +3040,13 @@ namespace DnD5eBattleApp
 
         public class BrutalCriticalCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new BrutalCritical();
             }
         }
 
-        public class BrutalCritical : Feat
+        public class BrutalCritical : OldFeat
         {
             public BrutalCritical() : base()
             {
@@ -3079,13 +3079,13 @@ namespace DnD5eBattleApp
 
         public class RelentlessRageCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new RelentlessRage();
             }
         }
 
-        public class RelentlessRage : Feat
+        public class RelentlessRage : OldFeat
         {
             int DC = 10;
             Roll damageRoll;
@@ -3137,13 +3137,13 @@ namespace DnD5eBattleApp
 
         public class PersistentRageCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new PersistentRage();
             }
         }
 
-        public class PersistentRage : Feat
+        public class PersistentRage : OldFeat
         {
             public PersistentRage() : base()
             {
@@ -3153,13 +3153,13 @@ namespace DnD5eBattleApp
 
         public class IndomitableMightCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new IndomitableMight();
             }
         }
 
-        public class IndomitableMight : Feat
+        public class IndomitableMight : OldFeat
         {
             public IndomitableMight() : base()
             {
@@ -3185,13 +3185,13 @@ namespace DnD5eBattleApp
 
         public class PrimalChampionCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new PrimalChampion();
             }
         }
 
-        public class PrimalChampion : Feat
+        public class PrimalChampion : OldFeat
         {
             public PrimalChampion() : base()
             {
@@ -3208,15 +3208,15 @@ namespace DnD5eBattleApp
 
         public class FrenzyCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Frenzy();
             }
         }
 
-        public class Frenzy : Feat
+        public class Frenzy : OldFeat
         {
-            Feat rageFeat;
+            OldFeat rageFeat;
             bool frenzied = false;
             List<Weapon> weaponList;
 
@@ -3229,7 +3229,7 @@ namespace DnD5eBattleApp
             public override void AddFeat()
             {
                 base.AddFeat();
-                foreach (Feat feat in creature.feats)
+                foreach (OldFeat feat in creature.feats)
                 {
                     if (feat is RageFeat)
                     {
@@ -3304,13 +3304,13 @@ namespace DnD5eBattleApp
 
         public class MindlessRageCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new MindlessRage();
             }
         }
 
-        public class MindlessRage : Feat
+        public class MindlessRage : OldFeat
         {
             public MindlessRage() : base()
             {
@@ -3334,13 +3334,13 @@ namespace DnD5eBattleApp
 
         public class IntimidatingPresenceCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new IntimidatingPresence();
             }
         }
 
-        public class IntimidatingPresence : Feat
+        public class IntimidatingPresence : OldFeat
         {
             IntimidatingPresenceSpell intimidatingPresence;
             public bool usedThisTurn = false;
@@ -3379,7 +3379,7 @@ namespace DnD5eBattleApp
                 {
                     intimidatingPresence.fearThisTurn = null;
                 }
-                foreach (Condition con in intimidatingPresence.fears)
+                foreach (OldCondition con in intimidatingPresence.fears)
                 {
                     if (con != intimidatingPresence.fearThisTurn)
                     {
@@ -3394,13 +3394,13 @@ namespace DnD5eBattleApp
 
         public class RetaliationCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Retaliation();
             }
         }
 
-        public class Retaliation : Feat
+        public class Retaliation : OldFeat
         {
             public Retaliation() : base()
             {
@@ -3443,7 +3443,7 @@ namespace DnD5eBattleApp
 
         public class CantripsFeatBardCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new CantripsFeatBard();
             }
@@ -3493,7 +3493,7 @@ namespace DnD5eBattleApp
 
         public class SpellcastingBardCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SpellCastingBard();
             }
@@ -3547,13 +3547,13 @@ namespace DnD5eBattleApp
 
         public class BardicInspirationGranterCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new BardicInspirationGranter();
             }
         }
 
-        public class BardicInspirationGranter : Feat
+        public class BardicInspirationGranter : OldFeat
         {
             public int die;
 
@@ -3621,13 +3621,13 @@ namespace DnD5eBattleApp
 
         public class BardicInspirationCreator : ConditionCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new BardicInspiration();
             }
         }
 
-        public class BardicInspiration : Condition
+        public class BardicInspiration : OldCondition
         {
             public int die;
 
@@ -3665,13 +3665,13 @@ namespace DnD5eBattleApp
 
         public class JackOfAllTradesCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new JackOfAllTrades();
             }
         }
 
-        public class JackOfAllTrades : Feat
+        public class JackOfAllTrades : OldFeat
         {
             public JackOfAllTrades()
             {
@@ -3696,13 +3696,13 @@ namespace DnD5eBattleApp
 
         public class SongOfRestCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SongOfRest();
             }
         }
 
-        public class SongOfRest : Feat
+        public class SongOfRest : OldFeat
         {
             int die = 6;
 
@@ -3754,13 +3754,13 @@ namespace DnD5eBattleApp
 
         public class ExpertiseBardCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new ExpertiseBard();
             }
         }
 
-        public class ExpertiseBard : Feat
+        public class ExpertiseBard : OldFeat
         {
             public List<Skill> expertises;
             int choicesLeft = 2;
@@ -3826,13 +3826,13 @@ namespace DnD5eBattleApp
 
         public class FontOfInspirationCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FontOfInspiration();
             }
         }
 
-        public class FontOfInspiration : Feat
+        public class FontOfInspiration : OldFeat
         {
             public FontOfInspiration() : base()
             {
@@ -3842,13 +3842,13 @@ namespace DnD5eBattleApp
 
         public class SuperiorInspirationCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SuperiorInspiration();
             }
         }
 
-        public class SuperiorInspiration : Feat
+        public class SuperiorInspiration : OldFeat
         {
             public SuperiorInspiration() : base()
             {
@@ -3858,13 +3858,13 @@ namespace DnD5eBattleApp
 
         public class CounterCharmCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new CounterCharm();
             }
         }
 
-        public class CounterCharm : Feat
+        public class CounterCharm : OldFeat
         {
             public bool active = true;
             bool usedThisTurn = false;
@@ -3911,7 +3911,7 @@ namespace DnD5eBattleApp
 
         public class MagicalSecretsCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new MagicalSecrets();
             }
@@ -3971,7 +3971,7 @@ namespace DnD5eBattleApp
 
         public class BonusProficienciesLoreCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new BonusProficienciesLore();
             }
@@ -3988,13 +3988,13 @@ namespace DnD5eBattleApp
 
         public class CuttingWordsCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new CuttingWords();
             }
         }
 
-        public class CuttingWords : Feat
+        public class CuttingWords : OldFeat
         {
 
             BardicInspirationGranter bardicFeat;
@@ -4044,13 +4044,13 @@ namespace DnD5eBattleApp
 
         public class PeerlessSkillCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new PeerlessSkill();
             }
         }
 
-        public class PeerlessSkill : Feat
+        public class PeerlessSkill : OldFeat
         {
 
             BardicInspirationGranter bardicFeat;
@@ -4100,13 +4100,13 @@ namespace DnD5eBattleApp
 
         public class BonusProficiencyLifeDomainCreator : CantripsFeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new BonusProficiencyLifeDomain();
             }
         }
 
-        public class BonusProficiencyLifeDomain : Feat
+        public class BonusProficiencyLifeDomain : OldFeat
         {
             public BonusProficiencyLifeDomain() : base()
             {
@@ -4126,7 +4126,7 @@ namespace DnD5eBattleApp
 
         public class CantripFeatClericCreator : CantripsFeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new CantripFeatCleric();
             }
@@ -4179,7 +4179,7 @@ namespace DnD5eBattleApp
 
         public class SpellcastingClericCreator : SpellcastingCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SpellcastingCleric();
             }
@@ -4225,13 +4225,13 @@ namespace DnD5eBattleApp
 
         public class ChannelDivinityCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new ChannelDivinity();
             }
         }
 
-        public class ChannelDivinity : Feat
+        public class ChannelDivinity : OldFeat
         {
             public ChannelDivinity() : base()
             {
@@ -4303,13 +4303,13 @@ namespace DnD5eBattleApp
 
         public class DiscipleOfLifeCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DiscipleOfLife();
             }
         }
 
-        public class DiscipleOfLife : Feat
+        public class DiscipleOfLife : OldFeat
         {
             public DiscipleOfLife() : base()
             {
@@ -4332,13 +4332,13 @@ namespace DnD5eBattleApp
 
         public class BlessedHealerCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new BlessedHealer();
             }
         }
 
-        public class BlessedHealer : Feat
+        public class BlessedHealer : OldFeat
         {
             public BlessedHealer() : base()
             {
@@ -4361,13 +4361,13 @@ namespace DnD5eBattleApp
 
         public class DivineStrikeCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DivineStrike();
             }
         }
 
-        public class DivineStrike : Feat
+        public class DivineStrike : OldFeat
         {
             public int die = 8;
             public int NumberOfDie { get { if (creature.level < 14) { return 1; } else { return 2; } } }
@@ -4396,13 +4396,13 @@ namespace DnD5eBattleApp
 
         public class SupremeHealingCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SupremeHealing();
             }
         }
 
-        public class SupremeHealing : Feat
+        public class SupremeHealing : OldFeat
         {
             public SupremeHealing() : base()
             {
@@ -4423,7 +4423,7 @@ namespace DnD5eBattleApp
 
         public class SpellcastingLifeDomainCreator : SpellcastingCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SpellcastingLifeDomain();
             }
@@ -4463,7 +4463,7 @@ namespace DnD5eBattleApp
 
         public class CantripFeatDruidCreator : CantripsFeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new CantripFeatDruid();
             }
@@ -4528,7 +4528,7 @@ namespace DnD5eBattleApp
 
         public class SpellcastingDruidCreator : SpellcastingCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SpellcastingDruid();
             }
@@ -4574,13 +4574,13 @@ namespace DnD5eBattleApp
 
         public class WildShapedCreator : SpellcastingCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new WildShape();
             }
         }
 
-        public class WildShape : Feat
+        public class WildShape : OldFeat
         {
             Dictionary<int, float> crLimit = new Dictionary<int, float>() { { 2, 1 / 4 }, { 4, 1 / 2 }, { 8, 1 } };
             Dictionary<int, bool> flying = new Dictionary<int, bool>() { { 2, false }, { 4, false }, { 8, true } };
@@ -4755,7 +4755,7 @@ namespace DnD5eBattleApp
 
         }
 
-        public class WildShapeCondition : Condition
+        public class WildShapeCondition : OldCondition
         {
             public Monster baseMonster = null;
 
@@ -4779,20 +4779,20 @@ namespace DnD5eBattleApp
 
         public class NaturalRecoveryCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new NaturalRecovery();
             }
         }
 
-        public class NaturalRecovery : Feat
+        public class NaturalRecovery : OldFeat
         {
             
         }
 
         public class NaturalRecoveryOptions : DisplayOptions
         {
-            public NaturalRecoveryOptions() : base("Recover which spell slots?",Feat.optionsDisplayTextures)
+            public NaturalRecoveryOptions() : base("Recover which spell slots?",OldFeat.optionsDisplayTextures)
             {
 
             }
@@ -4800,7 +4800,7 @@ namespace DnD5eBattleApp
 
         public class DruidCircleSpellsCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DruidCircleSpells();
             }
@@ -4844,13 +4844,13 @@ namespace DnD5eBattleApp
 
         public class NaturesWardCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new NaturesWard();
             }
         }
 
-        public class NaturesWard : Feat
+        public class NaturesWard : OldFeat
         {
             public NaturesWard() : base()
             {
@@ -4876,13 +4876,13 @@ namespace DnD5eBattleApp
 
         public class NaturesSanctuaryCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new NaturesSanctuary();
             }
         }
 
-        public class NaturesSanctuary : Feat
+        public class NaturesSanctuary : OldFeat
         {
             List<Creature> immuneCreatures = new List<Creature>();
 
@@ -4923,13 +4923,13 @@ namespace DnD5eBattleApp
 
         public class FighterFightingStyleCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FighterFightingStyle();
             }
         }
 
-        public class FighterFightingStyle : Feat
+        public class FighterFightingStyle : OldFeat
         {
             enum FightingStyleType { None, Archery, Defense, Dueling, GreatWeaponFighting, Protection, TwoWeaponFighting };
 
@@ -4973,13 +4973,13 @@ namespace DnD5eBattleApp
 
         public class FightingStyleArcheryCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FightingStyleArchery();
             }
         }
 
-        public class FightingStyleArchery : Feat
+        public class FightingStyleArchery : OldFeat
         {
             public FightingStyleArchery() : base()
             {
@@ -4999,13 +4999,13 @@ namespace DnD5eBattleApp
 
         public class FightingStyleDefenseCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FightingStyleDefense();
             }
         }
 
-        public class FightingStyleDefense : Feat
+        public class FightingStyleDefense : OldFeat
         {
             public FightingStyleDefense() : base()
             {
@@ -5025,13 +5025,13 @@ namespace DnD5eBattleApp
 
         public class FightingStyleDuelingCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FightingStyleDueling();
             }
         }
 
-        public class FightingStyleDueling : Feat
+        public class FightingStyleDueling : OldFeat
         {
             public FightingStyleDueling() : base()
             {
@@ -5058,13 +5058,13 @@ namespace DnD5eBattleApp
 
         public class FightingStyleGreatWeaponFightingCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FightingStyleGreatWeaponFighting();
             }
         }
 
-        public class FightingStyleGreatWeaponFighting : Feat
+        public class FightingStyleGreatWeaponFighting : OldFeat
         {
             public FightingStyleGreatWeaponFighting() : base()
             {
@@ -5094,13 +5094,13 @@ namespace DnD5eBattleApp
 
         public class FightingStyleProtectionCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FightingStyleProtection();
             }
         }
 
-        public class FightingStyleProtection : Feat
+        public class FightingStyleProtection : OldFeat
         {
             public FightingStyleProtection() : base()
             {
@@ -5142,13 +5142,13 @@ namespace DnD5eBattleApp
 
         public class FightingStyleTwoWeaponFightingCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new FightingStyleTwoWeaponFighting();
             }
         }
 
-        public class FightingStyleTwoWeaponFighting : Feat
+        public class FightingStyleTwoWeaponFighting : OldFeat
         {
             public FightingStyleTwoWeaponFighting() : base()
             {
@@ -5174,13 +5174,13 @@ namespace DnD5eBattleApp
         {
             public SecondWindCreator() : base() { }
 
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new SecondWind();
             }
         }
 
-        public class SecondWind : Feat
+        public class SecondWind : OldFeat
         {
             public SecondWind()
             {
@@ -5200,13 +5200,13 @@ namespace DnD5eBattleApp
 
         public class ActionSurgeCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new ActionSurge();
             }
         }
 
-        public class ActionSurge : Feat
+        public class ActionSurge : OldFeat
         {
             bool usedThisTurn = false;
 
@@ -5260,7 +5260,7 @@ namespace DnD5eBattleApp
 
         public class ExtraAttackFighterCreator : ExtraAttackCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new ExtraAttackFighter();
             }
@@ -5287,13 +5287,13 @@ namespace DnD5eBattleApp
 
         public class IndomitableCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Indomitable();
             }
         }
 
-        public class Indomitable : Feat
+        public class Indomitable : OldFeat
         {
             public Indomitable() : base()
             {
@@ -5344,13 +5344,13 @@ namespace DnD5eBattleApp
 
         public class RemarkableAthleteCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new RemarkableAthlete();
             }
         }
 
-        public class RemarkableAthlete : Feat
+        public class RemarkableAthlete : OldFeat
         {
             public RemarkableAthlete() : base()
             {
@@ -5384,13 +5384,13 @@ namespace DnD5eBattleApp
 
         public class ImprovedCriticalCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new ImprovedCritical();
             }
         }
 
-        public class ImprovedCritical : Feat
+        public class ImprovedCritical : OldFeat
         {
             int CriticalRoll { get { return GetCriticalRoll(); } }
 
@@ -5432,13 +5432,13 @@ namespace DnD5eBattleApp
 
         public class SurvivorCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Survivor();
             }
         }
 
-        public class Survivor : Feat
+        public class Survivor : OldFeat
         {
             public Survivor() : base()
             {
@@ -5462,13 +5462,13 @@ namespace DnD5eBattleApp
 
         public class UnarmoredDefenseMonkCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new UnarmoredDefenseMonk();
             }
         }
 
-        public class UnarmoredDefenseMonk : Feat
+        public class UnarmoredDefenseMonk : OldFeat
         {
             public UnarmoredDefenseMonk() : base()
             {
@@ -5514,13 +5514,13 @@ namespace DnD5eBattleApp
 
         public class MartialArtsCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new MartialArts();
             }
         }
 
-        public class MartialArts : Feat
+        public class MartialArts : OldFeat
         {
             public int MartialArtsDie { get { return GetMartialArtsDie(); } }
 
@@ -5612,13 +5612,13 @@ namespace DnD5eBattleApp
 
         public class KiCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Ki();
             }
         }
         
-        public class Ki : Feat
+        public class Ki : OldFeat
         {
             public List<KiFeat> kiFeats = new List<KiFeat>() { new FlurryOfBlows(), new PatientDefense(), new StepOfTheWindDisengage(), new StepOfTheWindDash() };
 
@@ -5663,7 +5663,7 @@ namespace DnD5eBattleApp
 
 
 
-        public abstract class KiFeat : Feat
+        public abstract class KiFeat : OldFeat
         {
             public Ki kiFeat;
             public int kiCost;
@@ -5796,7 +5796,7 @@ namespace DnD5eBattleApp
             }
         }
 
-        public class UnarmoredMovement : Feat
+        public class UnarmoredMovement : OldFeat
         {
             public int MovementBonus { get { return GetMovementBonus(); } }
 
@@ -5842,7 +5842,7 @@ namespace DnD5eBattleApp
 
         public class DeflectMissilesCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DeflectMissiles();
             }
@@ -5936,7 +5936,7 @@ namespace DnD5eBattleApp
 
         public class StunningStrikeCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new StunningStrike();
             }
@@ -5952,13 +5952,13 @@ namespace DnD5eBattleApp
 
         public class KiEmpoweredStrikesCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new KiEmpoweredStrikes();
             }
         }
 
-        public class KiEmpoweredStrikes : Feat
+        public class KiEmpoweredStrikes : OldFeat
         {
             public KiEmpoweredStrikes() : base()
             {
@@ -5968,13 +5968,13 @@ namespace DnD5eBattleApp
 
         public class EvasionCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Evasion();
             }
         }
 
-        public class Evasion : Feat
+        public class Evasion : OldFeat
         {
             public Evasion() : base()
             {
@@ -5984,13 +5984,13 @@ namespace DnD5eBattleApp
 
         public class StillnessOfMindCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new StillnessOfMind();
             }
         }
 
-        public class StillnessOfMind : Feat
+        public class StillnessOfMind : OldFeat
         {
             public StillnessOfMind() : base()
             {
@@ -6000,7 +6000,7 @@ namespace DnD5eBattleApp
 
         public class PurityOfBodyCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new PurityOfBody();
             }
@@ -6016,13 +6016,13 @@ namespace DnD5eBattleApp
 
         public class TongueoftheSunandMoonCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new TongueoftheSunandMoon();
             }
         }
 
-        public class TongueoftheSunandMoon : Feat
+        public class TongueoftheSunandMoon : OldFeat
         {
             public TongueoftheSunandMoon() : base()
             {
@@ -6032,7 +6032,7 @@ namespace DnD5eBattleApp
 
         public class DiamondSoulCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DiamondSoul();
             }
@@ -6048,7 +6048,7 @@ namespace DnD5eBattleApp
 
         public class EmptyBodyCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new EmptyBody();
             }
@@ -6064,7 +6064,7 @@ namespace DnD5eBattleApp
 
         public class PerfectSelfCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new PerfectSelf();
             }
@@ -6080,7 +6080,7 @@ namespace DnD5eBattleApp
 
         public class OpenHandTechniqueCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new StunningStrike();
             }
@@ -6096,13 +6096,13 @@ namespace DnD5eBattleApp
 
         public class WholenessOfBodyCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new WholenessOfBody();
             }
         }
 
-        public class WholenessOfBody : Feat
+        public class WholenessOfBody : OldFeat
         {
             public WholenessOfBody() : base()
             {
@@ -6112,13 +6112,13 @@ namespace DnD5eBattleApp
 
         public class TranquilityCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Tranquility();
             }
         }
 
-        public class Tranquility : Feat
+        public class Tranquility : OldFeat
         {
             public Tranquility() : base()
             {
@@ -6128,7 +6128,7 @@ namespace DnD5eBattleApp
 
         public class QuiveringPalmCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new QuiveringPalm();
             }
@@ -6146,12 +6146,12 @@ namespace DnD5eBattleApp
 
         #region Paladin
 
-        public class DivineSense : Feat
+        public class DivineSense : OldFeat
         {
 
         }
 
-        public class LayOnHands : Feat
+        public class LayOnHands : OldFeat
         {
 
         }
@@ -6166,52 +6166,52 @@ namespace DnD5eBattleApp
 
         }
 
-        public class DivineSmite : Feat
+        public class DivineSmite : OldFeat
         {
 
         }
 
-        public class DivineHealth : Feat
+        public class DivineHealth : OldFeat
         {
 
         }
 
-        public class SacredOath : Feat
+        public class SacredOath : OldFeat
         {
 
         }
 
-        public class ChannelDivinityPaladin : Feat
+        public class ChannelDivinityPaladin : OldFeat
         {
 
         }
 
-        public class ChannelDivinityFeat : Feat
+        public class ChannelDivinityFeat : OldFeat
         {
 
         }
 
-        public class AuraOfProtection : Feat
+        public class AuraOfProtection : OldFeat
         {
 
         }
 
-        public class AuraOfCourage : Feat
+        public class AuraOfCourage : OldFeat
         {
 
         }
 
-        public class ImprovedDivineSmite : Feat
+        public class ImprovedDivineSmite : OldFeat
         {
 
         }
 
-        public class CleansingTouch : Feat
+        public class CleansingTouch : OldFeat
         {
 
         }
 
-        public class OathOfDevotionSpellcasting : Feat
+        public class OathOfDevotionSpellcasting : OldFeat
         {
 
         }
@@ -6226,17 +6226,17 @@ namespace DnD5eBattleApp
 
         }
 
-        public class AuraOfDevotion : Feat
+        public class AuraOfDevotion : OldFeat
         {
 
         }
 
-        public class PurityOfSpirit : Feat
+        public class PurityOfSpirit : OldFeat
         {
 
         }
 
-        public class HolyNimbus : Feat
+        public class HolyNimbus : OldFeat
         {
 
         }
@@ -6245,12 +6245,12 @@ namespace DnD5eBattleApp
 
         #region Ranger
 
-        public class FavoredEnemy : Feat
+        public class FavoredEnemy : OldFeat
         {
 
         }
 
-        public class NaturalExplorer : Feat
+        public class NaturalExplorer : OldFeat
         {
 
         }
@@ -6265,52 +6265,52 @@ namespace DnD5eBattleApp
 
         }
 
-        public class PrimevalAwareness : Feat
+        public class PrimevalAwareness : OldFeat
         {
 
         }
 
-        public class LandsStride : Feat
+        public class LandsStride : OldFeat
         {
 
         }
 
-        public class HideInPlainSight : Feat
+        public class HideInPlainSight : OldFeat
         {
 
         }
 
-        public class Vanish : Feat
+        public class Vanish : OldFeat
         {
 
         }
 
-        public class FeralSenses : Feat
+        public class FeralSenses : OldFeat
         {
 
         }
 
-        public class FoeSlayer : Feat
+        public class FoeSlayer : OldFeat
         {
 
         }
 
-        public class HuntersPrey : Feat
+        public class HuntersPrey : OldFeat
         {
 
         }
 
-        public class DefensiveTactics : Feat
+        public class DefensiveTactics : OldFeat
         {
 
         }
 
-        public class Multiattack : Feat
+        public class Multiattack : OldFeat
         {
 
         }
 
-        public class SuperiorHuntersDefense : Feat
+        public class SuperiorHuntersDefense : OldFeat
         {
 
         }
@@ -6324,67 +6324,67 @@ namespace DnD5eBattleApp
 
         }
 
-        public class SneakAttack : Feat
+        public class SneakAttack : OldFeat
         {
 
         }
 
-        public class CunningActionFeat : Feat
+        public class CunningActionFeat : OldFeat
         {
 
         }
 
-        public class UncannyDodge : Feat
+        public class UncannyDodge : OldFeat
         {
 
         }
 
-        public class ReliableTalent : Feat
+        public class ReliableTalent : OldFeat
         {
 
         }
 
-        public class Blindsense : Feat
+        public class Blindsense : OldFeat
         {
 
         }
 
-        public class SlipperyMind : Feat
+        public class SlipperyMind : OldFeat
         {
 
         }
 
-        public class Elusive : Feat
+        public class Elusive : OldFeat
         {
 
         }
 
-        public class StrokeOfLuck : Feat
+        public class StrokeOfLuck : OldFeat
         {
 
         }
 
-        public class FastHands : Feat
+        public class FastHands : OldFeat
         {
 
         }
 
-        public class SecondStoryWork : Feat
+        public class SecondStoryWork : OldFeat
         {
 
         }
 
-        public class SupremeSneak : Feat
+        public class SupremeSneak : OldFeat
         {
 
         }
 
-        public class UseMagicDevice : Feat
+        public class UseMagicDevice : OldFeat
         {
 
         }
 
-        public class ThiefsReflexes : Feat
+        public class ThiefsReflexes : OldFeat
         {
 
         }
@@ -6403,46 +6403,46 @@ namespace DnD5eBattleApp
 
         }
 
-        public class SorcerousOrigin : Feat
+        public class SorcerousOrigin : OldFeat
         {
 
         }
 
-        public class FontofMagic : Feat
+        public class FontofMagic : OldFeat
         {
 
         }
 
-        public class Metamagic : Feat
+        public class Metamagic : OldFeat
         {
 
         }
-        public class SorcerousRestoration : Feat
-        {
-
-        }
-
-        public class DragonAncestor : Feat
+        public class SorcerousRestoration : OldFeat
         {
 
         }
 
-        public class DraconicResilience : Feat
+        public class DragonAncestor : OldFeat
         {
 
         }
 
-        public class ElementalAffinity : Feat
+        public class DraconicResilience : OldFeat
         {
 
         }
 
-        public class DragonWings : Feat
+        public class ElementalAffinity : OldFeat
         {
 
         }
 
-        public class DraconicPresence : Feat
+        public class DragonWings : OldFeat
+        {
+
+        }
+
+        public class DraconicPresence : OldFeat
         {
 
         }
@@ -6461,61 +6461,61 @@ namespace DnD5eBattleApp
 
         }
 
-        public class EldritchInvocationFeat : Feat
+        public class EldritchInvocationFeat : OldFeat
         {
 
         }
 
-        public class EldritchInvocation : Feat
+        public class EldritchInvocation : OldFeat
         {
 
         }
 
-        public class PactBoon : Feat
+        public class PactBoon : OldFeat
         {
 
         }
 
-        public class PactOfTheChain : Feat
+        public class PactOfTheChain : OldFeat
         {
 
         }
 
-        public class PactOfTheBlade : Feat
+        public class PactOfTheBlade : OldFeat
         {
 
         }
 
-        public class PactOfTheTome : Feat
+        public class PactOfTheTome : OldFeat
         {
 
         }
 
-        public class MysticArcanum : Feat
+        public class MysticArcanum : OldFeat
         {
 
         }
 
-        public class EldritchMaster : Feat
+        public class EldritchMaster : OldFeat
         {
 
         }
 
-        public class DarkOnesBlessing : Feat
+        public class DarkOnesBlessing : OldFeat
         {
 
         }
 
-        public class DarkOnesOwnLuck : Feat
+        public class DarkOnesOwnLuck : OldFeat
         {
         }
 
-        public class FiendishResilience : Feat
+        public class FiendishResilience : OldFeat
         {
 
         }
 
-        public class HurlThroughHell : Feat
+        public class HurlThroughHell : OldFeat
         {
 
         }
@@ -6694,49 +6694,49 @@ namespace DnD5eBattleApp
 
         }
 
-        public class ArcaneRecovery : Feat
+        public class ArcaneRecovery : OldFeat
         {
 
         }
 
-        public class SpellMastery : Feat
+        public class SpellMastery : OldFeat
         {
 
         }
 
-        public class SignatureSpells : Feat
+        public class SignatureSpells : OldFeat
         {
 
         }
 
-        public class EvocationSavant : Feat
+        public class EvocationSavant : OldFeat
         {
 
         }
 
-        public class SculptSpells : Feat
+        public class SculptSpells : OldFeat
         {
 
         }
 
-        public class PotentCantrip : Feat
+        public class PotentCantrip : OldFeat
         {
 
         }
 
-        public class EmpoweredEvocation : Feat
+        public class EmpoweredEvocation : OldFeat
         {
 
         }
 
-        public class Overchannel : Feat
+        public class Overchannel : OldFeat
         {
 
         }
 
         #endregion
 
-        public class ABIFeature : Feat
+        public class ABIFeature : OldFeat
         {
 
         }
@@ -6752,13 +6752,13 @@ namespace DnD5eBattleApp
 
         public class AmphibiousCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new Amphibious();
             }
         }
 
-        public class Amphibious : Feat
+        public class Amphibious : OldFeat
         {
 
         }
@@ -6769,13 +6769,13 @@ namespace DnD5eBattleApp
         {
             public DarkDevotionCreator() : base() { }
 
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new DarkDevotion();
             }
         }
 
-        public class DarkDevotion : Feat
+        public class DarkDevotion : OldFeat
         {
             public DarkDevotion()
             {
@@ -6788,13 +6788,13 @@ namespace DnD5eBattleApp
 
         public class NimbleEscapeCreator : FeatCreator
         {
-            public override Feat CreateFeat()
+            public override OldFeat CreateFeat()
             {
                 return new NimbleEscape();
             }
         }
 
-        public class NimbleEscape : Feat
+        public class NimbleEscape : OldFeat
         {
             public NimbleEscape()
             {
@@ -7022,7 +7022,7 @@ namespace DnD5eBattleApp
                 name = "Aboleth";
                 cr = 10;
                 naturalWeapons = new List<Weapon>() { new AbolethTentacle() };
-                feats = new List<Feat>() { new Amphibious(), new MucousCloud(), new ProbingTelepathy(), new AbolethEnslave() };
+                feats = new List<OldFeat>() { new Amphibious(), new MucousCloud(), new ProbingTelepathy(), new AbolethEnslave() };
             }
 
             public class AbolethBaseStats : BaseStats
@@ -7069,31 +7069,31 @@ namespace DnD5eBattleApp
 
             public class MucousCloudCreator : FeatCreator
             {
-                public override Feat CreateFeat()
+                public override OldFeat CreateFeat()
                 {
                     return new MucousCloud();
                 }
             }
 
-            public class MucousCloud : Feat
+            public class MucousCloud : OldFeat
             {
 
             }
 
             public class ProbingTelepathyCreator : FeatCreator
             {
-                public override Feat CreateFeat()
+                public override OldFeat CreateFeat()
                 {
                     return new ProbingTelepathy();
                 }
             }
 
-            public class ProbingTelepathy : Feat
+            public class ProbingTelepathy : OldFeat
             {
 
             }
 
-            public class AbolethEnslave : Feat
+            public class AbolethEnslave : OldFeat
             {
 
             }
@@ -7655,8 +7655,8 @@ namespace DnD5eBattleApp
             public List<Creature> resistedCreatures;
             public List<Creature> affectedCreatures;
 
-            public List<Condition> fears;
-            public Condition fearThisTurn;
+            public List<OldCondition> fears;
+            public OldCondition fearThisTurn;
 
             public IntimidatingPresenceSpell() : base()
             {
@@ -7681,7 +7681,7 @@ namespace DnD5eBattleApp
 
                 resistedCreatures = new List<Creature>();
                 affectedCreatures = new List<Creature>();
-                fears = new List<Condition>();
+                fears = new List<OldCondition>();
             }
 
             public override Roll SingleTargetSavingThrowTargeted(Creature target)
@@ -7691,7 +7691,7 @@ namespace DnD5eBattleApp
                     Debug.WriteLine(string.Format("{0} has already resisted {1}", target.name, name));
                     return null;
                 }
-                foreach (Condition con in target.feats)
+                foreach (OldCondition con in target.feats)
                 {
                     if (fears.Contains(con))
                     {

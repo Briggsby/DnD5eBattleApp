@@ -22,9 +22,9 @@ namespace DnD5eBattleApp
         public override void SelectionMade()
         {
             base.SelectionMade();
-            if (ControlObject is Feat)
+            if (ControlObject is OldFeat)
             {
-                (ControlObject as Feat).SelectionMadeOrder(this);
+                (ControlObject as OldFeat).SelectionMadeOrder(this);
             }
         }
 

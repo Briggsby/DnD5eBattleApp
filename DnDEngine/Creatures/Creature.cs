@@ -69,7 +69,7 @@ namespace DnD5eBattleApp
             }
         }
 
-        public List<Feat> feats = new List<Feat>();
+        public List<OldFeat> feats = new List<OldFeat>();
 
         public SpellBook spellbook;
         public SpellSlots spellSlots = new SpellSlots(0, SpellCasterType.None);
@@ -437,7 +437,7 @@ namespace DnD5eBattleApp
 
         public bool CheckFeat(Type type)
         {
-            foreach (Feat feat in feats)
+            foreach (OldFeat feat in feats)
             {
                 if (feat.GetType().IsAssignableFrom(type))
                 {
@@ -447,9 +447,9 @@ namespace DnD5eBattleApp
             return false;
         }
 
-        public Feat GetFeat(Type type)
+        public OldFeat GetFeat(Type type)
         {
-            foreach (Feat feat in feats)
+            foreach (OldFeat feat in feats)
             {
                 if (feat.GetType().IsAssignableFrom(type))
                 {
@@ -459,10 +459,10 @@ namespace DnD5eBattleApp
             return null;
         }
 
-        public Feat RemoveFeat(Type type, bool allConditions = false)
+        public OldFeat RemoveFeat(Type type, bool allConditions = false)
         {
-            List<Feat> listFeats = new List<Feat>(feats);
-            foreach (Feat feat in listFeats)
+            List<OldFeat> listFeats = new List<OldFeat>(feats);
+            foreach (OldFeat feat in listFeats)
             {
                 if (feat.GetType().IsAssignableFrom(type))
                 {
@@ -484,12 +484,12 @@ namespace DnD5eBattleApp
             Type type;
             if (DnDManager.feats.ContainsKey(form))
             {
-                Feat exampleFeat = DnDManager.feats[form].CreateFeat();
+                OldFeat exampleFeat = DnDManager.feats[form].CreateFeat();
                 type = exampleFeat.GetType();
             }
             if (DnDManager.conditions.ContainsKey(form))
             {
-                Condition exampleCondition = DnDManager.conditions[form].CreateCondition();
+                OldCondition exampleCondition = DnDManager.conditions[form].CreateCondition();
                 type = exampleCondition.GetType();
             }
             else
@@ -497,7 +497,7 @@ namespace DnD5eBattleApp
                 type = null;
             }
 
-            foreach (Feat feat in feats)
+            foreach (OldFeat feat in feats)
             {
                 if (feat.GetType().IsAssignableFrom(type))
                 {
@@ -507,7 +507,7 @@ namespace DnD5eBattleApp
             return false;
         }
 
-        public Feat RemoveFeat(Feat feat)
+        public OldFeat RemoveFeat(OldFeat feat)
         {
             feat.RemoveFeat();
             feats.Remove(feat);
@@ -515,7 +515,7 @@ namespace DnD5eBattleApp
             return feat;
         }
 
-        public Feat AddFeat(Feat feat)
+        public OldFeat AddFeat(OldFeat feat)
         {
             feat.creature = this;
             feats.Add(feat);
@@ -526,7 +526,7 @@ namespace DnD5eBattleApp
 
         public bool HasFeatChoices()
         {
-            foreach (Feat feat in feats)
+            foreach (OldFeat feat in feats)
             {
                 if (feat.HasChoices())
                 {
@@ -536,9 +536,9 @@ namespace DnD5eBattleApp
             return false;
         }
 
-        public Condition AddCondition(string condition)
+        public OldCondition AddCondition(string condition)
         {
-            return AddFeat(DnDManager.conditions[condition].CreateCondition()) as Condition;
+            return AddFeat(DnDManager.conditions[condition].CreateCondition()) as OldCondition;
         }
 
         public bool CheckCondition(string condition)
@@ -546,9 +546,9 @@ namespace DnD5eBattleApp
             return CheckFeat(DnDManager.conditions[condition].CreateCondition().GetType());
         }
 
-        public Condition RemoveCondition(string condition, bool removeAll = false)
+        public OldCondition RemoveCondition(string condition, bool removeAll = false)
         {
-            return RemoveFeat(DnDManager.conditions[condition].CreateCondition().GetType(), removeAll) as Condition;
+            return RemoveFeat(DnDManager.conditions[condition].CreateCondition().GetType(), removeAll) as OldCondition;
         }
 
         public void GainExhaustion()
@@ -556,7 +556,7 @@ namespace DnD5eBattleApp
 
         }
 
-        public Condition MakeFrightened(Creature creature)
+        public OldCondition MakeFrightened(Creature creature)
         {
             return null;
         }

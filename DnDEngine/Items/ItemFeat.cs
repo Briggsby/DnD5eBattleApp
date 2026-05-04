@@ -1,6 +1,6 @@
 namespace DnD5eBattleApp
 {
-    public abstract class ItemFeat : Feat
+    public abstract class ItemFeat : OldFeat
     {
 
     }

@@ -9,7 +9,7 @@ namespace DnD5eBattleApp
     {
         public OrderControl orderControl;
 
-        public Feat linkedFeat;
+        public OldFeat linkedFeat;
 
         public Control()
         {
