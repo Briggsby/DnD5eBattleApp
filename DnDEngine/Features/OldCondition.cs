@@ -1,16 +1,16 @@
 namespace DnD5eBattleApp
 { 
-    public abstract class ConditionCreator : FeatCreator
+    public abstract class OldConditionCreator : OldFeatCreator
     {
-        public virtual Condition CreateCondition(Creature creature = null)
+        public virtual OldCondition CreateCondition(Creature creature = null)
         {
-            Condition condition = CreateFeat() as Condition;
+            OldCondition condition = CreateFeat() as OldCondition;
             condition.creature = creature;
             return condition;
         }
     }
 
-    public abstract class Condition : Feat
+    public class OldCondition : OldFeat
     {
         public string source;
         public int duration = 0;
@@ -22,7 +22,7 @@ namespace DnD5eBattleApp
             timeActive++;
             if (duration > 0 && timeActive > duration)
             {
-                creature.RemoveFeat(this);
+                this.RemoveFeat();
             }
         }
 
@@ -31,8 +31,9 @@ namespace DnD5eBattleApp
             RemoveFeat();
         }
 
-        public virtual void AddCondition()
+        public virtual void AddCondition(Creature creature = null)
         {
+            if (creature is not null) {this.creature = creature;}
             AddFeat();
         }
 

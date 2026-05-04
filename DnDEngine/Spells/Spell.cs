@@ -39,6 +39,8 @@ namespace DnD5eBattleApp
         public Feat linkedFeat;
         public bool noSpellSlot = false;
 
+        public List<Condition> AppliesConditions = new List<Condition>();
+
         public Spell() { }
 
         public Spell(SpellSpec spellSpec, Creature caster = null)
@@ -62,6 +64,10 @@ namespace DnD5eBattleApp
                     damageDiceNumber.Add(damageSpec.DamageDiceNumber);
                     damageTypes.Add(damageSpec.Type.ToString());
                 }           
+            }
+            foreach (ConditionApplySpec conditionApplySpec in spellSpec.AppliesConditions )
+            {
+                Condition.TryAddFeat(target, conditionApplySpec.Condition, out _);
             }
             if (caster != null)
             {
@@ -202,7 +208,7 @@ namespace DnD5eBattleApp
 
         public Creature target;
         public SavingThrow saveRoll;
-        public List<FeatCreator> effectsOnFail = new List<FeatCreator>();
+        public List<OldFeatCreator> effectsOnFail = new List<OldFeatCreator>();
 
         public Dictionary<Creature, Roll> savingThrows;
         public List<Creature> targets;
@@ -312,6 +318,11 @@ namespace DnD5eBattleApp
             return new Attack(caster, target, this);
         }
 
+        public void OnHit(Attack attack)
+        {
+            
+        }
+
         public virtual Roll SingleTargetSavingThrowTargeted(Creature target)
         {
             this.target = target;
@@ -391,7 +402,7 @@ namespace DnD5eBattleApp
 
         public virtual void SpellEffect(Creature target)
         {
-            foreach (FeatCreator featCreator in effectsOnFail)
+            foreach (OldFeatCreator featCreator in effectsOnFail)
             {
                 target.AddFeat(featCreator.CreateFeat());
             }

@@ -29,13 +29,9 @@ namespace DnD5eBattleApp
             var weapons = new List<Item>();
             foreach (string weaponName in spec.Equipment)
             {
-                if (DnDManager.weapons.ContainsKey(weaponName))
+                if (DnDManager.TryGetResource(weaponName, out WeaponSpec weaponSpec))
                 {
-                    weapons.Add(new Weapon(DnDManager.weapons[weaponName]));
-                }
-                else
-                {
-                    Console.WriteLine($"Error: Weapon {weaponName} not found in DnDManager.weapons");
+                    weapons.Add(new Weapon(weaponSpec));
                 }
             }
             inventory = new Inventory(this, weapons);

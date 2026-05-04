@@ -1,0 +1,7 @@
+{
+    "$schema": "../../Schemas/ConditionSpecSchema.json",
+    "Name": "Speed Reduction",
+    "ValueModifications": [
+        {"ValueType": "Speed", "ValueChange": -10}
+    ]
+}

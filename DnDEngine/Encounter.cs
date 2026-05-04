@@ -523,11 +523,11 @@ namespace DnD5eBattleApp
             {
                 if (feat.HasChoices())
                 {
-                    template.texts.Add(feat.name);
+                    template.texts.Add(feat.Name);
                     template.tags.Add(new List<string>() { ContextMenu.DefaultTags.ParentMenu.ToString() });
                     ContextMenuTemplate childMenu = BaseControlsTemplate();
                     childMenu.childMenus = new List<ContextMenuTemplate>();
-                    foreach (string s in feat.featChoices)
+                    foreach (string s in feat.FeatChoices)
                     {
                         childMenu.texts.Add(s);
                         if (feat.FeatChoiceChildMenu(s) == null)

@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 namespace DnD5eBattleApp
 {
+
     public class Attack
     {
         public Creature attacker;
@@ -15,6 +16,10 @@ namespace DnD5eBattleApp
         public Spell spell;
 
         public bool offHand = false;
+
+        public delegate void OnHit(Attack attack);
+
+        public OnHit OnHitEffect {get; set;}
 
         public AttackRoll attackRoll;
         public DamageRoll damageRoll;
@@ -50,11 +55,13 @@ namespace DnD5eBattleApp
 
         }
 
+
         public Attack(Creature attacker, Creature defender, Spell spell)
         {
             this.attacker = attacker;
             this.defender = defender;
             this.spell = spell;
+            this.OnHitEffect = spell.OnHit;
             isSpell = true;
             this.numberAttacks = 1;
 
@@ -158,6 +165,10 @@ namespace DnD5eBattleApp
             {
                 Debug.WriteLine(string.Format("{0} hit {1} with an attack with an attack roll of {2} ({3} + {4}) against an AC of {5} {6}", attacker.name, defender.name, roll.score, roll.score - roll.bonus, roll.bonus, defender.AC, roll.WithAdvantagePrint()));
                 DoDamageRoll();
+                if (OnHitEffect is not null)
+                {
+                    OnHitEffect(this);
+                }
             }
             else
             {

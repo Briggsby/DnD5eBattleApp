@@ -14,17 +14,17 @@ namespace DnD5eBattleApp
 
     }
 
-    public abstract class FeatCreator
+    public abstract class OldFeatCreator
     {
         public Type TypeFeat()
         {
             return CreateFeat().GetType();
         }
 
-        public abstract Feat CreateFeat();
+        public abstract OldFeat CreateFeat();
     }
 
-    public class Feat : IValueModification
+    public class OldFeat : Feat, IValueModification
     {
         public static DisplayOptionsTextureSet optionsDisplayTextures;
 

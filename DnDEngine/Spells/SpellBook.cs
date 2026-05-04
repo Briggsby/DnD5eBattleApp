@@ -48,13 +48,9 @@ namespace DnD5eBattleApp
             spells = new List<Spell>();
             foreach (string spellName in spellBookSpec.Spells)
             {
-                if (DnDManager.spells.ContainsKey(spellName))
+                if (DnDManager.TryGetResource(spellName, out SpellSpec spec))
                 {
-                    spells.Add(new Spell(DnDManager.spells[spellName], owner));
-                }
-                else
-                {
-                    Console.WriteLine(string.Format("Spell {0} not found in DnDManager.spells", spellName));
+                    spells.Add(new Spell(spec, owner));
                 }
             }
             spellsByLevel = SortSpellsByLevel(spells);

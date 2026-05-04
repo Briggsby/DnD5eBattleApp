@@ -15,10 +15,10 @@ namespace DnD5eBattleApp
         public Dictionary<string, SubSpecies> subSpecies;
         public Dictionary<string, PlayerClass> classes;
         public Dictionary<string, SubClass> subClasses;
-        public Dictionary<string, FeatCreator> feats;
+        public Dictionary<string, OldFeatCreator> feats;
         public Dictionary<string, MonsterCreator> monsters;
         public Dictionary<string, SpellCreator> spells;
-        public Dictionary<string, ConditionCreator> conditions;
+        public Dictionary<string, OldConditionCreator> conditions;
 
 
         public List<string> martialMeleeWeapons;

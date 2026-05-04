@@ -38,7 +38,7 @@ public record SpellSpec
     public int TargetCount {get; init;} = 1;
 
     public List<DamageSpec> Damages {get; init;} = new List<DamageSpec>();
-
+    public List<ConditionApplySpec> AppliesConditions {get; init; } = new List<ConditionApplySpec>();
     public bool ScaleCantripDamage {get; init;} = true;
 
     public string Description {get; init;} = "";

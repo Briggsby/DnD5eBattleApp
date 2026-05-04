@@ -106,6 +106,35 @@
         ]
       }
     },
+    "AppliesConditions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "Condition": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ConditionParameters": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "Condition"
+        ]
+      }
+    },
     "ScaleCantripDamage": {
       "type": "boolean"
     },

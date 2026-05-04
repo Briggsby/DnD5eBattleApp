@@ -56,7 +56,7 @@ namespace DnD5eBattleApp
             equipper = null;
             foreach (ItemFeat feat in equipFeats)
             {
-                creature.RemoveFeat(feat);
+                feat.RemoveFeat();
             }
             creature.RecalibrateStats();
         }

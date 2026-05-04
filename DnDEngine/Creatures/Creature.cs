@@ -447,6 +447,18 @@ namespace DnD5eBattleApp
             return false;
         }
 
+        public bool CheckFeat(string form)
+        {
+            foreach (Feat feat in feats)
+            {
+                if (feat.Name == form)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public Feat GetFeat(Type type)
         {
             foreach (Feat feat in feats)
@@ -479,49 +491,21 @@ namespace DnD5eBattleApp
             return null;
         }
 
-        public bool CheckFeat(string form)
+        public Feat AddFeat(OldFeat feat)
         {
-            Type type;
-            if (DnDManager.feats.ContainsKey(form))
-            {
-                Feat exampleFeat = DnDManager.feats[form].CreateFeat();
-                type = exampleFeat.GetType();
-            }
-            if (DnDManager.conditions.ContainsKey(form))
-            {
-                Condition exampleCondition = DnDManager.conditions[form].CreateCondition();
-                type = exampleCondition.GetType();
-            }
-            else
-            {
-                type = null;
-            }
-
-            foreach (Feat feat in feats)
-            {
-                if (feat.GetType().IsAssignableFrom(type))
-                {
-                    return true;
-                }
-            }
-            return false;
+            throw new NotImplementedException("Tried to add legacy feat");
         }
-
-        public Feat RemoveFeat(Feat feat)
+        public Feat AddFeat(string feat)
         {
-            feat.RemoveFeat();
-            feats.Remove(feat);
-            RecalibrateStats();
-            return feat;
+            throw new NotImplementedException("Tried to add legacy feat");
         }
-
-        public Feat AddFeat(Feat feat)
+        public Feat RemoveFeat(OldFeat feat)
         {
-            feat.creature = this;
-            feats.Add(feat);
-            feat.AddFeat();
-            RecalibrateStats();
-            return feat;
+            throw new NotImplementedException("Tried to remove legacy feat");
+        }
+        public Feat RemoveFeat(string feat)
+        {
+            throw new NotImplementedException("Tried to remove legacy feat");
         }
 
         public bool HasFeatChoices()
@@ -534,21 +518,6 @@ namespace DnD5eBattleApp
                 }
             }
             return false;
-        }
-
-        public Condition AddCondition(string condition)
-        {
-            return AddFeat(DnDManager.conditions[condition].CreateCondition()) as Condition;
-        }
-
-        public bool CheckCondition(string condition)
-        {
-            return CheckFeat(DnDManager.conditions[condition].CreateCondition().GetType());
-        }
-
-        public Condition RemoveCondition(string condition, bool removeAll = false)
-        {
-            return RemoveFeat(DnDManager.conditions[condition].CreateCondition().GetType(), removeAll) as Condition;
         }
 
         public void GainExhaustion()
