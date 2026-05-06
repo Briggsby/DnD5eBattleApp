@@ -44,7 +44,11 @@ public record MonsterSpec
     public List<DamageType> DamageResistances {get; init;} = new List<DamageType>();
     public List<DamageType> DamageImmunities {get; init;} = new List<DamageType>();
     public List<DamageType> DamageVulnerabilities {get; init;} = new List<DamageType>();
+    
+    [SchemaRef("ConditionName.schema.json")]
     public List<string> ConditionImmunities {get; init;} = new List<string>();
+    
+    [SchemaRef("SpellName.schema.json")]
     public List<string> Spells {get; init;} = new List<string>();
 
     public Dictionary<string, int> LegendaryActions {get; init;} = new Dictionary<string, int>();

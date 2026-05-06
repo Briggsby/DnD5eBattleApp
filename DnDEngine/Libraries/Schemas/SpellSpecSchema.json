@@ -79,9 +79,13 @@
       }
     },
     "AppliesCondition": {
-      "type": [
-        "string",
-        "null"
+      "anyOf": [
+        {
+          "$ref": "ConditionName.schema.json"
+        },
+        {
+          "type": "null"
+        }
       ]
     }
   },

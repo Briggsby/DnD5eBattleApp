@@ -22,9 +22,14 @@
         ],
         "properties": {
           "ValueType": {
-            "type": [
-              "string",
-              "null"
+            "enum": [
+              "speed",
+              "strength",
+              "dexterity",
+              "constitution",
+              "wisdom",
+              "intelligence",
+              "charisma"
             ]
           },
           "ValueChange": {

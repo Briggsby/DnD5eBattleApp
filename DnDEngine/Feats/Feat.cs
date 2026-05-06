@@ -33,8 +33,8 @@ public class Feat : IValueModification
 
         foreach (ValueModificationSpec valueModification in spec.ValueModifications)
         {
-            valueChanges[valueModification.ValueType] = valueModification.ValueChange;
-            owner.Values.GetValue<int>(valueModification.ValueType).AddModifier(this);
+            valueChanges[valueModification.ValueType.ToString()] = valueModification.ValueChange;
+            owner.Values.GetValue<int>(valueModification.ValueType.ToString()).AddModifier(this);
         }
 
     }

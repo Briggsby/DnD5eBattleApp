@@ -255,14 +255,16 @@ namespace DnD5eBattleApp
             {
                 oldFeats.Add(s, newLibrary.feats[s]);
             }
+            weapons = new Dictionary<string, WeaponSpec>();
             // TODO: Take argument for path
             var path = "E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD 5.1/";
-            IngestSpecs(path + "Monsters", monsters);
-            IngestSpecs(path + "Spells", spells);
-            IngestSpecs(path + "Conditions", Conditions);
-            
-            weapons = new Dictionary<string, WeaponSpec>();
-            IngestSpecs(path + "Weapons", weapons);
+
+
+
+            SchemaHandler.IngestSpecs(path + "Monsters", monsters);
+            SchemaHandler.IngestSpecs(path + "Spells", spells);
+            SchemaHandler.IngestSpecs(path + "Conditions", Conditions);
+            SchemaHandler.IngestSpecs(path + "Weapons", weapons);
             foreach (string classString in newLibrary.spellLists.Keys)
             {
                 if (spellLists.Keys.Contains(classString))
@@ -309,18 +311,6 @@ namespace DnD5eBattleApp
             }
 
             libraries.Add(newLibrary);
-        }
-
-        private void IngestSpecs<T>(string path, Dictionary<string, T> dict)
-        {
-            // Iterate through every file in path, parse it as the given type, and add it to the given dictionary with the spec's name as the key
-            string[] files = System.IO.Directory.GetFiles(path);
-            foreach (string file in files)
-            {
-                string json = System.IO.File.ReadAllText(file);
-                T spec = System.Text.Json.JsonSerializer.Deserialize<T>(json, SchemaExporter.Options);
-                dict.Add((string)typeof(T).GetProperty("Name").GetValue(spec), spec);
-            }
         }
 
         public static T GetResource<T>(string name)

@@ -309,10 +309,7 @@
         "null"
       ],
       "items": {
-        "type": [
-          "string",
-          "null"
-        ]
+        "$ref": "ConditionName.schema.json"
       }
     },
     "Spells": {
@@ -321,10 +318,7 @@
         "null"
       ],
       "items": {
-        "type": [
-          "string",
-          "null"
-        ]
+        "$ref": "SpellName.schema.json"
       }
     },
     "LegendaryActions": {

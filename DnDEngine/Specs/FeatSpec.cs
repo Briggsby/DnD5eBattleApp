@@ -3,7 +3,7 @@ using DnD5eBattleApp;
 
 public record ValueModificationSpec
 {
-    public required string ValueType {get; init;}
+    public required CreatureValue ValueType {get; init;}
     public required int ValueChange {get; init;}
 }
 

@@ -43,7 +43,7 @@ public class Game1 : Game
         // TODO: use this.Content to load your game content here
 
         // TODO: This should be done as a test or separate script, and take folder as a parameter
-        SchemaExporter.ExtractSchemas("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/Schemas");
+        SchemaHandler.ExtractSchemas("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/Schemas");
     
         //LoadDebugMenuContent();
         LoadBoardTextures();
