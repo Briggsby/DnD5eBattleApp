@@ -591,9 +591,9 @@ public class Creature : GameObject
         return weaponList;
     }
 
-    public List<Weapon> GetMeleeWeapons()
+    public List<Weapon> GetMeleeWeapons(bool onlyEquipped = false)
     {
-        List<Weapon> weaponList = GetAttackWeapons();
+        List<Weapon> weaponList = GetAttackWeapons(onlyEquipped);
         foreach (Weapon weapon in weaponList)
         {
             if (weapon.weaponProperties.Contains(WeaponProperty.Range))
