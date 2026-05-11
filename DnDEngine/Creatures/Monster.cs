@@ -17,5 +17,10 @@ namespace DnD5eBattleApp
             string[] names = new string[] { "Gobbo", "GibGob", "Gablu", "GibbyGob", "GabbyGoo", "GibGab", "GobbyGob", "GobbyGoo", "Gombini", "GabGab" };
             return names[new Random().Next(0, names.Length)];
         }
+
+        public override bool IsProficientInWeapon(Weapon weapon)
+        {
+            return true;
+        }
     }
 }

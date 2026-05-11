@@ -41,7 +41,7 @@ namespace DnD5eBattleApp
 
             else if (tags.Contains(CombatActions.Attack.ToString()))
             {
-                new AttackOrder(creature, creature.GetAttackWeapons()[int.Parse(tags[1])]);
+                creature.GetAttackWeapons()[int.Parse(tags[1])].Use();
             }
 
             else if (tags.Contains(CombatActions.CastSpell.ToString()))

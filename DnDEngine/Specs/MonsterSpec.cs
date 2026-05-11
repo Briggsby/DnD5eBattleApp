@@ -74,15 +74,7 @@ public record MonsterSpec
         monster.Texture = DnDManager.monsterTextures[SRDLibrary.Monsters.Goblin.ToString()];
         // TODO: Handle Armor? Is it even needed
 
-        var weapons = new List<Item>();
-        foreach (string weaponName in Equipment)
-        {
-            if (DnDManager.TryGetResource(weaponName, out WeaponSpec weaponSpec))
-            {
-                weapons.Add(weaponSpec.ToWeapon());
-            }
-        }
-        monster.inventory = new Inventory(monster, weapons);
+        monster.inventory = new Inventory(monster, Equipment);
         monster.RecalibrateStats();
         monster.ResetHP();
 

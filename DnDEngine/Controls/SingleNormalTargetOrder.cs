@@ -14,7 +14,7 @@ namespace DnD5eBattleApp
         public SingleNormalTargetOrder(Creature creature, Object controlObject, int range, Color? color = null) : base(creature)
         {
             this.ControlObject = controlObject;
-            EngManager.StartCoroutine(SetOrderControl(creature.encounter.board, creature.boardTile, range, color ?? Color.OrangeRed, new List<TileOrderCriteria>() { TileOrderCriteria.WithCreature }));
+            EngManager.StartCoroutine(SetOrderControl(creature.encounter.board, creature.boardTile, range, color ?? Color.LightPink, new List<TileOrderCriteria>() { TileOrderCriteria.WithCreature }));
         }
 
         public override void SelectionMade()

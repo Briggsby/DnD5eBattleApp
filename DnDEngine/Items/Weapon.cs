@@ -13,13 +13,28 @@ namespace DnD5eBattleApp
 
     public class Weapon : Item
     {
+        public Ability Ability {
+            get {
+                return new WeaponAttackAbility(this, inventory.creature);
+            }
+        }
         public WeaponCategory weaponCategory;
         public WeaponType weaponType;
         public List<int> damageDice;
         public List<int> versatileDamageDice = new List<int>();
         public List<int> damageDiceNumber;
         public List<string> damageTypes;
+
         public Stat abilityStat;
+        public Stat AbilityStat {
+            get { 
+                if (abilityStat == Stat.Strength && weaponProperties.Contains(WeaponProperty.Finesse)) {
+                    return inventory.creature.StatMod(Stat.Dexterity) > inventory.creature.StatMod(Stat.Strength) ? Stat.Dexterity : Stat.Strength;
+                }
+                return abilityStat;
+            }
+            set { abilityStat = value; }
+        }
         public int minRange;
         public int maxRange;
         public List<WeaponProperty> weaponProperties;
@@ -41,7 +56,7 @@ namespace DnD5eBattleApp
             damageDice = new List<int>() { 1 };
             damageDiceNumber = new List<int>() { 1 };
             damageTypes = new List<string>() { DamageType.Bludgeoning.ToString() };
-            abilityStat = Stat.Strength;
+            AbilityStat = Stat.Strength;
             minRange = 5;
             maxRange = 5;
             weaponProperties = new List<WeaponProperty>() { WeaponProperty.Light };
@@ -49,6 +64,7 @@ namespace DnD5eBattleApp
         }
 
         public Weapon(
+            Inventory inventory,
             string name, 
             WeaponCategory category, 
             List<int> damageDice, 
@@ -65,12 +81,13 @@ namespace DnD5eBattleApp
         )
         {
             itemType = ItemType.Weapon.ToString();
+            this.inventory = inventory;
             this.name = name;
             this.weaponCategory = category;
             this.damageDice = damageDice;
             this.damageDiceNumber = damageDiceNumber;
             this.damageTypes = damageTypes;
-            this.abilityStat = abilityStat;
+            this.AbilityStat = abilityStat;
             this.minRange = minRange;
             this.maxRange = maxRange;
             this.weaponProperties = weaponProperties ?? new List<WeaponProperty>();
@@ -79,6 +96,12 @@ namespace DnD5eBattleApp
             this.attackBonus = attackBonus;
             this.damageBonus = damageBonus;
         }
+
+        public void Use() {
+            Ability.Use();
+        }
+
+        // TODO: Stuff below can be removed if equipping is removed
 
         public override bool Equippable(Creature creature)
         {

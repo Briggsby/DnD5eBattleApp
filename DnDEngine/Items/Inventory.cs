@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using BugsbyEngine;
 
 
@@ -18,16 +18,22 @@ namespace DnD5eBattleApp
         public List<AdventurersGear> adventurersGears;
         public List<Tool> tools;
 
-        public Inventory(Creature creature, List<Item> items)
+        public Inventory(Creature creature, List<string> items)
         {
             this.creature = creature;
-            this.items = items;
+            this.items = new List<Item>();
+            this.weapons = new List<Weapon>();
+            foreach (string itemName in items)
+            {
+                // TODO: Handle other item types
+                if (DnDManager.TryGetResource<WeaponSpec>(itemName, out WeaponSpec weaponSpec))
+                {
+                    Weapon weapon = weaponSpec.ToWeapon(this);
+                    this.items.Add(weapon);
+                    this.weapons.Add(weapon);
+                }
+            }
             SortInventory();
-        }
-
-        public Inventory CopyInventory(Creature creature)
-        {
-            return new Inventory(creature, items);
         }
 
         public void SortInventory()

@@ -423,7 +423,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 4 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageType.Bludgeoning.ToString() };
-                abilityStat = Stat.Strength;
+                AbilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Light };
@@ -453,7 +453,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageType.Slashing.ToString() };
-                abilityStat = Stat.Strength;
+                AbilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse, WeaponProperty.Light };
@@ -480,7 +480,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageType.Piercing.ToString() };
-                abilityStat = Stat.Dexterity;
+                AbilityStat = Stat.Dexterity;
                 minRange = 80;
                 maxRange = 320;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Range };
@@ -512,7 +512,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 4 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageType.Piercing.ToString() };
-                abilityStat = Stat.Strength;
+                AbilityStat = Stat.Strength;
                 minRange = 20;
                 maxRange = 60;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse, WeaponProperty.Light, WeaponProperty.Thrown };
@@ -538,7 +538,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageType.Slashing.ToString() };
-                abilityStat = Stat.Strength;
+                AbilityStat = Stat.Strength;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Finesse, WeaponProperty.Light};
                 acBonus = 0;
             }
@@ -567,7 +567,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 12 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageType.Slashing.ToString() };
-                abilityStat = Stat.Strength;
+                AbilityStat = Stat.Strength;
                 minRange = 5;
                 maxRange = 5;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.TwoHanded };
@@ -598,7 +598,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageType.Slashing.ToString() };
-                abilityStat = Stat.Strength;
+                AbilityStat = Stat.Strength;
                 minRange = 20;
                 maxRange = 60;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Light, WeaponProperty.Thrown };
@@ -630,7 +630,7 @@ namespace DnD5eBattleApp
                 damageDice = new List<int>() { 6 };
                 damageDiceNumber = new List<int>() { 1 };
                 damageTypes = new List<string>() { DamageType.Piercing.ToString() };
-                abilityStat = Stat.Strength;
+                AbilityStat = Stat.Strength;
                 minRange = 30;
                 maxRange = 120;
                 weaponProperties = new List<WeaponProperty>() { WeaponProperty.Thrown };

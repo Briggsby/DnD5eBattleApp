@@ -104,7 +104,7 @@ public class Creature : GameObject
 
     public void Initializing()
     {
-        inventory = new Inventory(this, new List<Item>());
+        inventory = new Inventory(this, new List<string>());
         oldSpellbook = new OldSpellBook(this);
         SetDefaultValues();
     }
@@ -252,6 +252,7 @@ public class Creature : GameObject
 
     public int StatMod(Stat stat)
     {
+        // TODO: Change all of these to use the below version
         return (int)((stats[stat] / 2) - 5);
     }
 
@@ -604,7 +605,7 @@ public class Creature : GameObject
         return weaponList;
     }
 
-    public bool IsProficientInWeapon(Weapon weapon)
+    public virtual bool IsProficientInWeapon(Weapon weapon)
     {
         return (Proficiencies.Contains(weapon.weaponCategory.ToString()) || Proficiencies.Contains(weapon.weaponType.ToString()) || weapon.weaponCategory == WeaponCategory.NaturalWeapon);
     }

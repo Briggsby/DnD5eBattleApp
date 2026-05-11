@@ -109,8 +109,8 @@ namespace DnD5eBattleApp
                 }
                 else
                 {
-                    bonus += attacker.StatMod(attackerWeapon.abilityStat);
-                    statUsed = attackerWeapon.abilityStat;
+                    bonus += attacker.StatMod(attackerWeapon.AbilityStat);
+                    statUsed = attackerWeapon.AbilityStat;
                 }
 
                 if (attacker.IsProficientInWeapon(attackerWeapon))

@@ -7,7 +7,8 @@ class WeaponAttackAbility : Ability {
             return new Damage{
                 DamageType= Weapon.damageTypes[0],
                 NumberOfDice= Weapon.damageDiceNumber[0],
-                MaxValueOfDice= Weapon.damageDice[0]
+                MaxValueOfDice= Weapon.damageDice[0],
+                FlatValue= Owner.StatMod(Weapon.AbilityStat) + Weapon.damageBonus
             };
         }
     }
@@ -19,4 +20,11 @@ class WeaponAttackAbility : Ability {
     }, ActionType.Action, null, null) {
         Weapon = weapon;
     }
+
+    public override int GetAttackBonus()
+    {
+        return Weapon.attackBonus + Owner.StatMod(Weapon.AbilityStat) + (Owner.IsProficientInWeapon(Weapon) ? Owner.proficiencyBonus : 0);
+    }
+
+
 }
