@@ -575,11 +575,17 @@ public class Creature : GameObject
     #endregion
 
     #region Battling
-    public List<Weapon> GetAttackWeapons()
+    public List<Weapon> GetAttackWeapons(bool onlyEquipped = false)
     {
         List<Weapon> weaponList = new List<Weapon>();
-        if (weaponMainHand != null) { weaponList.Add(weaponMainHand); }
-        if (weaponOffHand != null) { weaponList.Add(weaponOffHand); }
+        if (!onlyEquipped)
+        {
+            weaponList.AddRange(inventory.weapons);
+        }
+        else {
+            if (weaponMainHand != null) { weaponList.Add(weaponMainHand); }
+            if (weaponOffHand != null) { weaponList.Add(weaponOffHand); }
+        }
         if (naturalWeapons.Count > 0) { weaponList.AddRange(naturalWeapons); }
 
         return weaponList;
@@ -587,20 +593,14 @@ public class Creature : GameObject
 
     public List<Weapon> GetMeleeWeapons()
     {
-        List<Weapon> weaponList = new List<Weapon>();
-        if (weaponMainHand != null && !weaponMainHand.weaponProperties.Contains(WeaponProperty.Range)) { weaponList.Add(weaponMainHand); }
-        if (weaponOffHand != null && !weaponMainHand.weaponProperties.Contains(WeaponProperty.Range)) { weaponList.Add(weaponOffHand); }
-        if (naturalWeapons.Count > 0)
+        List<Weapon> weaponList = GetAttackWeapons();
+        foreach (Weapon weapon in weaponList)
         {
-            foreach (Weapon weapon in naturalWeapons)
+            if (weapon.weaponProperties.Contains(WeaponProperty.Range))
             {
-                if (!weapon.weaponProperties.Contains(WeaponProperty.Range))
-                {
-                    weaponList.AddRange(naturalWeapons);
-                }
+                weaponList.Remove(weapon);
             }
         }
-
         return weaponList;
     }
 
