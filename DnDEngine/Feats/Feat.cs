@@ -14,29 +14,35 @@ namespace DnD5eBattleApp;
 public class Feat : IValueModification
 {
     public Creature Owner { get; set; }
-    public FeatSpec FeatSpec {get; set;}
     public String Name {get; set; }
 
     public Dictionary<string, int> valueChanges = new Dictionary<string, int>();
     public Dictionary<string, int> valueOverrides = new Dictionary<string, int>();
 
-    public Feat()
-    {
-        throw new NotImplementedException("Deprecated Feat usage");
-    }
-
-    public Feat(Creature owner, FeatSpec spec)
-    {
-        FeatSpec = spec;
+    public Feat(
+        string name,
+        Creature owner,
+        Dictionary<string, int> valueChanges = null,
+        Dictionary<string, int> valueOverrides = null
+    ) {
         Owner = owner;
         owner.Feats.Add(this);
-
-        foreach (ValueModificationSpec valueModification in spec.ValueModifications)
+        if (valueChanges != null)
         {
-            valueChanges[valueModification.ValueType.ToString()] = valueModification.ValueChange;
-            owner.Values.GetValue<int>(valueModification.ValueType.ToString()).AddModifier(this);
+            foreach (string valueType in valueChanges.Keys)
+            {
+                this.valueChanges[valueType] = valueChanges[valueType];
+                owner.Values.GetValue<int>(valueType).AddModifier(this);
+            }
         }
-
+        if (valueOverrides != null)
+        {
+            foreach (string valueType in valueOverrides.Keys)
+            {
+                this.valueOverrides[valueType] = valueOverrides[valueType];
+                owner.Values.GetValue<int>(valueType).AddModifier(this);
+            }
+        }
     }
 
     public static bool TryAddFeat(Creature owner, string name, out Feat feat)
@@ -44,7 +50,7 @@ public class Feat : IValueModification
         feat = null;
         if (DnDManager.TryGetResource(name, out FeatSpec spec))
         {
-            feat = new Feat(owner, spec);
+            feat = spec.ToFeat(owner);
             return true;
         }
         return false;

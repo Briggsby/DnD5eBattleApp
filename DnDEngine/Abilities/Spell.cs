@@ -16,11 +16,13 @@ public class Spell : Ability
     public int SpellLevel {get; set;}
     public string SpellSchool {get; set;}
     public SpellComponent spellComponents {get; set;}
-    public Spell(SpellSpec spellSpec, SpellBook spellBook) : base(spellSpec, spellBook.Owner)
+
+    public Spell(string name, Creature owner, Targeting targeting, ActionType actionType, Damage damage, SpellBook spellBook, int spellLevel, string spellSchool, SpellComponent spellComponents, string appliesCondition = null) : base(name, owner, targeting, actionType, damage, appliesCondition)
     {
         SpellBook = spellBook;
-        SpellLevel = spellSpec.Level;
-        SpellSchool = spellSpec.School;
+        SpellLevel = spellLevel;
+        SpellSchool = spellSchool;
+        this.spellComponents = spellComponents;
     }
 
     public override void SpendResources()

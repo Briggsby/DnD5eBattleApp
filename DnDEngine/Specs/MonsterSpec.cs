@@ -54,5 +54,55 @@ public record MonsterSpec
     public Dictionary<string, int> LegendaryActions {get; init;} = new Dictionary<string, int>();
     public List<string> Actions {get; init;} = new List<string>();
 
+    public Monster ToMonster()
+    {
+        var monster = new Monster();
+        monster.Speed.SetBaseValue(Speed);
+        monster.GetValue<int>(CreatureValue.Strength).SetBaseValue(Stats.Strength);
+        monster.GetValue<int>(CreatureValue.Dexterity).SetBaseValue(Stats.Dexterity);
+        monster.GetValue<int>(CreatureValue.Constitution).SetBaseValue(Stats.Constitution);
+        monster.GetValue<int>(CreatureValue.Intelligence).SetBaseValue(Stats.Intelligence);
+        monster.GetValue<int>(CreatureValue.Wisdom).SetBaseValue(Stats.Wisdom);
+        monster.GetValue<int>(CreatureValue.Charisma).SetBaseValue(Stats.Charisma);
+
+        monster.baseStats = new BaseStats(this, monster, true);
+        monster.name = Name;
+        monster.SpellBook = new SpellBook(monster, SpellcastingAbility, Spells);
+        monster.oldSpellbook = new OldSpellBook(Spells, monster);
+        // TODO: Add Feats
+        // TODO: Handle Textures
+        monster.Texture = DnDManager.monsterTextures[SRDLibrary.Monsters.Goblin.ToString()];
+        // TODO: Handle Armor? Is it even needed
+
+        var weapons = new List<Item>();
+        foreach (string weaponName in Equipment)
+        {
+            if (DnDManager.TryGetResource(weaponName, out WeaponSpec weaponSpec))
+            {
+                weapons.Add(weaponSpec.ToWeapon());
+            }
+        }
+        monster.inventory = new Inventory(monster, weapons);
+        monster.RecalibrateStats();
+        monster.ResetHP();
+
+        if (Name == "Goblin")
+        {
+            monster.name = monster.GoblinNameGenerator();
+        }
+        return monster;
+    }
+
+    
+    public Monster SpawnMonster(BoardTile tile)
+    {
+        Monster creature = ToMonster();
+        creature.SetInitialTile(tile);
+        creature.baseStats.RollHP();
+        creature.ResetHP();
+        creature.RecalibrateStats();
+        creature.StartTurn();
+        return creature;
+    }
     
 }

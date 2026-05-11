@@ -10,36 +10,13 @@
         "null"
       ]
     },
-    "ValueModifications": {
+    "ValueChanges": {
       "type": [
-        "array",
+        "object",
         "null"
       ],
-      "items": {
-        "type": [
-          "object",
-          "null"
-        ],
-        "properties": {
-          "ValueType": {
-            "enum": [
-              "speed",
-              "strength",
-              "dexterity",
-              "constitution",
-              "wisdom",
-              "intelligence",
-              "charisma"
-            ]
-          },
-          "ValueChange": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "ValueType",
-          "ValueChange"
-        ]
+      "additionalProperties": {
+        "type": "integer"
       }
     }
   },

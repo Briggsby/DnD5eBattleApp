@@ -12,15 +12,6 @@ namespace DnD5eBattleApp;
 
 public enum Alignment { NeutralEvil, Neutral, LawfulEvil }
 
-public enum CreatureValue { 
-    Speed, 
-    Strength,
-    Dexterity,
-    Constitution,
-    Wisdom,
-    Intelligence,
-    Charisma,
-}
 
 public class Creature : GameObject
 {

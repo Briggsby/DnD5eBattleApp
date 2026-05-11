@@ -38,7 +38,7 @@ public class SpellBook
         {
             if (DnDManager.TryGetResource(spell, out SpellSpec spec))
             {
-                SpellsByLevel[spec.Level].Add(new Spell(spec, this));
+                SpellsByLevel[spec.Level].Add(spec.ToSpell(this));
             }
         }
     }

@@ -10,5 +10,10 @@ public record ValueModificationSpec
 public record FeatSpec
 {
     public required string Name {get; init; }
-    public List<ValueModificationSpec> ValueModifications {get; init;} 
+    public Dictionary<string, int> ValueChanges {get; init;} 
+
+    public Feat ToFeat(Creature owner)
+    {
+        return new Feat(Name, owner, ValueChanges);
+    }
 }

@@ -14,21 +14,21 @@ public enum ActionType
 
 public class Ability
 {
-    public Creature Owner {get; set;}
     public string Name {get; set;}
+    public Creature Owner {get; set;}
     public Targeting Targeting {get; set;}
     public ActionType ActionType {get; set;}
-    public Damage Damage {get; set;}
+    public virtual Damage Damage {get; set;}
     public string AppliesCondition {get; set;}
 
-    public Ability(AbilitySpec abilitySpec, Creature owner)
+    public Ability(string name, Creature owner, Targeting targeting, ActionType actionType, Damage damage, string appliesCondition = null)
     {
+        Name = name;
         Owner = owner;
-        Name = abilitySpec.Name;
-        Targeting = abilitySpec.Targeting;
-        ActionType = abilitySpec.ActionType;
-        Damage = abilitySpec.Damage;
-        AppliesCondition = abilitySpec.AppliesCondition;
+        Targeting = targeting;
+        ActionType = actionType;
+        Damage = damage;
+        AppliesCondition = appliesCondition;
     }
 
     public void Use()
@@ -85,7 +85,7 @@ public class Ability
         if (roll.Success)
         {
             if (AppliesCondition is not null && DnDManager.TryGetResource(AppliesCondition, out ConditionSpec spec)) {
-                new Condition(roll.attack.defender, spec);
+                spec.ToCondition(roll.attack.defender);
             }
             DamageRoll damageRoll = new DamageRoll(
                 Owner,

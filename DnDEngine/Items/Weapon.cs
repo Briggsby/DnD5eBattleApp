@@ -48,24 +48,36 @@ namespace DnD5eBattleApp
             acBonus = 0;
         }
 
-        public Weapon(WeaponSpec spec)
+        public Weapon(
+            string name, 
+            WeaponCategory category, 
+            List<int> damageDice, 
+            List<int> damageDiceNumber, 
+            List<string> damageTypes, 
+            Stat abilityStat, 
+            int minRange = 5, 
+            int maxRange = 5, 
+            List<WeaponProperty> weaponProperties = null, 
+            int acBonus = 0,
+            Type ammunition = null,
+            int attackBonus = 0,
+            int damageBonus = 0
+        )
         {
             itemType = ItemType.Weapon.ToString();
-
-            name = spec.Name;
-            weaponCategory = spec.Category;
-            damageDice = new List<int>() { spec.Damage.MaxValueOfDice };
-            damageDiceNumber = new List<int>() { spec.Damage.NumberOfDice };
-            damageTypes = new List<string>() { spec.Damage.DamageType };
-            if (spec.Properties.Contains(WeaponProperty.Range)) {
-                abilityStat = Stat.Dexterity;
-            } else {
-                abilityStat = Stat.Strength;
-            }
-            minRange = spec.Range;
-            maxRange = spec.MaxRange;
-            weaponProperties = new List<WeaponProperty>(spec.Properties);
-            acBonus = 0;
+            this.name = name;
+            this.weaponCategory = category;
+            this.damageDice = damageDice;
+            this.damageDiceNumber = damageDiceNumber;
+            this.damageTypes = damageTypes;
+            this.abilityStat = abilityStat;
+            this.minRange = minRange;
+            this.maxRange = maxRange;
+            this.weaponProperties = weaponProperties ?? new List<WeaponProperty>();
+            this.acBonus = acBonus;
+            this.ammunition = ammunition;
+            this.attackBonus = attackBonus;
+            this.damageBonus = damageBonus;
         }
 
         public override bool Equippable(Creature creature)

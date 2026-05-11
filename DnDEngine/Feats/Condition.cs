@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace DnD5eBattleApp;
 
@@ -8,11 +9,7 @@ namespace DnD5eBattleApp;
 /// </summary>
 public class Condition : Feat
 {
-    public Condition() : base()
-    {
-        throw new NotImplementedException("Deprecated Feat usage");
-    }
-    public Condition(Creature owner, FeatSpec spec) : base(owner, spec)
+    public Condition(string name, Creature owner, Dictionary<string, int> valueChanges = null, Dictionary<string, int> valueOverrides = null) : base(name, owner, valueChanges, valueOverrides)
     {
     }
 }

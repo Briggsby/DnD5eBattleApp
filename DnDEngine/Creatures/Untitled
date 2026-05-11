@@ -1,0 +1,9 @@
+public enum CreatureValue { 
+    Speed, 
+    Strength,
+    Dexterity,
+    Constitution,
+    Wisdom,
+    Intelligence,
+    Charisma,
+}

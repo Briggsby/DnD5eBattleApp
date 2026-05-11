@@ -244,7 +244,7 @@ namespace DnD5eBattleApp
 
         public Creature SpawnMonster(MonsterSpec monsterSpec, BoardTile tile)
         {
-            return Monster.SpawnMonster(monsterSpec, tile);
+            return monsterSpec.SpawnMonster(tile);
         }
 
         public PlayerCharacter SpawnQuickCharacter(List<string> choices, BoardTile tile)

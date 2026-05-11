@@ -4704,21 +4704,14 @@ namespace DnD5eBattleApp
             {
                 foreach(string mc in DnDManager.monsters.Keys)
                 {
-                    Creature creature = new Monster(DnDManager.monsters[mc]);
-                    if (creature is Monster)
+                    Monster creature = DnDManager.monsters[mc].ToMonster();
+                    if (creature.creatureType == DnDManager.CreatureType.Beast.ToString())
                     {
-                        Monster monster = creature as Monster;
-                        if (monster.creatureType == DnDManager.CreatureType.Beast.ToString())
+                        if (!monsters.Keys.Contains(creature.cr))
                         {
-                            if (monsters.Keys.Contains(monster.cr))
-                            {
-                                monsters[monster.cr].Add(monster);
-                            }
-                            else
-                            {
-                                monsters.Add(monster.cr, new List<Monster>() { monster });
-                            }
+                            monsters.Add(creature.cr, new List<Monster>());
                         }
+                        monsters[creature.cr].Add(creature);
                     }
                 }
             }

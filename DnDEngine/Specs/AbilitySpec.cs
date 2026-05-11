@@ -6,7 +6,7 @@ namespace DnD5eBattleApp;
 // and implement properties on the specs like the following:
 
 [AttributeUsage(AttributeTargets.Property)]
-public sealed class SchemaRefAttribute : Attribute
+public class SchemaRefAttribute : Attribute
 {
     public SchemaRefAttribute(string schemaRef) => SchemaRef = schemaRef;
     public string SchemaRef { get; }
@@ -22,4 +22,9 @@ public record AbilitySpec
 
     [SchemaRef("ConditionName.schema.json")]
     public string AppliesCondition {get; init;}
+
+    public virtual Ability ToAbility(Creature owner)
+    {
+        return new Ability(Name, owner, Targeting, ActionType, Damage, AppliesCondition);
+    }
 }
