@@ -11,16 +11,14 @@ public record WeaponSpec
     public int Range {get; init;}
     public int MaxRange {get; init;}
 
-    public Weapon ToWeapon(Inventory inventory)
+    public Weapon ToWeapon()
     {
         return new Weapon(
-            inventory,
             Name, 
             Category, 
             new List<int>() { Damage.MaxValueOfDice }, 
             new List<int>() { Damage.NumberOfDice }, 
             new List<string>() { Damage.DamageType }, 
-            Properties.Contains(WeaponProperty.Range) ? Stat.Dexterity : Stat.Strength,
             0, 
             Properties.Contains(WeaponProperty.Range) ? MaxRange : 5, 
             Properties 

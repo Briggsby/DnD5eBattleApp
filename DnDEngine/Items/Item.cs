@@ -16,9 +16,6 @@ namespace DnD5eBattleApp
 
     public abstract class Item
     {
-        // TODO: Currently this is necessary, which breaks natural weapons
-        public Inventory inventory;
-
         public string itemType;
 
         public string name;

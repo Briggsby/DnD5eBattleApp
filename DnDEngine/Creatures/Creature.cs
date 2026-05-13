@@ -574,7 +574,7 @@ public class Creature : GameObject
 
     public int AC
     {
-        get { return Math.Max(baseStats.naturalAC + acBonus, armor.GetAC(this)) + WeaponACBonus() + acBonus; }
+        get { return Math.Max(baseStats.naturalAC, armor.GetAC(this)) + WeaponACBonus() + acBonus; }
     }
 
     public int WeaponACBonus()
@@ -672,19 +672,6 @@ public class Creature : GameObject
             this.source = source;
             this.amount = amount;
             this.type = type;
-        }
-
-        public Creature GetCreatureSource()
-        {
-            if (source is Weapon)
-            {
-                Weapon weaponSource = source as Weapon;
-                return weaponSource.inventory.creature;
-            }
-            else
-            {
-                return null;
-            }
         }
     }
 

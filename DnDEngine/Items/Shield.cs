@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace DnD5eBattleApp
 {
+    // TODO: Not a weapon, make shields work
     public class Shield : Weapon
     {
         public Shield() : base()
@@ -13,7 +14,6 @@ namespace DnD5eBattleApp
             damageDice = new List<int>() { 0 };
             damageDiceNumber = new List<int>() { 0 };
             damageTypes = new List<string>() { };
-            AbilityStat = Stat.Strength;
             minRange = 0;
             maxRange = 0;
             weaponProperties = new List<WeaponProperty>() { };

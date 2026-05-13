@@ -27,7 +27,6 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
         SetInitialVariables();
         SetCommands();
 
@@ -40,7 +39,7 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         EngManager.spriteBatch = _spriteBatch;
 
-        // TODO: use this.Content to load your game content here
+        // use this.Content to load your game content here
 
         // TODO: This should be done as a test or separate script, and take folder as a parameter
         SchemaHandler.ExtractSchemas("E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/Schemas");
@@ -71,7 +70,7 @@ public class Game1 : Game
 
         base.Update(gameTime);
 
-        // TODO: Add your update logic here
+        // Add your update logic here
         engManager.Update(gameTime);
         dndManager.Update();
 
@@ -84,7 +83,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        // Add your drawing code here
 
 
         base.Draw(gameTime);
@@ -315,7 +314,7 @@ public class Game1 : Game
     /// </summary>
     protected override void UnloadContent()
     {
-        // TODO: Unload any non ContentManager content here
+        // Unload any non ContentManager content here
     }
 
     #endregion

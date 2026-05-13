@@ -201,26 +201,6 @@ namespace DnD5eBattleApp
         }
         public event RollDelegate endRoll;
 
-        public Creature GetSourceCreature()
-        {
-            // if (source is OldSpell)
-            // {
-            //     return (source as OldSpell).caster;
-            // }
-            if (source is OldFeat)
-            {
-                return (source as OldFeat).creature;
-            }
-            else if (source is Item)
-            {
-                return (source as Item).inventory.creature;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         public string WithAdvantagePrint()
         {
             if (advantage && disadvantage)

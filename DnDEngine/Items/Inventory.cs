@@ -28,7 +28,7 @@ namespace DnD5eBattleApp
                 // TODO: Handle other item types
                 if (DnDManager.TryGetResource<WeaponSpec>(itemName, out WeaponSpec weaponSpec))
                 {
-                    Weapon weapon = weaponSpec.ToWeapon(this);
+                    Weapon weapon = weaponSpec.ToWeapon();
                     this.items.Add(weapon);
                     this.weapons.Add(weapon);
                 }

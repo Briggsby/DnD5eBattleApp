@@ -24,17 +24,6 @@ namespace DnD5eBattleApp
         public List<int> versatileDamageDice = new List<int>();
         public List<int> damageDiceNumber;
         public List<string> damageTypes;
-
-        public Stat abilityStat;
-        public Stat AbilityStat {
-            get { 
-                if (abilityStat == Stat.Strength && weaponProperties.Contains(WeaponProperty.Finesse)) {
-                    return inventory.creature.StatMod(Stat.Dexterity) > inventory.creature.StatMod(Stat.Strength) ? Stat.Dexterity : Stat.Strength;
-                }
-                return abilityStat;
-            }
-            set { abilityStat = value; }
-        }
         public int minRange;
         public int maxRange;
         public List<WeaponProperty> weaponProperties;
@@ -56,7 +45,6 @@ namespace DnD5eBattleApp
             damageDice = new List<int>() { 1 };
             damageDiceNumber = new List<int>() { 1 };
             damageTypes = new List<string>() { DamageType.Bludgeoning.ToString() };
-            AbilityStat = Stat.Strength;
             minRange = 5;
             maxRange = 5;
             weaponProperties = new List<WeaponProperty>() { WeaponProperty.Light };
@@ -64,13 +52,11 @@ namespace DnD5eBattleApp
         }
 
         public Weapon(
-            Inventory inventory,
             string name, 
             WeaponCategory category, 
             List<int> damageDice, 
             List<int> damageDiceNumber, 
             List<string> damageTypes, 
-            Stat abilityStat, 
             int minRange = 5, 
             int maxRange = 5, 
             List<WeaponProperty> weaponProperties = null, 
@@ -81,13 +67,11 @@ namespace DnD5eBattleApp
         )
         {
             itemType = ItemType.Weapon.ToString();
-            this.inventory = inventory;
             this.name = name;
             this.weaponCategory = category;
             this.damageDice = damageDice;
             this.damageDiceNumber = damageDiceNumber;
             this.damageTypes = damageTypes;
-            this.AbilityStat = abilityStat;
             this.minRange = minRange;
             this.maxRange = maxRange;
             this.weaponProperties = weaponProperties ?? new List<WeaponProperty>();

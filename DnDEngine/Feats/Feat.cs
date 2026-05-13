@@ -4,11 +4,7 @@ using BugsbyEngine;
 
 namespace DnD5eBattleApp;
 
-// TODO: I should make an Ability Class for abilities that can be activated,
-// And spells should be a subclass of those. A feat may provide multiple 'abilities'
-// Abilities should also have a 'TargetingSpec' class on them
-
-/// <summary>
+//// <summary>
 /// Feats represent any abilities or passive effects a creature has
 /// </summary>
 public class Feat : IValueModification

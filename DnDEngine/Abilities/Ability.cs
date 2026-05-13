@@ -57,8 +57,6 @@ public class Ability
         SpendResources(order.Creature, order);
         if (Targeting.HasAttackRoll)
         {
-            // TODO: The whole attack -> attack roll -> damage roll -> damage flow can be simplified and cleaned up
-            // and made to ONLY happen from an Ability (All 'attack' feats can be subclasses of abilities)
             new Attack(order.Creature, order.Selection.creature, this);
         }
     }
