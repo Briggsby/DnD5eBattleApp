@@ -146,6 +146,7 @@ namespace DnD5eBattleApp
 
         public bool GetDisadvantage()
         {
+            // TODO: Disadvantage for ranged attacks in melee range
             return false;
         }
 

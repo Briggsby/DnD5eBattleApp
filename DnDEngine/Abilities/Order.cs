@@ -36,6 +36,8 @@ public class Order {
         // TODO: Split these out into subclasses for targeting types
         if (Ability.Targeting.TargetType == TargetType.SingleTargetRanged) {
             return boardTile.creature is not null;
+        } else if (Ability.Targeting.TargetType == TargetType.EmptyTile) {
+            return boardTile.creature is null;
         }
         return true;
     }
@@ -59,7 +61,7 @@ public class Order {
     }
 
     public virtual Color GetValidTileColor() {
-        if (Ability.ActionType == ActionType.Movement) {
+        if (Ability is MoveAbility) {
             return Color.Aqua;
         }
         return Color.LightPink;

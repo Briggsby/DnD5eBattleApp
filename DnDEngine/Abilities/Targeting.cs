@@ -4,6 +4,7 @@ public enum TargetType
 {
     SingleTargetRanged,
     Square,
+    EmptyTile,
     Self
 }
 

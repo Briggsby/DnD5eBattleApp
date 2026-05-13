@@ -8,7 +8,7 @@ class MoveAbility : Ability {
     public MoveAbility(int speed) : base(
         name: "Move",
         targeting: new Targeting{
-            TargetType=TargetType.Square,
+            TargetType=TargetType.EmptyTile,
             Range=speed,
             Size=1,
             HasAttackRoll=false
