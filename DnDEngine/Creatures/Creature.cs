@@ -28,7 +28,6 @@ public class Creature : GameObject
     public int MaxHP {get => GetValue<int>(CreatureValue.HitPoints).BaseValue; set => GetValue<int>(CreatureValue.HitPoints).SetBaseValue(value); }
     public int HP {
         get => GetValue<int>(CreatureValue.HitPoints).CurrentValue;
-        // TODO: This is not actually changing HP, probably an engine bug
         set => GetValue<int>(CreatureValue.HitPoints).ModifyValue(value); 
     }
 
@@ -341,25 +340,13 @@ public class Creature : GameObject
     public void ResetHP()
     {
         RecalibrateStats();
-        HP = hitPointMax;
+        HP = MaxHP;
         GetValue<int>(CreatureValue.TemporaryHitPoints).ModifyValue(0);
     }
-    public void Heal(int amount, int numberOfDie = 1, bool die = false)
+    public void Heal(int amount)
     {
-        if (die)
-        {
-            int newAmount = 0;
-            for ( int i = 0; i < numberOfDie; i++)
-            {
-                newAmount += EngManager.random.Next(1, amount + 1);
-            }
-            amount = newAmount;
-        }
-        HP += amount;
-        if (HP > baseStats.hitPointMax)
-        {
-            HP = baseStats.hitPointMax;
-        }
+        int increase = Math.Min(amount, MaxHP - HP);
+        HP += increase;
         HealthCheck();
     }
 
@@ -393,6 +380,8 @@ public class Creature : GameObject
         {
             damage *= 2;
         }
+
+        damage = Math.Min(damage, HP);
 
         Debug.WriteLine(string.Format("{0} took {1} {2} damage", Name, damage, type));
         damageTakenSinceTurn += damage;
