@@ -1,3 +1,5 @@
+using System;
+
 namespace DnD5eBattleApp;
 
 class WeaponAttackAbility : Ability {
@@ -29,7 +31,7 @@ class WeaponAttackAbility : Ability {
     public override DamageRoll GetDamageRoll(Attack attack)
     {
         Damage damage = BaseDamage;
-        damage.FlatValue += attack.attacker.StatMod(Weapon.AbilityStat);
+        damage.FlatValue += Math.Max(0, attack.attacker.StatMod(Weapon.AbilityStat));
         return new DamageRoll(
             attack.attacker,
             this,
