@@ -104,7 +104,7 @@ namespace DnD5eBattleApp
                 case (StatsDisplay.Name):
                     return creature.name;
                 case (StatsDisplay.AmountMoved):
-                    return creature.amountMoved.ToString();
+                    return creature.AmountMoved.ToString();
                 case (StatsDisplay.StatStr):
                     return string.Format("STR: {0} (+{1})", creature.stats[Stat.Strength], creature.StatMod(Stat.Strength));
                 case (StatsDisplay.StatDex):

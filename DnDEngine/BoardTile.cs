@@ -14,10 +14,7 @@ namespace DnD5eBattleApp
         public Board board;
         public Vector2 coords;
         BoardShape boardTileShape;
-
         public Creature creature;
-
-        private OrderControl orderControl;
 
         public BoardTile(BoardShape boardShape, Vector2 position, Texture2D texture, int size, Board board) : base(position, texture, board)
         {
@@ -26,12 +23,22 @@ namespace DnD5eBattleApp
             transform.SetSize(new Vector2(size, size), texture);
             transform.LayerDepth = EngManager.layerDepths[LayerDepths.Ground];
             creature = null;
-            orderControl = null;
 
             if (boardShape == BoardShape.Square)
             {
                 BoardTileSquare(position, texture, size);
 
+            }
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (DnDManager.ongoingOrder != null && DnDManager.ongoingOrder.ValidTiles.Contains(this))
+            {
+                transform.color = DnDManager.ongoingOrder.ValidTileColor;
+            } else {
+                transform.color = Color.White;
             }
         }
 
@@ -53,9 +60,9 @@ namespace DnD5eBattleApp
         {
             base.OnRightClick();
             board.SetHoveredTile(this);
-            if (board.encounter.orderControl != null)
+            if (DnDManager.ongoingOrder != null)
             {
-                board.encounter.orderControl.Cancel();
+                DnDManager.ongoingOrder.CancelOrder();
             }
             board.encounter.MakeContextMenu(this);
         }
@@ -72,9 +79,9 @@ namespace DnD5eBattleApp
 
         public void Select()
         {
-            if (orderControl != null)
+            if (DnDManager.ongoingOrder != null && DnDManager.ongoingOrder.ValidTiles.Contains(this))
             {
-                orderControl.Select(this);
+                DnDManager.ongoingOrder.SelectionMade(this);
                 return;
             }
 
@@ -89,15 +96,6 @@ namespace DnD5eBattleApp
             board.TileSelected(this);
         }
 
-        public void SetOrderControl(OrderControl orderControl, int? index = null)
-        {
-            if (index == null)
-            {
-                this.orderControl = orderControl;
-                transform.color = orderControl.color;
-            }
-        }
-
         public void SetHoverColor(Color color)
         {
             transform.color = color;
@@ -105,12 +103,6 @@ namespace DnD5eBattleApp
 
         public void RemoveHoverColor()
         {
-            transform.color = Color.White;
-        }
-
-        public void RemoveOrderControl()
-        {
-            this.orderControl = null;
             transform.color = Color.White;
         }
     }

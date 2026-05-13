@@ -53,7 +53,7 @@ public class Game1 : Game
         LoadDisplayOptions();
         LoadScrollMenuTextures();
         Creature.baseCommonTexture = Content.Load<Texture2D>("base");
-        dndManager = new DnDManager(new SRDLibrary(), GetMonsterTextures(), contextMenuTextureSet, boardTextureSet);
+        dndManager = new DnDManager(GetMonsterTextures(), contextMenuTextureSet, boardTextureSet);
 
 
 
@@ -203,10 +203,11 @@ public class Game1 : Game
 
     public Dictionary<string, Texture2D> GetMonsterTextures()
     {
+        // TODO: Sort out
         return new Dictionary<string, Texture2D>()
         {
-            {SRDLibrary.Monsters.Commoner.ToString(),Content.Load<Texture2D>("base") },
-            {SRDLibrary.Monsters.Goblin.ToString(), Content.Load<Texture2D>("barbarian") }
+            {"base",Content.Load<Texture2D>("base") },
+            {"barbarian", Content.Load<Texture2D>("barbarian") }
         };
     }
 

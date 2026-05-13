@@ -11,8 +11,6 @@ namespace DnD5eBattleApp
 {
     public class Encounter
     {
-        public Library library;
-
         public List<IEnumerator> coroutineList;
         public List<Roll> rollList;
 
@@ -28,44 +26,17 @@ namespace DnD5eBattleApp
 
         public StatDisplay statDisplay;
 
-        public OrderControl orderControl;
-
         #region Initializing
 
         public Encounter(DnDManager manager, Vector2 boardDimensions, int boardTileSize, BoardTextureSet boardTextureSet)
         {
             DnDManager.encounters.Add(this);
-            library = DnDManager.libraries[0];
             contextMenuTextures = manager.menuTextureSet;
             turn = 0;
             creatures = new List<Creature>();
             initiativeOrder = new List<Creature>();
 
             MakeSquareBoard(new Vector2(0, 0), boardDimensions, boardTileSize, boardTextureSet);
-        }
-
-        public Encounter(Library library, Vector2 boardDimensions, int boardTileSize, BoardTextureSet boardTextureSet, ContextMenuTextureSet menuTextureSet, List<Creature> creatures = null, List<int> teams = null, List<Vector2> positions = null)
-        {
-            this.library = library;
-            DnDManager.encounters.Add(this);
-            turn = 0;
-            creatures = new List<Creature>();
-            initiativeOrder = new List<Creature>();
-            creatures = new List<Creature>();
-
-            contextMenuTextures = menuTextureSet;
-
-            if (creatures != null)
-            {
-                for (int i = 0; i < creatures.Count; i++)
-                {
-                    this.creatures.Add(creatures[i]);
-                    creatures[i].SetToTile(board.Tile(positions[i]));
-                }
-            }
-
-            MakeSquareBoard(new Vector2(0, 0), boardDimensions, boardTileSize, boardTextureSet);
-
         }
 
         public Board MakeSquareBoard(Vector2 position, Vector2 boardDimensions, int boardTileSize, BoardTextureSet textureSet, int boardTileGameSize = 5)

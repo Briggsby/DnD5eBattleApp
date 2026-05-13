@@ -203,11 +203,11 @@ namespace DnD5eBattleApp
 
         public Creature GetSourceCreature()
         {
-            if (source is OldSpell)
-            {
-                return (source as OldSpell).caster;
-            }
-            else if (source is OldFeat)
+            // if (source is OldSpell)
+            // {
+            //     return (source as OldSpell).caster;
+            // }
+            if (source is OldFeat)
             {
                 return (source as OldFeat).creature;
             }

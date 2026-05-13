@@ -30,7 +30,7 @@ namespace DnD5eBattleApp
 
         public static List<Roll> ongoingRolls;
         public static List<Encounter> encounters;
-        public static List<Control> ongoingControls;
+        public static Order ongoingOrder;
 
         public ContextMenuTextureSet menuTextureSet;
         public BoardTextureSet boardTextureSet;
@@ -38,8 +38,6 @@ namespace DnD5eBattleApp
         public static Dictionary<string, Texture2D> monsterTextures;
 
         #region Library stuff
-
-        public static List<Library> libraries;
 
         public static List<string> languages;
 
@@ -70,53 +68,28 @@ namespace DnD5eBattleApp
 
         #endregion
 
-        public DnDManager(Library library, Dictionary<string, Texture2D> monsterTextures, ContextMenuTextureSet menuTextureSet, BoardTextureSet boardTextureSet)
+        public DnDManager(Dictionary<string, Texture2D> monsterTextures, ContextMenuTextureSet menuTextureSet, BoardTextureSet boardTextureSet)
         {
             manager = this;
 
             ongoingRolls = new List<Roll>();
             encounters = new List<Encounter>();
-            ongoingControls = new List<Control>();
+            ongoingOrder = null;
 
             DnDManager.monsterTextures = new Dictionary<string, Texture2D>(monsterTextures);
             this.menuTextureSet = menuTextureSet;
             this.boardTextureSet = boardTextureSet;
-            OldSpellBook.baseContextMenuTextureSet = menuTextureSet;
 
             InitializeLibraryLists();
 
-            AddLibrary(library);
+            AddLibrary();
 
             contextMenu = null;
 
-        }
-
-        public DnDManager(List<Library> libraries, Dictionary<string, Texture2D> monsterTextures, ContextMenuTextureSet menuTextureSet, BoardTextureSet boardTextureSet)
-        {
-            manager = this;
-
-            ongoingRolls = new List<Roll>();
-            encounters = new List<Encounter>();
-            ongoingControls = new List<Control>();
-
-            DnDManager.monsterTextures = new Dictionary<string, Texture2D>(monsterTextures);
-            this.menuTextureSet = menuTextureSet;
-            this.boardTextureSet = boardTextureSet;
-            OldSpellBook.baseContextMenuTextureSet = menuTextureSet;
-
-            InitializeLibraryLists();
-
-            foreach (Library lib in libraries)
-            {
-                AddLibrary(lib);
-            }
-
-            contextMenu = null;
         }
 
         public void InitializeLibraryLists()
         {
-            libraries = new List<Library>();
             languages = new List<string>();
             items = new Dictionary<string, ItemCreator>();
             armors = new Dictionary<string, ArmorCreator>();
@@ -140,7 +113,7 @@ namespace DnD5eBattleApp
         {
             RemoveRolls();
             CheckRolls();
-            CheckControls();
+            CheckOrders();
             CheckContextMenu();
         }
 
@@ -160,12 +133,11 @@ namespace DnD5eBattleApp
         {
         }
 
-        public void CheckControls()
+        public void CheckOrders()
         {
-            List<Control> controlsThisFrame = new List<Control>(ongoingControls);
-            foreach (Control control in controlsThisFrame)
+            if (ongoingOrder != null)
             {
-                control.Update();
+                ongoingOrder.Update();
             }
         }
 
@@ -217,100 +189,16 @@ namespace DnD5eBattleApp
             return template;
         }
 
-        public void AddLibrary(Library newLibrary)
+        public void AddLibrary()
         {
-            foreach (string s in newLibrary.languages)
-            {
-                languages.Add(s);
-            }
-            foreach (string s in newLibrary.conditions.Keys)
-            {
-                oldConditions.Add(s, newLibrary.conditions[s]);
-            }
-            foreach (string s in newLibrary.items.Keys)
-            {
-                items.Add(s, newLibrary.items[s]);
-            }
-            foreach (string s in newLibrary.armors.Keys)
-            {
-                armors.Add(s, newLibrary.armors[s]);
-            }
-            foreach (string s in newLibrary.species.Keys)
-            {
-                species.Add(s, newLibrary.species[s]);
-            }
-            foreach (string s in newLibrary.subSpecies.Keys)
-            {
-                subSpecies.Add(s, newLibrary.subSpecies[s]);
-            }
-            foreach (string s in newLibrary.classes.Keys)
-            {
-                classes.Add(s, newLibrary.classes[s]);
-            }
-            foreach (string s in newLibrary.subClasses.Keys)
-            {
-                subClasses.Add(s, newLibrary.subClasses[s]);
-            }
-            foreach (string s in newLibrary.feats.Keys)
-            {
-                oldFeats.Add(s, newLibrary.feats[s]);
-            }
             weapons = new Dictionary<string, WeaponSpec>();
             // TODO: Take argument for path
             var path = "E:/Programming/DnD5eBattleApp/DnDEngine/Libraries/SRD 5.1/";
-
-
 
             SchemaHandler.IngestSpecs(path + "Monsters", monsters);
             SchemaHandler.IngestSpecs(path + "Spells", spells);
             SchemaHandler.IngestSpecs(path + "Conditions", Conditions);
             SchemaHandler.IngestSpecs(path + "Weapons", weapons);
-            foreach (string classString in newLibrary.spellLists.Keys)
-            {
-                if (spellLists.Keys.Contains(classString))
-                {
-                    foreach (int level in newLibrary.spellLists[classString].Keys)
-                    {
-                        if (spellLists[classString].Keys.Contains(level))
-                        {
-                            foreach (string spellString in newLibrary.spellLists[classString][level])
-                            {
-                                if (!spellLists[classString][level].Contains(spellString))
-                                {
-                                    spellLists[classString][level].Add(spellString);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            spellLists[classString].Add(level, newLibrary.spellLists[classString][level]);
-                        }
-                    }
-                }
-                else
-                {
-                    spellLists.Add(classString, new Dictionary<int,List<string>>(newLibrary.spellLists[classString]));
-                }
-            }
-
-            foreach (string s in newLibrary.martialMeleeWeapons)
-            {
-                martialMeleeWeapons.Add(s);
-            }
-            foreach(string s in newLibrary.martialRangedWeapons)
-            {
-                martialRangedWeapons.Add(s);
-            }
-            foreach (string s in newLibrary.simpleMeleeWeapons)
-            {
-                simpleMeleeWeapons.Add(s);
-            }
-            foreach (string s in newLibrary.simpleRangedWeapons)
-            {
-                simpleRangedWeapons.Add(s);
-            }
-
-            libraries.Add(newLibrary);
         }
 
         public static T GetResource<T>(string name)

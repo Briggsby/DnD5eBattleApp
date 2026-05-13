@@ -68,10 +68,9 @@ public record MonsterSpec
         monster.baseStats = new BaseStats(this, monster, true);
         monster.name = Name;
         monster.SpellBook = new SpellBook(monster, SpellcastingAbility, Spells);
-        monster.oldSpellbook = new OldSpellBook(Spells, monster);
         // TODO: Add Feats
         // TODO: Handle Textures
-        monster.Texture = DnDManager.monsterTextures[SRDLibrary.Monsters.Goblin.ToString()];
+        monster.Texture = DnDManager.monsterTextures["barbarian"];
         // TODO: Handle Armor? Is it even needed
 
         monster.inventory = new Inventory(monster, Equipment);

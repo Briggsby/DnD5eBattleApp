@@ -17,7 +17,6 @@ namespace DnD5eBattleApp
         public Dictionary<string, SubClass> subClasses;
         public Dictionary<string, FeatCreator> feats;
         public Dictionary<string, MonsterCreator> monsters;
-        public Dictionary<string, SpellCreator> spells;
         public Dictionary<string, ConditionCreator> conditions;
 
 

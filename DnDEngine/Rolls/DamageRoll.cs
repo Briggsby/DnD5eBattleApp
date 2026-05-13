@@ -7,7 +7,6 @@ namespace DnD5eBattleApp
     public class DamageRoll : Roll
     {
         public Attack attack;
-        public OldSpell spell;
         public Creature Target {get; set;}
         public override int Bonus { get => base.Bonus; set
             {
@@ -17,7 +16,6 @@ namespace DnD5eBattleApp
         }
 
         public bool IsAttack { get { return attack != null; } }
-        public bool IsSpell { get { return spell != null; } }
 
         public bool critical;
 
@@ -39,16 +37,6 @@ namespace DnD5eBattleApp
             bonus = attack.GetDamageBonus();
             critical = attack.attackRoll.Natural == 20;
             finishRoll += new RollDelegate(attack.FinishDamageRoll);
-        }
-
-        public DamageRoll(OldSpell spell) : base(spell.caster.encounter)
-        {
-            this.spell = spell;
-            roller = spell.caster;
-            source = spell;
-            spell.GetDamageDice(this);
-            bonus = spell.GetDamageBonus();
-            finishRoll += new RollDelegate(spell.FinishDamageRoll);
         }
 
         public DamageRoll(

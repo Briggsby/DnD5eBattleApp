@@ -2,7 +2,9 @@ namespace DnD5eBattleApp;
 
 public enum TargetType
 {
-    SingleTargetRanged
+    SingleTargetRanged,
+    Square,
+    Self
 }
 
 public class Targeting
@@ -12,5 +14,6 @@ public class Targeting
     public bool HasSavingThrow {get; set;} = false;
     public int TargetCount {get; set; } = 1;    
     public int Range {get; set;} = 0;
+    public int Size {get; set;} = 5;
 
 }

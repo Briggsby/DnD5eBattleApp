@@ -77,7 +77,6 @@ public class Creature : GameObject
     public List<Feat> Feats {get; set;} = new List<Feat>();
 
     public SpellBook SpellBook {get; set;}
-    public OldSpellBook oldSpellbook;
     public SpellSlots spellSlots = new SpellSlots(0, SpellCasterType.None);
     public Inventory inventory;
     public Armor armor = new Armor();
@@ -105,7 +104,6 @@ public class Creature : GameObject
     public void Initializing()
     {
         inventory = new Inventory(this, new List<string>());
-        oldSpellbook = new OldSpellBook(this);
         SetDefaultValues();
     }
 
@@ -233,16 +231,16 @@ public class Creature : GameObject
     public Value<int> Speed {get => Values.GetValue<int>(CreatureValue.Speed.ToString()); }
     bool canMove = true;
 
-    public bool CanMove { get { if (!canMove) { return false; } else { return amountMoved < baseStats.speed; } } }
+    public bool CanMove { get { if (!canMove) { return false; } else { return AmountMoved < baseStats.speed; } } }
     public int AttacksLeft { get { return baseStats.attacks - attacksTaken; } }
     public int MoveSpeedLeft
     {
-        get { return Math.Max(Speed.GetValue() - amountMoved, 0); }
+        get { return Math.Max(Speed.GetValue() - AmountMoved, 0); }
     }
 
     public void MoveTo(BoardTile tile)
     {
-        amountMoved += encounter.board.GetDistance(boardTile, tile);
+        AmountMoved += encounter.board.GetDistance(boardTile, tile);
         SetToTile(tile);
     }
 
@@ -288,7 +286,10 @@ public class Creature : GameObject
     public bool reactionTaken;
     public bool attacked;
     public int attacksTaken;
-    public int amountMoved;
+    public int AmountMoved { 
+        get; 
+        set;
+    }
     public bool spellCast;
 
     public List<Attack> attacksThisTurn = new List<Attack>();
@@ -303,7 +304,7 @@ public class Creature : GameObject
 
     public void StartTurn()
     {
-        amountMoved = 0;
+        AmountMoved = 0;
         turnGone = false;
         actionTaken = false;
         attacked = false;
@@ -735,11 +736,6 @@ public class Creature : GameObject
             {
                 Weapon weaponSource = source as Weapon;
                 return weaponSource.inventory.creature;
-            }
-            if (source is OldSpell)
-            {
-                OldSpell spellSource = source as OldSpell;
-                return spellSource.caster;
             }
             else
             {

@@ -14,7 +14,7 @@ namespace DnD5eBattleApp
         public Ability Ability {get; set;}
 
         public bool isSpell;
-        public OldSpell spell;
+        public Spell spell;
 
         public bool offHand = false;
 
@@ -50,21 +50,6 @@ namespace DnD5eBattleApp
             attacker.attacksThisTurn.Add(this);
             DoAttackRoll();
 
-        }
-
-        public Attack(Creature attacker, Creature defender, OldSpell spell)
-        {
-            this.attacker = attacker;
-            this.defender = defender;
-            this.spell = spell;
-            isSpell = true;
-            this.numberAttacks = 1;
-
-            GetRange();
-
-            finished = false;
-            attacker.attacksThisTurn.Add(this);
-            DoAttackRoll();
         }
 
         public Attack(Creature attacker, Creature defender, Ability ability)
@@ -121,15 +106,15 @@ namespace DnD5eBattleApp
                 bonus += attackerWeapon.attackBonus;
                 //Debug.WriteLine(string.Format("Bonus is {0}, from a {3} mod of {1} and a proficiency bonus of {2}", bonus, attack.attacker.StatMod(statUsed), attack.attacker.proficiencyBonus, statUsed));
             }
-            else
-            {
-                if (!spell.scroll)
-                {
-                    bonus += attacker.StatMod(spell.abilityModifier);
-                    bonus += attacker.proficiencyBonus;
-                }
-                //Debug.WriteLine(string.Format("Bonus is {0}, from a mod of {1} and a proficiency bonus of {2}", bonus, attack.attacker.StatMod(spell.abilityModifier), attack.attacker.proficiencyBonus));
-            }
+            // else
+            // {
+            //     if (!spell.scroll)
+            //     {
+            //         bonus += attacker.StatMod(spell.abilityModifier);
+            //         bonus += attacker.proficiencyBonus;
+            //     }
+            //     //Debug.WriteLine(string.Format("Bonus is {0}, from a mod of {1} and a proficiency bonus of {2}", bonus, attack.attacker.StatMod(spell.abilityModifier), attack.attacker.proficiencyBonus));
+            // }
 
             return bonus;
         }
@@ -138,7 +123,8 @@ namespace DnD5eBattleApp
         {
             if (isSpell)
             {
-                return spell.GetDamageBonus();
+                return 0;
+                // return spell.GetDamageBonus();
             }
             else
             {
@@ -245,10 +231,6 @@ namespace DnD5eBattleApp
             {
                 attackerWeapon.GetDamageDice(this);
             }
-            else
-            {
-                spell.GetDamageDice(this);
-            }
 
             roll.diceFaces = new List<int>(damageDiceFaces);
             roll.numberOfDice = new List<int>(damageDiceNumber);
@@ -266,10 +248,6 @@ namespace DnD5eBattleApp
             if (!isSpell)
             {
                 Debug.WriteLine(string.Format("{0} did {1} ({2} + {3}) {4} damage to {5} with a {6}", attacker.name, roll.score, roll.score-roll.bonus, roll.bonus, damageTypes[0], defender.name, attackerWeapon.name));
-            }
-            else
-            {
-                Debug.WriteLine(string.Format("{0} did {1} ({2} + {3}) {4} damage to {5} with {6}", attacker.name, roll.score, roll.score-roll.bonus, roll.bonus, damageTypes[0], defender.name, spell.name));
             }
 
             defender.TakeDamage(this);

@@ -8,7 +8,8 @@ public enum ActionType
     Action,
     BonusAction,
     Reaction,
-    Free
+    Free,
+    Movement
 }
 
 
@@ -31,13 +32,13 @@ public class Ability
 
     public void Use(Creature user)
     {
-        if (Targeting.TargetType == TargetType.SingleTargetRanged)
+        if (Targeting.TargetType != TargetType.Self)
         {
-            new SingleNormalTargetOrder(user, this, Targeting.Range);
+            Order.NewOrder(user, this);
         }
     }
 
-    public virtual void SpendResources(Creature user)
+    public virtual void SpendResources(Creature user, Order order = null)
     {
         if (ActionType == ActionType.Action)
         {
@@ -51,14 +52,14 @@ public class Ability
         }
     }
 
-    public void SelectionMade(Control order)
+    public virtual void SelectionMade(Order order)
     {
-        SpendResources(order.creature);
+        SpendResources(order.Creature, order);
         if (Targeting.HasAttackRoll)
         {
             // TODO: The whole attack -> attack roll -> damage roll -> damage flow can be simplified and cleaned up
             // and made to ONLY happen from an Ability (All 'attack' feats can be subclasses of abilities)
-            new Attack(order.creature, order.orderControl.selection.creature, this);
+            new Attack(order.Creature, order.Selection.creature, this);
         }
     }
 

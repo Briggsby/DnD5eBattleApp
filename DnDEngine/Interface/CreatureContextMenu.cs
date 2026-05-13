@@ -36,7 +36,7 @@ namespace DnD5eBattleApp
 
             if (tags.Contains(CombatActions.Move.ToString()))
             {
-                new MoveOrder(creature);
+                new MoveAbility(creature.MoveSpeedLeft).Use(creature);
             }
 
             else if (tags.Contains(CombatActions.Attack.ToString()))
@@ -56,7 +56,7 @@ namespace DnD5eBattleApp
                 {
                     newTags.Add(tags[i]);
                 }
-                creature.oldSpellbook.spells[int.Parse(tags[1])].ChildMenuPress(newTags);
+                // creature.oldSpellbook.spells[int.Parse(tags[1])].ChildMenuPress(newTags);
             }
 
             else if (tags.Contains(CreatureMenuOtherOptions.ChooseLanguage.ToString()))

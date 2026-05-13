@@ -25,13 +25,13 @@ public class Spell : Ability
         this.spellComponents = spellComponents;
     }
 
-    public override void SpendResources(Creature user)
+    public override void SpendResources(Creature user, Order order)
     {
         if (SpellLevel > 0)
         {
             user.spellSlots.spellSlotsCurrent[SpellLevel]--;
         }
-        base.SpendResources(user);
+        base.SpendResources(user, order);
     }
 
     public override int GetAttackBonus(Creature user)

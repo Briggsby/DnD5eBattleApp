@@ -343,28 +343,21 @@ namespace DnD5eBattleApp
 
         public virtual void UseFeat()
         {
-            if (!targeting)
+            if (action)
             {
-                if (action)
-                {
-                    creature.actionTaken = true;
-                }
-                if (bonusAction)
-                {
-                    creature.bonusActionTaken = true;
-                }
-                if (MaxUses != 0)
-                {
-                    uses++;
-                    if (uses >= MaxUses)
-                    {
-                        usedThisRest = true;
-                    }
-                }
+                creature.actionTaken = true;
             }
-            else
+            if (bonusAction)
             {
-                Targeting();
+                creature.bonusActionTaken = true;
+            }
+            if (MaxUses != 0)
+            {
+                uses++;
+                if (uses >= MaxUses)
+                {
+                    usedThisRest = true;
+                }
             }
         }
 
@@ -579,17 +572,9 @@ namespace DnD5eBattleApp
         public Color? targetingColor = null;
         public enum TargetType { SingleTarget, Sphere, Cone, Line }
         public TargetType targetType = TargetType.SingleTarget;
-        public Control currentControl;
+        public Order currentControl;
 
-        public virtual void Targeting()
-        {
-            if (targetType == TargetType.SingleTarget)
-            {
-                currentControl = new SingleNormalTargetOrder(creature, this, range, targetingColor);
-            }
-        }
-
-        public virtual void SelectionMadeOrder(Control order)
+        public virtual void SelectionMadeOrder(Order order)
         {
             currentControl = order;
             if (action)
