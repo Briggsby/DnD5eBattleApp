@@ -65,26 +65,30 @@ public class Ability
 
     public virtual int GetAttackBonus(Creature user)
     {
-        // TODO: Implement bonuses for non-spell Abilities
+        return 0;
+    }
+
+    public virtual int GetDamageBonus(Creature user)
+    {
         return 0;
     }
 
     public void FinishAttackRoll(AttackRoll roll, RollEventArgs e)
     {
         Console.WriteLine(string.Format("{0} {1} {2} with an attack with an attack roll of {3} ({4} + {5}) against an AC of {6} {7}", 
-            roll.attack.attacker.Name, 
+            roll.attack.Attacker.Name, 
             roll.Success ? "hit" : "missed",
-            roll.attack.defender.Name, 
+            roll.attack.Defender.Name, 
             roll.score, 
             roll.score - roll.bonus,
             roll.bonus, 
-            roll.attack.defender.AC,
+            roll.attack.Defender.AC,
             roll.WithAdvantagePrint()
         ));
         if (roll.Success)
         {
             if (AppliesCondition is not null && DnDManager.TryGetResource(AppliesCondition, out ConditionSpec spec)) {
-                spec.ToCondition(roll.attack.defender);
+                spec.ToCondition(roll.attack.Defender);
             }
             DamageRoll damageRoll = GetDamageRoll(roll.attack);
             damageRoll.DoRoll();
@@ -93,13 +97,16 @@ public class Ability
 
     public virtual DamageRoll GetDamageRoll(Attack attack)
     {
+        Damage damage = BaseDamage;
+        damage.FlatValue += GetDamageBonus(attack.Attacker);
         return new DamageRoll(
-            attack.attacker,
+            attack.Attacker,
             this,
-            attack.defender,
-            BaseDamage,
-            attack.attacker.Encounter,
-            new RollDelegate(FinishDamageRoll)
+            attack.Defender,
+            damage,
+            attack.Attacker.Encounter,
+            new RollDelegate(FinishDamageRoll),
+            attack.AttackRoll.Natural == 20
         );
     }
 

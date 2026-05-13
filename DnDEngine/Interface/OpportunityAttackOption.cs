@@ -24,23 +24,14 @@ namespace DnD5eBattleApp
         public override void Yes(Button button, Button.ButtonEventArgs e)
         {
             DestroyAndChildren();
-            EngManager.StartCoroutine(DoAttack());
+            attacker.reactionTaken = true;
+            WeaponAttackAbility opportunityAttackAbility = new WeaponAttackAbility(attacker.weaponMainHand) {ActionType = ActionType.Reaction};
+            new Attack(attacker, mover, opportunityAttackAbility);
         }
 
         public override void No(Button button, Button.ButtonEventArgs e)
         {
             base.No(button, e);
-        }
-
-        IEnumerator DoAttack()
-        {
-            Attack attack = new Attack(attacker, mover, attacker.weaponMainHand);
-            while (!attack.finished)
-            {
-                yield return null;
-            }
-            finished = true;
-        }
-                            
+        }                            
     }
 }

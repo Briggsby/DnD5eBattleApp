@@ -28,21 +28,10 @@ namespace DnD5eBattleApp
 
         public int TotalScore { get { return scoresPerDie.Sum(); } }
 
-        public DamageRoll(Attack attack) : base(attack.attacker.Encounter)
-        {
-            this.attack = attack;
-            roller = attack.attacker;
-            source = attack.GetSource();
-            attack.GetDamageDice(this);
-            bonus = attack.GetDamageBonus();
-            critical = attack.attackRoll.Natural == 20;
-            finishRoll += new RollDelegate(attack.FinishDamageRoll);
-        }
-
         public DamageRoll(
             Creature roller, object source, Creature target,
             Damage damage, Encounter encounter,
-            RollDelegate finishRoll
+            RollDelegate finishRoll, bool critical = false
         ) : base(encounter)
         {
             this.roller = roller;
@@ -52,6 +41,7 @@ namespace DnD5eBattleApp
             numberOfDice = new List<int>() {damage.NumberOfDice};
             damageTypes = new List<string>() {damage.DamageType};
             bonus = damage.FlatValue;
+            this.critical = critical;
             this.finishRoll += finishRoll;
         }
 

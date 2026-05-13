@@ -54,7 +54,7 @@ namespace DnD5eBattleApp
         }
 
         public int RollD(int d)
-        {
+        {   
             return EngManager.random.Next(1, d + 1);
         }
 

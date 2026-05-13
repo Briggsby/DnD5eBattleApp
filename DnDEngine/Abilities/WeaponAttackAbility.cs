@@ -28,19 +28,8 @@ class WeaponAttackAbility : Ability {
         return Weapon.attackBonus + user.StatMod(Weapon.AbilityStat) + (user.IsProficientInWeapon(Weapon) ? user.proficiencyBonus : 0);
     }
 
-    public override DamageRoll GetDamageRoll(Attack attack)
+    public override int GetDamageBonus(Creature user)
     {
-        Damage damage = BaseDamage;
-        damage.FlatValue += Math.Max(0, attack.attacker.StatMod(Weapon.AbilityStat));
-        return new DamageRoll(
-            attack.attacker,
-            this,
-            attack.defender,
-            damage,
-            attack.attacker.Encounter,
-            new RollDelegate(FinishDamageRoll)
-        );
+        return Math.Max(0, Weapon.damageBonus + user.StatMod(Weapon.AbilityStat));
     }
-
-
 }

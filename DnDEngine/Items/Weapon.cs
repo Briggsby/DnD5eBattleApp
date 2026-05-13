@@ -151,19 +151,19 @@ namespace DnD5eBattleApp
             base.Equip(creature);
         }
 
-        public void GetDamageDice(Attack attack)
-        {
-            if (weaponProperties.Contains(WeaponProperty.Versatile) && equipper != null && equipper.weaponMainHand == this && equipper.weaponOffHand == null)
-            {
-                attack.damageDiceFaces = new List<int>(versatileDamageDice);
-            }
-            else
-            {
-                attack.damageDiceFaces = new List<int>(damageDice);
-            }
-            attack.damageDiceNumber = new List<int>(damageDiceNumber);
-            attack.damageTypes = new List<string>(damageTypes);
-        }
+        // public void GetDamageDice(Attack attack)
+        // {
+        //     if (weaponProperties.Contains(WeaponProperty.Versatile) && equipper != null && equipper.weaponMainHand == this && equipper.weaponOffHand == null)
+        //     {
+        //         attack.damageDiceFaces = new List<int>(versatileDamageDice);
+        //     }
+        //     else
+        //     {
+        //         attack.damageDiceFaces = new List<int>(damageDice);
+        //     }
+        //     attack.damageDiceNumber = new List<int>(damageDiceNumber);
+        //     attack.damageTypes = new List<string>(damageTypes);
+        // }
 
         public virtual void OnHit(Attack attack)
         {

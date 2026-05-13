@@ -358,17 +358,6 @@ public class Creature : GameObject
         HealthCheck();
     }
 
-    public void TakeDamage(Attack attack)
-    {
-        for (int d = 0; d < attack.damageRoll.scoresPerDie.Count; d++)
-        {
-            int damageTaken = attack.damageRoll.scoresPerDie[d];
-            string damageType = attack.damageTypes[d];
-
-            TakeDamage(damageTaken, damageType, attack.attackerWeapon);
-        }
-    }
-
     public void TakeDamage(List<int> damages, List<string> types, Object source, bool halfDamage = false)
     {
         for (int i = 0; i < damages.Count; i++)
@@ -607,23 +596,6 @@ public class Creature : GameObject
         }
         return bonus;
     }
-
-    public Attack Attack(Creature defender, Weapon weapon, int numberOfAttacks = 1, bool standardAction = true, bool bonusAction = false, bool offHand = false)
-    {
-        attacked = true;
-        if (standardAction)
-        {
-            actionTaken = true;
-            attacksTaken += numberOfAttacks;
-        }
-        if (bonusAction)
-        {
-            bonusActionTaken = bonusAction;
-        
-        }
-        return new Attack(this, defender, weapon, offHand, numberOfAttacks);
-    }
-
     #endregion
 
     #region Roll Check

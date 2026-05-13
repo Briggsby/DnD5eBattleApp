@@ -4,17 +4,19 @@ namespace DnD5eBattleApp
     {
         public Attack attack;
 
-        public AttackRoll(Attack attack) : base(attack.attacker.Encounter)
+        public AttackRoll(Attack attack) : base(attack.Attacker.Encounter)
         {
             this.attack = attack;
-            source = attack.GetSource();
+            source = attack.Ability;
 
             die = 20;
-            DC = attack.defender.AC;
-            roller = attack.attacker;
-            bonus = attack.GetAttackBonus();
-            advantage = attack.GetAdvantage();
-            disadvantage = attack.GetDisadvantage();
+            DC = attack.Defender.AC;
+            roller = attack.Attacker;
+            bonus = attack.Ability.GetAttackBonus(attack.Attacker);
+
+            // TODO: Implement advantage and disavantage
+            // advantage = attack.GetAdvantage();
+            // disadvantage = attack.GetDisadvantage();
 
             finishRoll += new RollDelegate(attack.FinishAttackRoll);
         }
