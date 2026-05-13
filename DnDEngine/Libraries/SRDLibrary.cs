@@ -8,7 +8,6 @@
 
 // namespace DnD5eBattleApp
 // {
-//     // TODO: This should be a large JSON, not code
 //     public class SRDLibrary : Library
 //     {
 //         public enum Languages { Common, Elvish, Draconic, Dwarvish, Gnomish, Goblin, Halfling, Infernal, Orc, DeepSpeech, Choose }

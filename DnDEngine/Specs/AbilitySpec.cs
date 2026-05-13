@@ -2,8 +2,6 @@ using System;
 
 namespace DnD5eBattleApp;
 
-// TODO: Move specs to a separate folder, have Specs be responsible for creating the Objects, not vice-versa
-// and implement properties on the specs like the following:
 
 [AttributeUsage(AttributeTargets.Property)]
 public class SchemaRefAttribute : Attribute

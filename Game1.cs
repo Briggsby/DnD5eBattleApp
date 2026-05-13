@@ -202,7 +202,7 @@ public class Game1 : Game
 
     public Dictionary<string, Texture2D> GetMonsterTextures()
     {
-        // TODO: Sort out
+        // TODO: Sort out textures. Currently hacked in and only two with keys manually specified everywhere
         return new Dictionary<string, Texture2D>()
         {
             {"base",Content.Load<Texture2D>("base") },

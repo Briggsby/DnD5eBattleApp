@@ -69,7 +69,6 @@ public record MonsterSpec
         monster.Name = Name;
         monster.SpellBook = new SpellBook(monster, SpellcastingAbility, Spells);
         // TODO: Add Feats
-        // TODO: Handle Textures
         monster.Texture = DnDManager.monsterTextures["barbarian"];
         // TODO: Handle Armor? Is it even needed
 

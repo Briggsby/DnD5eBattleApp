@@ -94,144 +94,35 @@ namespace BugsbyEngine
                     Debug.WriteLine(key);
                     switch (key)
                     {
-                        // TODO: Convert this without a massive switch
-                        case (Keys.Back):
-                            if (characterBefore == 0)
+                        case Keys.Back:
+                            if (characterBefore > 0)
                             {
-                                break;
+                                characterBefore--;
+                                textObj.text = textObj.text.Remove(characterBefore, 1);
                             }
-                            characterBefore--;
-                            textObj.text = textObj.text.Remove(characterBefore, 1);
                             break;
-                        case (Keys.Delete):
-                            if (characterBefore == 0)
-                            {
-                                break;
-                            }
-                            textObj.text = textObj.text.Remove(characterBefore, 1);
-                            characterBefore--;
+                        case Keys.Delete:
+                            if (characterBefore < textObj.text.Length)
+                                textObj.text = textObj.text.Remove(characterBefore, 1);
                             break;
-                        case (Keys.Left):
-                            if (characterBefore == 0)
-                            {
-                                break;
-                            }
-                            characterBefore--;
+                        case Keys.Left:
+                            if (characterBefore > 0) characterBefore--;
                             break;
-                        case (Keys.Right):
-                            if (characterBefore == textObj.text.Length)
-                            {
-                                break;
-                            }
-                            characterBefore++;
+                        case Keys.Right:
+                            if (characterBefore < textObj.text.Length) characterBefore++;
                             break;
-                        case (Keys.Space):
+                        case Keys.Space:
                             textObj.text = textObj.text.Insert(characterBefore, " ");
                             characterBefore++;
                             break;
-                        case (Keys.A):
-                            textObj.text = textObj.text.Insert(characterBefore, "a");
-                            characterBefore++;
-                            break;
-                        case (Keys.B):
-                            textObj.text = textObj.text.Insert(characterBefore, "b");
-                            characterBefore++;
-                            break;
-                        case (Keys.C):
-                            textObj.text = textObj.text.Insert(characterBefore, "c");
-                            characterBefore++;
-                            break;
-                        case (Keys.D):
-                            textObj.text = textObj.text.Insert(characterBefore, "d");
-                            characterBefore++;
-                            break;
-                        case (Keys.E):
-                            textObj.text = textObj.text.Insert(characterBefore, "e");
-                            characterBefore++;
-                            break;
-                        case (Keys.F):
-                            textObj.text = textObj.text.Insert(characterBefore, "f");
-                            characterBefore++;
-                            break;
-                        case (Keys.G):
-                            textObj.text = textObj.text.Insert(characterBefore, "g");
-                            characterBefore++;
-                            break;
-                        case (Keys.H):
-                            textObj.text = textObj.text.Insert(characterBefore, "h");
-                            characterBefore++;
-                            break;
-                        case (Keys.I):
-                            textObj.text = textObj.text.Insert(characterBefore, "i");
-                            characterBefore++;
-                            break;
-                        case (Keys.J):
-                            textObj.text = textObj.text.Insert(characterBefore, "j");
-                            characterBefore++;
-                            break;
-                        case (Keys.K):
-                            textObj.text = textObj.text.Insert(characterBefore, "k");
-                            characterBefore++;
-                            break;
-                        case (Keys.L):
-                            textObj.text = textObj.text.Insert(characterBefore, "l");
-                            characterBefore++;
-                            break;
-                        case (Keys.M):
-                            textObj.text = textObj.text.Insert(characterBefore, "m");
-                            characterBefore++;
-                            break;
-                        case (Keys.N):
-                            textObj.text = textObj.text.Insert(characterBefore, "n");
-                            characterBefore++;
-                            break;
-                        case (Keys.O):
-                            textObj.text = textObj.text.Insert(characterBefore, "o");
-                            characterBefore++;
-                            break;
-                        case (Keys.P):
-                            textObj.text = textObj.text.Insert(characterBefore, "p");
-                            characterBefore++;
-                            break;
-                        case (Keys.Q):
-                            textObj.text = textObj.text.Insert(characterBefore, "q");
-                            characterBefore++;
-                            break;
-                        case (Keys.R):
-                            textObj.text = textObj.text.Insert(characterBefore, "r");
-                            characterBefore++;
-                            break;
-                        case (Keys.S):
-                            textObj.text = textObj.text.Insert(characterBefore, "s");
-                            characterBefore++;
-                            break;
-                        case (Keys.T):
-                            textObj.text = textObj.text.Insert(characterBefore, "t");
-                            characterBefore++;
-                            break;
-                        case (Keys.U):
-                            textObj.text = textObj.text.Insert(characterBefore, "u");
-                            characterBefore++;
-                            break;
-                        case (Keys.V):
-                            textObj.text = textObj.text.Insert(characterBefore, "v");
-                            characterBefore++;
-                            break;
-                        case (Keys.W):
-                            textObj.text = textObj.text.Insert(characterBefore, "w");
-                            characterBefore++;
-                            break;
-                        case (Keys.X):
-                            textObj.text = textObj.text.Insert(characterBefore, "x");
-                            characterBefore++;
-                            break;
-                        case (Keys.Y):
-                            textObj.text = textObj.text.Insert(characterBefore, "y");
-                            characterBefore++;
-                            break;
-                        case (Keys.Z):
-                            textObj.text = textObj.text.Insert(characterBefore, "z");
-                            characterBefore++;
+                        default:
+                            if (key >= Keys.A && key <= Keys.Z)
+                            {
+                                textObj.text = textObj.text.Insert(characterBefore, ((char)key).ToString().ToLower());
+                                characterBefore++;
+                            } else {
+                                Debug.WriteLine("Unhandled key: " + key);
+                            }
                             break;
                     }
                     AddKeyDelay(key);
