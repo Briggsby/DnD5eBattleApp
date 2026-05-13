@@ -14,11 +14,17 @@ namespace DnD5eBattleApp
             roller = attack.Attacker;
             bonus = attack.Ability.GetAttackBonus(attack.Attacker);
 
-            // TODO: Implement advantage and disavantage
-            // advantage = attack.GetAdvantage();
-            // disadvantage = attack.GetDisadvantage();
-
+            ApplyMeleeRangeDisadvantage();
             finishRoll += new RollDelegate(attack.FinishAttackRoll);
+        }
+
+        public void ApplyMeleeRangeDisadvantage() {
+            if (attack.Ability.Targeting.TargetType == TargetType.SingleTargetRanged) {
+                int distance = attack.Attacker.Encounter.board.GetDistance(attack.Attacker, attack.Defender);
+                if (distance <= 5) {
+                    disadvantage = true;
+                }
+            }
         }
     }
 }

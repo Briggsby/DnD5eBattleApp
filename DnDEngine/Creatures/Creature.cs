@@ -25,7 +25,12 @@ public class Creature : GameObject
 
     public BaseStats baseStats = new BaseStats();
 
-    public int HP {get => GetValue<int>(CreatureValue.HitPoints).CurrentValue; set => GetValue<int>(CreatureValue.HitPoints).ModifyValue(value); }
+    public int MaxHP {get => GetValue<int>(CreatureValue.HitPoints).BaseValue; set => GetValue<int>(CreatureValue.HitPoints).SetBaseValue(value); }
+    public int HP {
+        get => GetValue<int>(CreatureValue.HitPoints).CurrentValue;
+        // TODO: This is not actually changing HP, probably an engine bug
+        set => GetValue<int>(CreatureValue.HitPoints).ModifyValue(value); 
+    }
 
     public List<string> Proficiencies
     {

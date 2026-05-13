@@ -98,9 +98,9 @@ namespace DnD5eBattleApp
             switch (sD)
             {
                 case (StatsDisplay.MaxHP):
-                    return creature.hitPointMax.ToString();
+                    return creature.MaxHP.ToString();
                 case (StatsDisplay.HPOutOfMax):
-                    return string.Format("{0} / {1}", creature.HP, creature.hitPointMax);
+                    return string.Format("{0} / {1}", creature.HP, creature.MaxHP);
                 case (StatsDisplay.Name):
                     return creature.Name;
                 case (StatsDisplay.AmountMoved):

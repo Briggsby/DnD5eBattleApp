@@ -9,7 +9,7 @@ public class Attack
     public Creature Attacker {get; set;}
     public Creature Defender {get; set;}
     public Ability Ability {get; set;}
-    public int Range {get => Attacker.Encounter.board.GetDistance(Attacker.BoardTile, Defender.BoardTile);}
+    public int Range {get => Attacker.Encounter.board.GetDistance(Attacker, Defender);}
 
     public AttackRoll AttackRoll {get; set;}
     public bool Finished {get; set;}

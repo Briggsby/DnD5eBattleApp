@@ -184,6 +184,11 @@ namespace DnD5eBattleApp
             return ((int)Math.Max(Math.Abs(destination.coords.X - origin.coords.X), Math.Abs(destination.coords.Y - origin.coords.Y))) * tileGameSize;
         }
 
+        public int GetDistance(Creature origin, Creature destination)
+        {
+            return GetDistance(origin.BoardTile, destination.BoardTile);
+        }
+
         public List<BoardTile> GetTilesInRange(BoardTile originSquare, int range, bool includeOrigin = false)
         {
             List<BoardTile> tileList = new List<BoardTile>();

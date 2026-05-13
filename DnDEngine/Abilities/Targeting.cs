@@ -3,6 +3,7 @@ namespace DnD5eBattleApp;
 public enum TargetType
 {
     SingleTargetRanged,
+    SingleTargetMelee,
     Square,
     EmptyTile,
     Self

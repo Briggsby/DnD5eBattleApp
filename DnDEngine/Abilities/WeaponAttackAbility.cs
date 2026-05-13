@@ -17,7 +17,7 @@ class WeaponAttackAbility : Ability {
     public Weapon Weapon {get; set;}
 
     public WeaponAttackAbility(Weapon weapon) : base(weapon.name, new Targeting{
-        TargetType= TargetType.SingleTargetRanged,
+        TargetType= weapon.weaponProperties.Contains(WeaponProperty.Range) ? TargetType.SingleTargetRanged : TargetType.SingleTargetMelee,
         Range= weapon.maxRange
     }, ActionType.Action, null, null) {
         Weapon = weapon;

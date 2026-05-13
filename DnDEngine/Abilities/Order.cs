@@ -34,7 +34,7 @@ public class Order {
     public virtual bool IsValidTileIfInRange(BoardTile boardTile) {
         // Assumes tile is in range
         // TODO: Split these out into subclasses for targeting types
-        if (Ability.Targeting.TargetType == TargetType.SingleTargetRanged) {
+        if (Ability.Targeting.TargetType == TargetType.SingleTargetRanged || Ability.Targeting.TargetType == TargetType.SingleTargetMelee) {
             return boardTile.creature is not null;
         } else if (Ability.Targeting.TargetType == TargetType.EmptyTile) {
             return boardTile.creature is null;

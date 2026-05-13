@@ -76,8 +76,8 @@ namespace DnD5eBattleApp
                 }
                 else if (disadvantage)
                 {
-                    otherScore = Math.Min(roll2, roll1) + bonus;
-                    return score = Math.Min(RollD(die), RollD(die)) + bonus;
+                    otherScore = Math.Max(roll2, roll1) + bonus;
+                    return score = Math.Min(roll2, roll1) + bonus;
                 }
             }
             return score = RollD(die) + bonus;        
