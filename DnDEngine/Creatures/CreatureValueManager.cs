@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace DnD5eBattleApp;
@@ -38,24 +39,59 @@ public enum CreatureValue {
     [DefaultValue<int>(8)]
     HitPoints,
 
+    [DefaultValue<int>(0)]
+    TemporaryHitPoints,
+
     [DefaultValue<int>(30)]
-    Speed
+    Speed,
+
+    SavingThrowProficiencies
+    
 }
 
 public static class CreatureValueExtensions{
+
+    // Overrides for types not allowed in Attribute parameters
+    static Dictionary<CreatureValue, Tuple<Type, object>> Overrides = new Dictionary<CreatureValue, Tuple<Type, object>>() {
+        {CreatureValue.SavingThrowProficiencies, new Tuple<Type, object>(typeof(HashSet<CreatureValue>), new HashSet<CreatureValue> { })}
+    };
+
+    
     public static T GetDefaultValue<T>(this CreatureValue value)
     {
-        var type = typeof(CreatureValue).GetType();
-        var memInfo = type.GetMember(value.ToString());
+        if (Overrides.ContainsKey(value))
+        {
+            return (T)Overrides[value].Item2;
+        }
+        var memInfo = typeof(CreatureValue).GetMember(value.ToString());
         var attributes = memInfo[0].GetCustomAttributes(typeof(DefaultValueAttribute<T>), false);
-        return (T)attributes[0];
+        return ((DefaultValueAttribute<T>)attributes[0]).DefaultValue;
     }
 
     public static Type GetValueType(this CreatureValue value)
     {
-        var type = typeof(CreatureValue).GetType();
-        var memInfo = type.GetMember(value.ToString());
-        var attributes = memInfo[0].GetCustomAttributes(typeof(Attribute), true);
-        return (Type)attributes[0];
+        if (Overrides.ContainsKey(value))
+        {
+            return Overrides[value].Item1;
+        }
+        var memInfo = typeof(CreatureValue).GetMember(value.ToString());
+        var attributes = memInfo[0].GetCustomAttributes(typeof(DefaultValueAttribute<>), false);
+        return attributes[0].GetType().GetGenericArguments()[0];
+    }
+}
+
+public class CreatureValueManager : ValueManager
+{
+    public CreatureValueManager() {
+        foreach (CreatureValue value in Enum.GetValues(typeof(CreatureValue))) {
+            Type type = value.GetValueType();
+            dynamic defaultValue = typeof(CreatureValueExtensions).GetMethod(nameof(CreatureValueExtensions.GetDefaultValue)).MakeGenericMethod(type).Invoke(null, new object[] {value});            
+            AddValue(value.ToString(), defaultValue);
+        }
+    }
+
+    public Value<T> GetValue<T>(CreatureValue value)
+    {
+        return (Value<T>)Values[value.ToString()];
     }
 }

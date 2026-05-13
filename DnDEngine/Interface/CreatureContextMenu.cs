@@ -141,11 +141,11 @@ namespace DnD5eBattleApp
 
             if (tags.Contains(CreatureMenuOtherOptions.StatMenu.ToString()))
             {
-                if (creature.encounter.statDisplay != null)
+                if (creature.Encounter.statDisplay != null)
                 {
-                    creature.encounter.statDisplay.DestroyAndChildren();
+                    creature.Encounter.statDisplay.DestroyAndChildren();
                 }
-                creature.encounter.statDisplay = new StatDisplay(creature);
+                creature.Encounter.statDisplay = new StatDisplay(creature);
             }
 
             if (!tags.Contains(DefaultTags.ParentMenu.ToString()))

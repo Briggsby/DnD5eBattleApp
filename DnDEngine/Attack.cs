@@ -66,7 +66,7 @@ namespace DnD5eBattleApp
 
         public void GetRange()
         {
-            range = attacker.encounter.board.GetDistance(attacker.boardTile, defender.boardTile);
+            range = attacker.Encounter.board.GetDistance(attacker.BoardTile, defender.BoardTile);
         }
 
         public int GetAttackBonus()
@@ -167,12 +167,12 @@ namespace DnD5eBattleApp
             }
             if (attackRoll.Success)
             {
-                Debug.WriteLine(string.Format("{0} hit {1} with an attack with an attack roll of {2} ({3} + {4}) against an AC of {5} {6}", attacker.name, defender.name, roll.score, roll.score - roll.bonus, roll.bonus, defender.AC, roll.WithAdvantagePrint()));
+                Debug.WriteLine(string.Format("{0} hit {1} with an attack with an attack roll of {2} ({3} + {4}) against an AC of {5} {6}", attacker.Name, defender.Name, roll.score, roll.score - roll.bonus, roll.bonus, defender.AC, roll.WithAdvantagePrint()));
                 DoDamageRoll();
             }
             else
             {
-                Debug.WriteLine(string.Format("{0} missed {1} with an attack with an attack roll of {2} ({3} + {4}) against an AC of {5} {6}", attacker.name, defender.name, roll.score, roll.score - roll.bonus, roll.bonus, defender.AC, roll.WithAdvantagePrint()));
+                Debug.WriteLine(string.Format("{0} missed {1} with an attack with an attack roll of {2} ({3} + {4}) against an AC of {5} {6}", attacker.Name, defender.Name, roll.score, roll.score - roll.bonus, roll.bonus, defender.AC, roll.WithAdvantagePrint()));
             }
             finished = true;
         }
@@ -190,7 +190,7 @@ namespace DnD5eBattleApp
             }
             if (attackerWeapon.weaponProperties.Contains(WeaponProperty.Thrown))
             {
-                if (!attackerWeapon.weaponProperties.Contains(WeaponProperty.Reach) && attacker.boardTile.board.GetDistance(attacker.boardTile, defender.boardTile) > 5)
+                if (!attackerWeapon.weaponProperties.Contains(WeaponProperty.Reach) && attacker.BoardTile.board.GetDistance(attacker.BoardTile, defender.BoardTile) > 5)
                 {
                     if (attacker.weaponMainHand == attackerWeapon)
                     {
@@ -201,7 +201,7 @@ namespace DnD5eBattleApp
                         attacker.weaponOffHand = null;
                     }
                 }
-                else if (attackerWeapon.weaponProperties.Contains(WeaponProperty.Reach) && attacker.boardTile.board.GetDistance(attacker.boardTile, defender.boardTile) > 10)
+                else if (attackerWeapon.weaponProperties.Contains(WeaponProperty.Reach) && attacker.BoardTile.board.GetDistance(attacker.BoardTile, defender.BoardTile) > 10)
                 {
                     if (attacker.weaponMainHand == attackerWeapon)
                     {
@@ -248,7 +248,7 @@ namespace DnD5eBattleApp
             }
             if (!isSpell)
             {
-                Debug.WriteLine(string.Format("{0} did {1} ({2} + {3}) {4} damage to {5} with a {6}", attacker.name, roll.score, roll.score-roll.bonus, roll.bonus, damageTypes[0], defender.name, attackerWeapon.name));
+                Debug.WriteLine(string.Format("{0} did {1} ({2} + {3}) {4} damage to {5} with a {6}", attacker.Name, roll.score, roll.score-roll.bonus, roll.bonus, damageTypes[0], defender.Name, attackerWeapon.name));
             }
 
             defender.TakeDamage(this);

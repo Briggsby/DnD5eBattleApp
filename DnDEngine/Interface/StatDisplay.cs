@@ -100,9 +100,9 @@ namespace DnD5eBattleApp
                 case (StatsDisplay.MaxHP):
                     return creature.hitPointMax.ToString();
                 case (StatsDisplay.HPOutOfMax):
-                    return string.Format("{0} / {1}", creature.hitPoints, creature.hitPointMax);
+                    return string.Format("{0} / {1}", creature.HP, creature.hitPointMax);
                 case (StatsDisplay.Name):
-                    return creature.name;
+                    return creature.Name;
                 case (StatsDisplay.AmountMoved):
                     return creature.AmountMoved.ToString();
                 case (StatsDisplay.StatStr):

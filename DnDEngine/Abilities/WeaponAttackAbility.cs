@@ -37,7 +37,7 @@ class WeaponAttackAbility : Ability {
             this,
             attack.defender,
             damage,
-            attack.attacker.encounter,
+            attack.attacker.Encounter,
             new RollDelegate(FinishDamageRoll)
         );
     }

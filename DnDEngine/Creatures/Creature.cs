@@ -15,33 +15,18 @@ public enum Alignment { NeutralEvil, Neutral, LawfulEvil }
 
 public class Creature : GameObject
 {
-    public ValueManager Values { get; set; } = new ValueManager();
+    public static Texture2D BaseCommonTexture {get; set;}
+    public CreatureValueManager Values { get; set; } = new CreatureValueManager();
+    public string Name {get; set;}
 
-    public void SetDefaultValues()
-    {
-        Values.AddValue<int>(CreatureValue.Speed.ToString(), 30);
-        Values.AddValue<int>(CreatureValue.Strength.ToString(), 10);
-        Values.AddValue<int>(CreatureValue.Dexterity.ToString(), 10);
-        Values.AddValue<int>(CreatureValue.Constitution.ToString(), 10);
-        Values.AddValue<int>(CreatureValue.Wisdom.ToString(), 10);
-        Values.AddValue<int>(CreatureValue.Intelligence.ToString(), 10);
-        Values.AddValue<int>(CreatureValue.Charisma.ToString(), 10);
-    }
-
-    public static Texture2D baseCommonTexture;
-    public string name;
-    public string controller;
-
-    public Encounter encounter;
-    public BoardTile boardTile;
-    public int team;
-    public int initiative;
+    public Encounter Encounter {get; set;}
+    public BoardTile BoardTile {get; set;}
+    // public int team;
 
     public BaseStats baseStats = new BaseStats();
 
-    public int hitDice;
-    public int hitPoints;
-    public int temporaryHitPoints = 0;
+    public int HP {get => GetValue<int>(CreatureValue.HitPoints).CurrentValue; set => GetValue<int>(CreatureValue.HitPoints).ModifyValue(value); }
+
     public List<string> Proficiencies
     {
         get
@@ -83,15 +68,15 @@ public class Creature : GameObject
     public Weapon weaponMainHand = null;
     public Weapon weaponOffHand = null;
 
-    public Creature() : base(new Vector2(0,0))
+    public Creature() : base(new Vector2(0,0), BaseCommonTexture, null)
     {
         Initializing();
         baseStats = new BaseStats(this);
         ResetHP();
-        ResetHitDice();
         RecalibrateStats();
     }
-    public Creature(BoardTile tile, Texture2D texture = null) : base(new Vector2(0,0), texture??baseCommonTexture, tile)
+
+    public Creature(BoardTile tile, Texture2D texture = null) : base(new Vector2(0,0), texture??BaseCommonTexture, tile)
     {
         Initializing();
         baseStats = new BaseStats(this);
@@ -104,14 +89,13 @@ public class Creature : GameObject
     public void Initializing()
     {
         inventory = new Inventory(this, new List<string>());
-        SetDefaultValues();
     }
 
     public void SetInitialTile(BoardTile tile)
     {
         SetToTile(tile);
-        encounter = tile.board.encounter;
-        encounter.creatures.Add(this);
+        Encounter = tile.board.encounter;
+        Encounter.creatures.Add(this);
         SortTexture();
 
     }
@@ -240,7 +224,7 @@ public class Creature : GameObject
 
     public void MoveTo(BoardTile tile)
     {
-        AmountMoved += encounter.board.GetDistance(boardTile, tile);
+        AmountMoved += Encounter.board.GetDistance(BoardTile, tile);
         SetToTile(tile);
     }
 
@@ -324,12 +308,12 @@ public class Creature : GameObject
 
     public void SetToTile(BoardTile tile)
     {
-        if (boardTile is not null)
+        if (BoardTile is not null)
         {
-            boardTile.creature = null;
+            BoardTile.creature = null;
         }
         transform.localPosition = new Vector2(0, 0);
-        boardTile = tile;
+        BoardTile = tile;
         tile.creature = this;
         SetParent(tile, true, true);
     }
@@ -337,7 +321,7 @@ public class Creature : GameObject
     public void SortTexture()
     {
         transform.layerDepth = -0.01f;
-        transform.SetSize(boardTile.transform.Size);
+        transform.SetSize(BoardTile.transform.Size);
     }
 
     public bool HasLineOfSight(Creature sightCreature)
@@ -352,15 +336,9 @@ public class Creature : GameObject
     public void ResetHP()
     {
         RecalibrateStats();
-        hitPoints = hitPointMax;
-        temporaryHitPoints = 0;
+        HP = hitPointMax;
+        GetValue<int>(CreatureValue.TemporaryHitPoints).ModifyValue(0);
     }
-
-    public void ResetHitDice()
-    {
-        hitDice = baseStats.hitDiceNumber;
-    }
-
     public void Heal(int amount, int numberOfDie = 1, bool die = false)
     {
         if (die)
@@ -372,10 +350,10 @@ public class Creature : GameObject
             }
             amount = newAmount;
         }
-        hitPoints += amount;
-        if (hitPoints > baseStats.hitPointMax)
+        HP += amount;
+        if (HP > baseStats.hitPointMax)
         {
-            hitPoints = baseStats.hitPointMax;
+            HP = baseStats.hitPointMax;
         }
         HealthCheck();
     }
@@ -422,9 +400,9 @@ public class Creature : GameObject
             damage *= 2;
         }
 
-        Debug.WriteLine(string.Format("{0} took {1} {2} damage", name, damage, type));
+        Debug.WriteLine(string.Format("{0} took {1} {2} damage", Name, damage, type));
         damageTakenSinceTurn += damage;
-        hitPoints -= damage;
+        HP -= damage;
         TakeDamageEvent(damage, type, source);
         HealthCheck();
     }
@@ -432,15 +410,15 @@ public class Creature : GameObject
     public void HealthCheck()
     {
         RecalibrateStats();
-        if (hitPoints <= 0)
+        if (HP <= 0)
         {
-            Debug.WriteLine(string.Format("{0} fell unconscious!", name));
+            Debug.WriteLine(string.Format("{0} fell unconscious!", Name));
         }
     }
 
     public void SetHP(int hp)
     {
-        hitPoints = hp;
+        HP = hp;
         HealthCheck();
     }
 

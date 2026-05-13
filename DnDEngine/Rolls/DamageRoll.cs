@@ -28,7 +28,7 @@ namespace DnD5eBattleApp
 
         public int TotalScore { get { return scoresPerDie.Sum(); } }
 
-        public DamageRoll(Attack attack) : base(attack.attacker.encounter)
+        public DamageRoll(Attack attack) : base(attack.attacker.Encounter)
         {
             this.attack = attack;
             roller = attack.attacker;

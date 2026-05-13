@@ -24,7 +24,7 @@ public class Order {
     }
 
     public virtual void SetValidTiles() {
-        foreach (BoardTile tile in Creature.encounter.board.GetTilesInRange(Creature.boardTile, Ability.Targeting.Range)) {
+        foreach (BoardTile tile in Creature.Encounter.board.GetTilesInRange(Creature.BoardTile, Ability.Targeting.Range)) {
             if (IsValidTileIfInRange(tile)) {
                 ValidTiles.Add(tile);
             }

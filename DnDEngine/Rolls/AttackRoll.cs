@@ -4,7 +4,7 @@ namespace DnD5eBattleApp
     {
         public Attack attack;
 
-        public AttackRoll(Attack attack) : base(attack.attacker.encounter)
+        public AttackRoll(Attack attack) : base(attack.attacker.Encounter)
         {
             this.attack = attack;
             source = attack.GetSource();

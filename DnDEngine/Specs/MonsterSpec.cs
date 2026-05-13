@@ -66,7 +66,7 @@ public record MonsterSpec
         monster.GetValue<int>(CreatureValue.Charisma).SetBaseValue(Stats.Charisma);
 
         monster.baseStats = new BaseStats(this, monster, true);
-        monster.name = Name;
+        monster.Name = Name;
         monster.SpellBook = new SpellBook(monster, SpellcastingAbility, Spells);
         // TODO: Add Feats
         // TODO: Handle Textures
@@ -79,7 +79,7 @@ public record MonsterSpec
 
         if (Name == "Goblin")
         {
-            monster.name = monster.GoblinNameGenerator();
+            monster.Name = monster.GoblinNameGenerator();
         }
         return monster;
     }

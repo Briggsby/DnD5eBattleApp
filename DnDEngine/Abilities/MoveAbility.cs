@@ -28,7 +28,7 @@ class MoveAbility : Ability {
     public IEnumerator AttemptMoveCoroutine(Creature creature, BoardTile boardTile)
     {
         List<Creature> creaturesNearNewLocation = new List<Creature>();
-        foreach (BoardTile tile in creature.encounter.board.GetTilesInRange(boardTile, 5))
+        foreach (BoardTile tile in creature.Encounter.board.GetTilesInRange(boardTile, 5))
         {
             if (tile.creature != null)
             {
@@ -36,7 +36,7 @@ class MoveAbility : Ability {
             }
         }
 
-        foreach (BoardTile tile in creature.encounter.board.GetTilesInRange(boardTile, 5))
+        foreach (BoardTile tile in creature.Encounter.board.GetTilesInRange(boardTile, 5))
         {
             if (tile.creature != null && !creaturesNearNewLocation.Contains(tile.creature))
             {

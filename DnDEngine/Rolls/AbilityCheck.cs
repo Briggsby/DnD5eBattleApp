@@ -7,7 +7,7 @@ namespace DnD5eBattleApp
 
         public bool proficiencyUsed = false;
 
-        public AbilityCheck(Creature creature, Stat stat, string proficiency) : base(creature.encounter)
+        public AbilityCheck(Creature creature, Stat stat, string proficiency) : base(creature.Encounter)
         {
             this.stat = stat;
             this.proficiency = proficiency;

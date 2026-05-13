@@ -14,7 +14,7 @@ namespace DnD5eBattleApp
         Creature attacker;
 
         public OpportunityAttackOption(Creature mover, Creature attacker) : 
-            base(question: string.Format("{0} : Use reaction to opportunity attack {1}?", attacker.name, mover.name), textureSet: opportunityAttackTextureSet)
+            base(question: string.Format("{0} : Use reaction to opportunity attack {1}?", attacker.Name, mover.Name), textureSet: opportunityAttackTextureSet)
         {
             this.mover = mover;
             this.attacker = attacker;

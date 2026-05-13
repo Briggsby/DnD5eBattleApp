@@ -52,7 +52,7 @@ public class Game1 : Game
         LoadStatDisplay();
         LoadDisplayOptions();
         LoadScrollMenuTextures();
-        Creature.baseCommonTexture = Content.Load<Texture2D>("base");
+        Creature.BaseCommonTexture = Content.Load<Texture2D>("base");
         dndManager = new DnDManager(GetMonsterTextures(), contextMenuTextureSet, boardTextureSet);
 
 

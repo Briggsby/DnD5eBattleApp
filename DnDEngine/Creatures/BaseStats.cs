@@ -148,7 +148,7 @@ namespace DnD5eBattleApp
             if (stat == Stat.Constitution)
             {
                 hitPointMax += change * level;
-                creature.hitPoints += change * level;
+                creature.HP += change * level;
             }
         }
 

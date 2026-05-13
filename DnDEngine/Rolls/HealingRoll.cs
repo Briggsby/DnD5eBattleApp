@@ -9,7 +9,7 @@ namespace DnD5eBattleApp
         public int numberOfDice;
         public Creature target;
 
-        public HealingRoll(Creature healer, Creature target, int diceFace, int numberOfDice, int bonus, Object source, List<string> tags = null) : base(healer.encounter, tags)
+        public HealingRoll(Creature healer, Creature target, int diceFace, int numberOfDice, int bonus, Object source, List<string> tags = null) : base(healer.Encounter, tags)
         {
             this.die = diceFace;
             this.numberOfDice = numberOfDice;

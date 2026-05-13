@@ -514,8 +514,8 @@ namespace DnD5eBattleApp
         public ContextMenuTemplate BaseChildMenuTemplate()
         {
             ContextMenuTemplate template = new ContextMenuTemplate();
-            template.textures = ButtonTextures.FromList(creature.encounter.contextMenuTextures.blankTileTextures);
-            template.font = creature.encounter.contextMenuTextures.baseFont;
+            template.textures = ButtonTextures.FromList(creature.Encounter.contextMenuTextures.blankTileTextures);
+            template.font = creature.Encounter.contextMenuTextures.baseFont;
             template.texts = new List<string>();
             template.tags = new List<List<string>>();
             template.childMenus = new List<ContextMenuTemplate>();

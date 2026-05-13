@@ -72,9 +72,9 @@ public class Ability
     public void FinishAttackRoll(AttackRoll roll, RollEventArgs e)
     {
         Console.WriteLine(string.Format("{0} {1} {2} with an attack with an attack roll of {3} ({4} + {5}) against an AC of {6} {7}", 
-            roll.attack.attacker.name, 
+            roll.attack.attacker.Name, 
             roll.Success ? "hit" : "missed",
-            roll.attack.defender.name, 
+            roll.attack.defender.Name, 
             roll.score, 
             roll.score - roll.bonus,
             roll.bonus, 
@@ -98,7 +98,7 @@ public class Ability
             this,
             attack.defender,
             BaseDamage,
-            attack.attacker.encounter,
+            attack.attacker.Encounter,
             new RollDelegate(FinishDamageRoll)
         );
     }
@@ -107,12 +107,12 @@ public class Ability
     {
         DamageRoll damageRoll = roll as DamageRoll;
         Console.WriteLine(string.Format("{0} did {1} ({2} + {3}) {4} damage to {5} with {6}", 
-            roll.roller.name, 
+            roll.roller.Name, 
             damageRoll.score,
             damageRoll.score-damageRoll.bonus, 
             damageRoll.bonus, 
             damageRoll.damageTypes[0],
-            damageRoll.Target.name,
+            damageRoll.Target.Name,
             this.Name
         ));
         damageRoll.Target.TakeDamage(damageRoll.scoresPerDie, damageRoll.damageTypes, this);

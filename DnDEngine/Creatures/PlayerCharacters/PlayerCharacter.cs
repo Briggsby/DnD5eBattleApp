@@ -29,11 +29,11 @@ namespace DnD5eBattleApp
 
             if (subSpecies != null)
             {
-                name = string.Format("Lvl " + quickCharacterChoices[(int)QuickCharacterChoices.Level] + " " + quickCharacterChoices[(int)QuickCharacterChoices.SubSpecies] + " " + quickCharacterChoices[(int)QuickCharacterChoices.SubClass]);
+                Name = string.Format("Lvl " + quickCharacterChoices[(int)QuickCharacterChoices.Level] + " " + quickCharacterChoices[(int)QuickCharacterChoices.SubSpecies] + " " + quickCharacterChoices[(int)QuickCharacterChoices.SubClass]);
             }
             else
             {
-                name = string.Format("Lvl " + quickCharacterChoices[(int)QuickCharacterChoices.Level] + " " + quickCharacterChoices[(int)QuickCharacterChoices.Species] + " " + quickCharacterChoices[(int)QuickCharacterChoices.SubClass]);
+                Name = string.Format("Lvl " + quickCharacterChoices[(int)QuickCharacterChoices.Level] + " " + quickCharacterChoices[(int)QuickCharacterChoices.Species] + " " + quickCharacterChoices[(int)QuickCharacterChoices.SubClass]);
             }
 
             RollStats(true);

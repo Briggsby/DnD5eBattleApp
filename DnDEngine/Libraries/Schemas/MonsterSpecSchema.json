@@ -220,7 +220,9 @@
         "intelligence",
         "charisma",
         "hitPoints",
-        "speed"
+        "temporaryHitPoints",
+        "speed",
+        "savingThrowProficiencies"
       ]
     },
     "Truesight": {
