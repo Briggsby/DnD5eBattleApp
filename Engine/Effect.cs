@@ -17,6 +17,9 @@ public abstract class Effect
     public List<IEffectListener<Effect>> PreEffectListeners { get; set; }
     public string EffectType { get; set; } = String.Empty;
 
+    /// <summary>
+    /// Should be called by the effect listener when it has finished modifying or responding to the effect.
+    /// </summary>
     public virtual void FinishPreEffect(IEffectListener<Effect> listener)
     {
         PreEffectListeners.Remove(listener);
@@ -67,13 +70,16 @@ public class EffectManager
         ongoingEffects.Add(e);
         e.PreEffectListeners = new List<IEffectListener<Effect>>();
 
-        if (preEffectListeners.ContainsKey((typeof(T), e.EffectType)))
+        var listeners =  preEffectListeners.GetValueOrDefault((typeof(T), e.EffectType), new List<IEffectListener<Effect>>());
+
+        if (listeners.Count == 0) {
+            e.EnactEffect();
+            return;
+        }
+        foreach (var listener in listeners)
         {
-            foreach (var listener in preEffectListeners[(typeof(T), e.EffectType)])
-            {
-                e.PreEffectListeners.Add(listener);
-                listener.OnPreEffect(e);
-            }
+            e.PreEffectListeners.Add(listener);
+            listener.OnPreEffect(e);
         }
     }
 
