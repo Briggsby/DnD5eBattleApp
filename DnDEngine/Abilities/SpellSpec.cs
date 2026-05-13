@@ -11,6 +11,6 @@ public record SpellSpec : AbilitySpec
 
     public Spell ToSpell(SpellBook spellBook)
     {
-        return new Spell(Name, spellBook.Owner, Targeting, ActionType, Damage, spellBook, Level, School, Components, AppliesCondition);
+        return new Spell(Name, Targeting, ActionType, Damage, spellBook, Level, School, Components, AppliesCondition);
     }
 }

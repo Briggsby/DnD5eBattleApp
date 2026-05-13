@@ -15,7 +15,7 @@ namespace DnD5eBattleApp
     {
         public Ability Ability {
             get {
-                return new WeaponAttackAbility(this, inventory.creature);
+                return new WeaponAttackAbility(this);
             }
         }
         public WeaponCategory weaponCategory;
@@ -97,8 +97,8 @@ namespace DnD5eBattleApp
             this.damageBonus = damageBonus;
         }
 
-        public void Use() {
-            Ability.Use();
+        public void Use(Creature user) {
+            Ability.Use(user);
         }
 
         // TODO: Stuff below can be removed if equipping is removed

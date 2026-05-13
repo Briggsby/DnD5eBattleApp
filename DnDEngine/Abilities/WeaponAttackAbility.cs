@@ -2,28 +2,42 @@ namespace DnD5eBattleApp;
 
 class WeaponAttackAbility : Ability {
 
-    public override Damage Damage {
+    public override Damage BaseDamage {
         get {
             return new Damage{
                 DamageType= Weapon.damageTypes[0],
                 NumberOfDice= Weapon.damageDiceNumber[0],
                 MaxValueOfDice= Weapon.damageDice[0],
-                FlatValue= Owner.StatMod(Weapon.AbilityStat) + Weapon.damageBonus
+                FlatValue= Weapon.damageBonus
             };
         }
     }
     public Weapon Weapon {get; set;}
 
-    public WeaponAttackAbility(Weapon weapon, Creature owner) : base(weapon.name, owner, new Targeting{
+    public WeaponAttackAbility(Weapon weapon) : base(weapon.name, new Targeting{
         TargetType= TargetType.SingleTargetRanged,
         Range= weapon.maxRange
     }, ActionType.Action, null, null) {
         Weapon = weapon;
     }
 
-    public override int GetAttackBonus()
+    public override int GetAttackBonus(Creature user)
     {
-        return Weapon.attackBonus + Owner.StatMod(Weapon.AbilityStat) + (Owner.IsProficientInWeapon(Weapon) ? Owner.proficiencyBonus : 0);
+        return Weapon.attackBonus + user.StatMod(Weapon.AbilityStat) + (user.IsProficientInWeapon(Weapon) ? user.proficiencyBonus : 0);
+    }
+
+    public override DamageRoll GetDamageRoll(Attack attack)
+    {
+        Damage damage = BaseDamage;
+        damage.FlatValue += attack.attacker.StatMod(Weapon.AbilityStat);
+        return new DamageRoll(
+            attack.attacker,
+            this,
+            attack.defender,
+            damage,
+            attack.attacker.encounter,
+            new RollDelegate(FinishDamageRoll)
+        );
     }
 
 

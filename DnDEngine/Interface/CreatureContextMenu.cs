@@ -41,12 +41,12 @@ namespace DnD5eBattleApp
 
             else if (tags.Contains(CombatActions.Attack.ToString()))
             {
-                creature.GetAttackWeapons()[int.Parse(tags[1])].Use();
+                creature.GetAttackWeapons()[int.Parse(tags[1])].Use(creature);
             }
 
             else if (tags.Contains(CombatActions.CastSpell.ToString()))
             {
-                creature.SpellBook.SpellsByLevel[int.Parse(tags[1])][int.Parse(tags[1])].Use();
+                creature.SpellBook.SpellsByLevel[int.Parse(tags[1])][int.Parse(tags[1])].Use(creature);
             }
             
             else if (tags.Contains(CombatActions.SpellChildMenu.ToString()))

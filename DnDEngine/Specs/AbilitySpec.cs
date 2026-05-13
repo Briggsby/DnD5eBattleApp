@@ -23,8 +23,8 @@ public record AbilitySpec
     [SchemaRef("ConditionName.schema.json")]
     public string AppliesCondition {get; init;}
 
-    public virtual Ability ToAbility(Creature owner)
+    public virtual Ability ToAbility()
     {
-        return new Ability(Name, owner, Targeting, ActionType, Damage, AppliesCondition);
+        return new Ability(Name, Targeting, ActionType, Damage, AppliesCondition);
     }
 }

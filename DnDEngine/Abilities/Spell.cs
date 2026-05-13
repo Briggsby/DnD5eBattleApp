@@ -17,7 +17,7 @@ public class Spell : Ability
     public string SpellSchool {get; set;}
     public SpellComponent spellComponents {get; set;}
 
-    public Spell(string name, Creature owner, Targeting targeting, ActionType actionType, Damage damage, SpellBook spellBook, int spellLevel, string spellSchool, SpellComponent spellComponents, string appliesCondition = null) : base(name, owner, targeting, actionType, damage, appliesCondition)
+    public Spell(string name, Targeting targeting, ActionType actionType, Damage damage, SpellBook spellBook, int spellLevel, string spellSchool, SpellComponent spellComponents, string appliesCondition = null) : base(name, targeting, actionType, damage, appliesCondition)
     {
         SpellBook = spellBook;
         SpellLevel = spellLevel;
@@ -25,20 +25,20 @@ public class Spell : Ability
         this.spellComponents = spellComponents;
     }
 
-    public override void SpendResources()
+    public override void SpendResources(Creature user)
     {
         if (SpellLevel > 0)
         {
-            Owner.spellSlots.spellSlotsCurrent[SpellLevel]--;
+            user.spellSlots.spellSlotsCurrent[SpellLevel]--;
         }
-        base.SpendResources();
+        base.SpendResources(user);
     }
 
-    public override int GetAttackBonus()
+    public override int GetAttackBonus(Creature user)
     {
         int bonus = 0;
-        bonus += SpellBook.Owner.proficiencyBonus;
-        bonus += SpellBook.Owner.StatMod(SpellBook.SpellcastingAbility);
+        bonus += user.proficiencyBonus;
+        bonus += user.StatMod(SpellBook.SpellcastingAbility);
         return bonus;
     }
 }

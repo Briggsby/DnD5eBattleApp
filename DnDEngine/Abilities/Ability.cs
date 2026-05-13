@@ -15,47 +15,45 @@ public enum ActionType
 public class Ability
 {
     public string Name {get; set;}
-    public Creature Owner {get; set;}
     public Targeting Targeting {get; set;}
     public ActionType ActionType {get; set;}
-    public virtual Damage Damage {get; set;}
+    public virtual Damage BaseDamage {get; set;}
     public string AppliesCondition {get; set;}
 
-    public Ability(string name, Creature owner, Targeting targeting, ActionType actionType, Damage damage, string appliesCondition = null)
+    public Ability(string name, Targeting targeting, ActionType actionType, Damage damage, string appliesCondition = null)
     {
         Name = name;
-        Owner = owner;
         Targeting = targeting;
         ActionType = actionType;
-        Damage = damage;
+        BaseDamage = damage;
         AppliesCondition = appliesCondition;
     }
 
-    public void Use()
+    public void Use(Creature user)
     {
         if (Targeting.TargetType == TargetType.SingleTargetRanged)
         {
-            new SingleNormalTargetOrder(Owner, this, Targeting.Range);
+            new SingleNormalTargetOrder(user, this, Targeting.Range);
         }
     }
 
-    public virtual void SpendResources()
+    public virtual void SpendResources(Creature user)
     {
         if (ActionType == ActionType.Action)
         {
-            Owner.actionTaken = true;
+            user.actionTaken = true;
         } else if (ActionType == ActionType.BonusAction)
         {
-            Owner.bonusActionTaken = true;
+            user.bonusActionTaken = true;
         } else if (ActionType == ActionType.Reaction)
         {
-            Owner.reactionTaken = true;
+            user.reactionTaken = true;
         }
     }
 
     public void SelectionMade(Control order)
     {
-        SpendResources();
+        SpendResources(order.creature);
         if (Targeting.HasAttackRoll)
         {
             // TODO: The whole attack -> attack roll -> damage roll -> damage flow can be simplified and cleaned up
@@ -64,7 +62,7 @@ public class Ability
         }
     }
 
-    public virtual int GetAttackBonus()
+    public virtual int GetAttackBonus(Creature user)
     {
         // TODO: Implement bonuses for non-spell Abilities
         return 0;
@@ -87,23 +85,28 @@ public class Ability
             if (AppliesCondition is not null && DnDManager.TryGetResource(AppliesCondition, out ConditionSpec spec)) {
                 spec.ToCondition(roll.attack.defender);
             }
-            DamageRoll damageRoll = new DamageRoll(
-                Owner,
-                this,
-                roll.attack.defender,
-                Damage,
-                Owner.encounter,
-                new RollDelegate(FinishDamageRoll)
-            );
+            DamageRoll damageRoll = GetDamageRoll(roll.attack);
             damageRoll.DoRoll();
         }
+    }
+
+    public virtual DamageRoll GetDamageRoll(Attack attack)
+    {
+        return new DamageRoll(
+            attack.attacker,
+            this,
+            attack.defender,
+            BaseDamage,
+            attack.attacker.encounter,
+            new RollDelegate(FinishDamageRoll)
+        );
     }
 
     public void FinishDamageRoll(Roll roll, RollEventArgs e)
     {
         DamageRoll damageRoll = roll as DamageRoll;
         Console.WriteLine(string.Format("{0} did {1} ({2} + {3}) {4} damage to {5} with {6}", 
-            Owner.name, 
+            roll.roller.name, 
             damageRoll.score,
             damageRoll.score-damageRoll.bonus, 
             damageRoll.bonus, 

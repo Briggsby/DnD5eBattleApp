@@ -89,7 +89,7 @@ namespace DnD5eBattleApp
             int bonus = 0;
             if (Ability is not null)
             {
-                return Ability.GetAttackBonus();
+                return Ability.GetAttackBonus(attacker);
             }
 
             if (!isSpell)
@@ -238,9 +238,9 @@ namespace DnD5eBattleApp
         {
             if (Ability is not null)
             {
-                damageDiceFaces = new List<int>() {Ability.Damage.MaxValueOfDice};
-                damageDiceNumber = new List<int>() {Ability.Damage.NumberOfDice};
-                damageTypes = new List<string>() {Ability.Damage.DamageType};
+                damageDiceFaces = new List<int>() {Ability.BaseDamage.MaxValueOfDice};
+                damageDiceNumber = new List<int>() {Ability.BaseDamage.NumberOfDice};
+                damageTypes = new List<string>() {Ability.BaseDamage.DamageType};
             } else if (!isSpell)
             {
                 attackerWeapon.GetDamageDice(this);
