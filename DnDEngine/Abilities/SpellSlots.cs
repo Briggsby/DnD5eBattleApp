@@ -34,6 +34,11 @@ public class SpellSlots
 
     public SpellSlots(int spellcasterLevel, SpellCasterType spellcasterType)
     {
+        if (spellcasterType is SpellCasterType.None) {
+            BlankSpellSlotsMax();
+            ResetSpellSlots();
+            return;
+        }
         int effectiveLevel = spellcasterLevel;
         if (spellcasterType == SpellCasterType.Full) {
             effectiveLevel = spellcasterLevel;
@@ -46,7 +51,7 @@ public class SpellSlots
         for (int level = 1; level <= 9; level++) {
                 spellSlotsMax[level] = fullCasterSpellSlotsMax[effectiveLevel][level - 1];
         }
-        spellSlotsCurrent = new Dictionary<int, int>(spellSlotsMax);
+        ResetSpellSlots();
     }    
 
     public void ResetSpellSlots()
